@@ -240,7 +240,7 @@ export class PrestadoresService {
     //Creamos la referencia al documento que queremos borrar
     const docRef = doc(this.firestore, `prestadores/${prestador.id}`); // Borramos por id
     return deleteDoc(docRef); // Nos retorna una promesa
-  } //? Fin método eleminar prestador
+  } //? Fin método eleminar prestador para la opción de borrado en el Listado
 
   //? Aquí borramos los datos de Storage para la opción de borrado en el Listado
   borrarImagenesPrestador(prestador: any) {
@@ -268,12 +268,31 @@ export class PrestadoresService {
 
     })
 
-  } //? -> Fin de Borrar los datos en el Storage
+  } //? -> Fin de Borrar los datos en el Storage para la opción de borrado en el Listado
+
+  //? -> Método para borrar los datos del Storage para la imágen principal en componente Actualizar
+  borrarImgPortada(imgPortada: any) {
+    //Primero capturamos el dato del path del objeto para borrar la imágen del Storage
+    const pathImgPrincipal = imgPortada.path;
+    //console.log(pathImgPrincipal);
+    //Creamos una referencia a la imágen que deseamos borrar
+    const refImgPrincipal = ref(this.storage, pathImgPrincipal);
+    //Invocamos al método de firebase para eliminar datos del storage
+    deleteObject(refImgPrincipal)
+    .then(() => {console.log('Se ha borrado la img Principal')})
+    .catch((error) => {console.log('Error al borrar la img Principal: ', error)});
+  }
+
+
 
 
   //? SECCIÓN ACTUALIZAR
 
-  //? -> Método para Actualizar los datos de un Documento
+
+
+
+
+  //? -> Método para Actualizar los datos de un Documento cuando se envía el Form
   //Update - U
   actualizarEmpleado(prestador: any, files: any): Promise<any> {
 
@@ -344,32 +363,6 @@ export class PrestadoresService {
     return Promise.resolve(); // Puedes utilizar cualquier promesa vacía aquí
 
   } //? -> Fin del método Actualizar Empleado
-
-  //? -> Método para obtener la URL de descarga de las imágenes y poder mostrarlas
-  getImages(prestador: any): Promise<any>  {
-
-    //? Array de Promesas para imágenes
-    const imagesPromesa: Promise<any>[] = [];
-
-    //Vamos a recorrer el arreglo de pathImages de nuestro objeto para traer las URL de descarga de cada referencia
-    prestador.pathImages.forEach((path: any) => {
-
-      //Creamos una referencia a las imágenes que deseamos descargar
-      const pathReference = ref(this.storage, path);
-
-      //Utilizamos el método Firebase para obtener la URL de descarga
-      //const url = await getDownloadURL(pathReference);
-
-      //Creamos un arreglo de promesas con lo que nos devuelve el método getDownloadURL
-      imagesPromesa.push(getDownloadURL(pathReference));
-
-      //Guardamos la url descargada en el arreglo de imágenes que vamos a mostrar
-      //images.push(url);
-    });
-
-    return Promise.all(imagesPromesa); //Retornamos la promesa
-
-  }//? Fin del método getImages
 
   //? -> Método para eliminar las imágenes
 

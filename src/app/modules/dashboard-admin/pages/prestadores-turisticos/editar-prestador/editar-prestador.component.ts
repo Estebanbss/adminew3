@@ -148,7 +148,8 @@ export class EditarPrestadorComponent  implements OnInit {
     //TODO: Crear la validación en caso de que no exístan valores a mostrar de las imágenes no se llenen las propiedades
 
     //Imágen de Portada
-    this.imgPortada = this.prestador.pathImagePortada?.url;
+    //Pasamos el objeto que vamos a mostrar a una propiedad local
+    this.imgPortada = this.prestador.pathImagePortada;
 
     //Imágenes de Galería
     //Primero colocamos nuestro arreglo de objetos de tipo {path: , url: } a un arreglo que vamos iterar en el html para mostrarlas
@@ -160,8 +161,15 @@ export class EditarPrestadorComponent  implements OnInit {
   } //? -> Fin método Llenar Formulario
 
   //? -> Método para borrar las imágenes del Storage y del objeto que tengo actual (Además: Actualizar la BD por si sólo entro al componente Actualizar borro una imágen y luego me devuelvo)
-  actualizarImagenes() {
-    //TODO: Primero vamos a identificar qué imágenes debemos borrar según el click
+  actualizarImagenPortada(imgPortada: any) {
+    //Primero borramos en Storage (Servicio)
+    this.prestadoresService.borrarImgPortada(imgPortada);
+    //TODO: Luego hacemos el borrado en nuestra propiedad this.prestador (En este componente)
+    //TODO: Luego actulizamos los datos de Firestore (Con nuetro this.prestador, para que quede igual la BD y la vista del componente)
+  }
+
+  actualizarImagenesGaleria() {
+    //TODO: Primero vamos a identificar qué imágenes debemos borrar según el click, en el html (El objeto)
     //TODO: Luego borramos las imágenes en el storage
     //TODO: Luego borramos las imágenes en el objeto que tenemos actualmente
     //TODO: Por último actualizamos los datos del objeto para que esté actualizado en caso de que sólo se quiera borrar imágenes y salir.
