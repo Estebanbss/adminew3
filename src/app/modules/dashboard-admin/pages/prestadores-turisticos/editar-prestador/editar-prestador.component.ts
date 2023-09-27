@@ -36,6 +36,9 @@ export class EditarPrestadorComponent  implements OnInit {
   //? -> Arreglo de URL de imágenes
   images: any[] = [];
 
+  //? -> Imágen de Portada
+  imgPortada: any;
+
   //? Inyecciones de Dependencias
   constructor(
     private fb: FormBuilder, // Modulo para Formulario - Permite validar el formulario de manera sencilla.
@@ -105,10 +108,10 @@ export class EditarPrestadorComponent  implements OnInit {
     // this.data$.subscribe((valor) => {
     //   console.log('Valor emitido por BehaviorSubject:', valor);
     // })
-    this.llenarFormulario(); // Nos llena el formulario con los datos que tiene el observable
+    this.llenarFormulario(); // Disparamos el método que nos trae lo necesario para trabajar la actualización
   }
 
-  //? -> Método para rellenar los campos del formulario con el objeto que tenemos
+  //? -> Método para rellenar los campos del formulario con el objeto que tenemos y mostrar las imágenes que tiene el objeto asociadas
   llenarFormulario() {
 
     //Primero nos suscribimos a nuestro observable para obtener los datos del elemento que queremos actualizar
@@ -141,15 +144,28 @@ export class EditarPrestadorComponent  implements OnInit {
     })
 
     //? Mostrar imágenes
+
+    //TODO: Crear la validación en caso de que no exístan valores a mostrar de las imágenes no se llenen las propiedades
+
+    //Imágen de Portada
+    this.imgPortada = this.prestador.pathImagePortada?.url;
+
+    //Imágenes de Galería
     //Primero colocamos nuestro arreglo de objetos de tipo {path: , url: } a un arreglo que vamos iterar en el html para mostrarlas
     this.prestador.pathImages?.forEach(obj => {
       this.images.push(obj);
     })
     //console.log(this.images);
     //this.images.forEach(image => {console.log(image.url)});
-
   } //? -> Fin método Llenar Formulario
 
+  //? -> Método para borrar las imágenes del Storage y del objeto que tengo actual (Además: Actualizar la BD por si sólo entro al componente Actualizar borro una imágen y luego me devuelvo)
+  actualizarImagenes() {
+    //TODO: Primero vamos a identificar qué imágenes debemos borrar según el click
+    //TODO: Luego borramos las imágenes en el storage
+    //TODO: Luego borramos las imágenes en el objeto que tenemos actualmente
+    //TODO: Por último actualizamos los datos del objeto para que esté actualizado en caso de que sólo se quiera borrar imágenes y salir.
+  }
 
 
   //? -> Método para editarPrestador
