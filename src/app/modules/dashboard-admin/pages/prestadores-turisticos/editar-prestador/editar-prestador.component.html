@@ -118,14 +118,14 @@
       </form>
       <!-- Fin Formulario -->
       <!-- Imprimir las imágenes -->
-      <div *ngIf="!(prestador.pathImages?.length === 0)">
+      <!--<div *ngIf="!(prestador.pathImages?.length === 0)">-->
         <div *ngFor="let image of images">
-          <img [src]="image" width="200">
+          <img [src]="image.url" width="200">
           <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Borrar
           </button>
         </div>
-      </div>
+      <!--</div>-->
     </div>
   </div>
 </div>

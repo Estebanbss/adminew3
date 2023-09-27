@@ -140,30 +140,13 @@ export class EditarPrestadorComponent  implements OnInit {
       horarioAtencion: this.prestador.horarioAtencion,
     })
 
-    //? Método para traer las URL de las imágenes y mostrarlas
-    //Ejecutar una validación antes de invocar al método getImages para saber si exísten imagenes que podemos traer de otro modo no es necesario ejecutar el método getImages
-
-    // if(!(this.prestador.pathImages?.length === 0)) {
-
-    //   this.prestadoresService.getImages(this.prestador)
-    //   .then(resultados => {
-    //     //Nos retorna un arreglo con las respuestas de las promesas
-    //     //Procedemos a iterar para trabajar con cada resultado y obtener el o los path que queremos guardar
-    //     for( let resultado of resultados) {
-    //       //console.log(resultado);
-    //       this.images.push(resultado);
-    //     }
-    //     // this.images.forEach((img:any) => {
-    //     //   console.log(img);
-    //     // })
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //     console.log('Error en el arreglo de Promesas');
-    //   }); //? Fin del Promise.all
-
-    //} //? -> Fin Validación
-
+    //? Mostrar imágenes
+    //Primero colocamos nuestro arreglo de objetos de tipo {path: , url: } a un arreglo que vamos iterar en el html para mostrarlas
+    this.prestador.pathImages?.forEach(obj => {
+      this.images.push(obj);
+    })
+    //console.log(this.images);
+    //this.images.forEach(image => {console.log(image.url)});
 
   } //? -> Fin método Llenar Formulario
 
