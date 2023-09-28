@@ -286,16 +286,15 @@ export class PrestadoresService {
   } //? -> Fin de Borrar los datos en el Storage para la opción de borrado en el Listado
 
   //? -> Método para borrar los datos del Storage para la imágen principal en componente Actualizar
-  borrarImgPortada(imgPortada: any) {
+  borrarImg(imgABorrar: any) {
     //Primero capturamos el dato del path del objeto para borrar la imágen del Storage
-    const pathImgPrincipal = imgPortada.path;
-    //console.log(pathImgPrincipal);
+    const pathImg = imgABorrar.path;
     //Creamos una referencia a la imágen que deseamos borrar
-    const refImgPrincipal = ref(this.storage, pathImgPrincipal);
+    const refImg = ref(this.storage, pathImg);
     //Invocamos al método de firebase para eliminar datos del storage
-    deleteObject(refImgPrincipal)
-    .then(() => {console.log('Se ha borrado la img Principal')})
-    .catch((error) => {console.log('Error al borrar la img Principal: ', error)});
+    deleteObject(refImg)
+    .then(() => {console.log('Se ha borrado la Imágen')})
+    .catch((error) => {console.log('Error al borrar la Imágen: ', error)});
   }
 
 

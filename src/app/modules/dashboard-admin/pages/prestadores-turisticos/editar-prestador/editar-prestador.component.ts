@@ -172,7 +172,7 @@ export class EditarPrestadorComponent  implements OnInit {
   //? -> Método para borrar las imágenes del Storage y del objeto que tengo actual (Además: Actualizar la BD por si sólo entro al componente Actualizar borro una imágen y luego me devuelvo)
   actualizarImagenPortada(imgPortada: any) {
     //Primero borramos en Storage (Servicio)
-    this.prestadoresService.borrarImgPortada(imgPortada);
+    this.prestadoresService.borrarImg(imgPortada);
     //Luego hacemos el borrado en nuestra propiedad this.prestador (En este componente)
     this.prestador.pathImagePortada = {path: '', url: ''};
     //Cambiamos el dato de la variable que valida la existéncia de imágen de portada
@@ -181,10 +181,13 @@ export class EditarPrestadorComponent  implements OnInit {
     this.prestadoresService.actualizarPrestadorImgPrincipal(this.prestador);
   }
 
-  actualizarImagenesGaleria() {
-    //TODO: Primero vamos a identificar qué imágenes debemos borrar según el click, en el html (El objeto)
-    //TODO: Luego borramos las imágenes en el storage
-    //TODO: Luego borramos las imágenes en el objeto que tenemos actualmente
+  //? -> Método para borrar las imágenes del Storage y del objeto que tengo actual (Además: Actualizar la BD por si sólo entro al componente Actualizar borro una imágen y luego me devuelvo)
+  //Primero vamos a identificar qué imágenes debemos borrar según el click, en el html (El objeto)
+  actualizarImagenesGaleria(image: any, indice: any) {
+    //Borramos la imágen seleccionada en el storage
+    this.prestadoresService.borrarImg(image);
+    //TODO: Luego borramos las imágenes en el objeto que tenemos actualmente (En este componente)
+
     //TODO: Por último actualizamos los datos del objeto para que esté actualizado en caso de que sólo se quiera borrar imágenes y salir.
   }
 
