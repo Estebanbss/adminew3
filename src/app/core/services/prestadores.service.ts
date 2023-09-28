@@ -284,10 +284,16 @@ export class PrestadoresService {
   }
 
 
-
-
   //? SECCIÓN ACTUALIZAR
 
+  //? -> Actualizamos los datos del prestador una vez se haga el borrado de Img
+  actualizarPrestadorImgPrincipal(prestador: any) {
+    //Primero creamos una referencia al documento que queremos actualizar
+    const docRef = doc(this.firestore, `prestadores/${prestador.id}`); //Actualizamos por id
+    updateDoc(docRef, prestador)
+    .then(() => {console.log('Se actualizó la información de Firestore')})
+    .catch(error => console.log('Error', error));
+  }
 
 
 
