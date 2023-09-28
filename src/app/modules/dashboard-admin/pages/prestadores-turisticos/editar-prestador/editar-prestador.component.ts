@@ -186,9 +186,10 @@ export class EditarPrestadorComponent  implements OnInit {
   actualizarImagenesGaleria(image: any, indice: any) {
     //Borramos la imágen seleccionada en el storage
     this.prestadoresService.borrarImg(image);
-    //TODO: Luego borramos las imágenes en el objeto que tenemos actualmente (En este componente)
-
+    //Luego borramos las imágenes en el objeto que tenemos actualmente (En este componente)
+    this.prestador.pathImages?.splice(indice, 1); //Pasamos la posición del elemento y la cantidad de elementos que quiero borrar
     //TODO: Por último actualizamos los datos del objeto para que esté actualizado en caso de que sólo se quiera borrar imágenes y salir.
+
   }
 
 
