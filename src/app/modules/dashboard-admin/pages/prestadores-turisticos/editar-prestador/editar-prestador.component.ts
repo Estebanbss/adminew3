@@ -149,7 +149,7 @@ export class EditarPrestadorComponent  implements OnInit {
 
     //Imágen de Portada
     //Pasamos el objeto que vamos a mostrar a una propiedad local
-    this.imgPortada = this.prestador.pathImagePortada;
+    this.imgPortada = this.prestador.pathImagePortada; //TODO: Se hace comparación de objetos por referencia
 
     //Imágenes de Galería
     //Primero colocamos nuestro arreglo de objetos de tipo {path: , url: } a un arreglo que vamos iterar en el html para mostrarlas
@@ -163,12 +163,11 @@ export class EditarPrestadorComponent  implements OnInit {
   //? -> Método para borrar las imágenes del Storage y del objeto que tengo actual (Además: Actualizar la BD por si sólo entro al componente Actualizar borro una imágen y luego me devuelvo)
   actualizarImagenPortada(imgPortada: any) {
     //Primero borramos en Storage (Servicio)
-    //this.prestadoresService.borrarImgPortada(imgPortada);
+    this.prestadoresService.borrarImgPortada(imgPortada);
     //Luego hacemos el borrado en nuestra propiedad this.prestador (En este componente)
     this.prestador.pathImagePortada = {path: '', url: ''};
-    //console.log(this.prestador.pathImagePortada);
-    //TODO: Luego actulizamos los datos de Firestore (Con nuetro this.prestador, para que quede igual la BD y la vista del componente)
-
+    //Luego actulizamos los datos de Firestore (Con nuetro this.prestador, para que queden igual los datos de la BD y los datos del componente)
+    this.prestadoresService.actualizarPrestadorImgPrincipal(this.prestador);
   }
 
   actualizarImagenesGaleria() {
