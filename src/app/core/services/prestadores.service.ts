@@ -82,7 +82,7 @@ export class PrestadoresService {
     const promiseImgPrinc: Promise<any>[] = [];
 
     //? -> Código para subir imágen Principal
-    if(!(portadaFile.length === 0)) {
+    if(!(portadaFile === undefined)) {
       //Creamos la referencia a la dirección donde vamos a cargar la imágen en el Storage
       const imgRef = ref(this.storage, `prestadoresStorage/${prestador.name}/ImagenPrincipal/${portadaFile.name}`);
 
@@ -248,25 +248,40 @@ export class PrestadoresService {
     const pathImgPrincipal = prestador.pathImagePortada.path; //path para borrar imagen portada
     const arrayPathImages = prestador.pathImages; // arreglo de Objetos de tipo PathImage
 
+    //TODO: Tenemos que hacer validación de si exíste algo qué borrar, ya que si se borra la imágen Principal en la actualización y se trata de borra todo el objeto en el listado y no exíste path entonces nos dispara un error y no nos deja borrar el elemento.
+
     //Primero borramos la imágen de portada
-    //Creamos una referencia a la imágen que deseamos borrar
-    const refImgPrincipal = ref(this.storage, pathImgPrincipal);
-    //Invocamos al método de firebase para eliminar datos del storage
-    deleteObject(refImgPrincipal)
-    .then(() => {console.log('Se ha borrado la img Principal de: ', prestador.name)})
-    .catch((error) => {console.log('Error al borrar la img Principal: ', error)});
+    // Validación para borrar imágenes Principales
+    if(!(pathImgPrincipal === '')) {
+      //Creamos una referencia a la imágen que deseamos borrar
+      const refImgPrincipal = ref(this.storage, pathImgPrincipal);
+      //Invocamos al método de firebase para eliminar datos del storage
+      deleteObject(refImgPrincipal)
+      .then(() => {console.log('Se ha borrado la img Principal de: ', prestador.name)})
+      .catch((error) => {console.log('Error al borrar la img Principal: ', error)});
+      // console.log('Tiene imágen Principal');
+      // console.log(pathImgPrincipal);
+    } else {
+      console.log('No tiene imágen Principal');
+      console.log(pathImgPrincipal);
+    }
 
     //Luego borramos las imágenes de la galería en un for
-    //Iteramos el arreglo de objetos para acceder a la propiedad del path y eliminar las imágenes
-    arrayPathImages.forEach((pathImage:any) => {
-      //console.log(pathImage.path);
-      //Creamos la referencia
-      const refGaleriaImg = ref(this.storage, pathImage.path);
-      deleteObject(refGaleriaImg)
-      .then(() => {console.log('Se ha borrado la img Galeria')})
-      .catch((error) => {console.log('Error al borrar imgs Galería', error)});
-
-    })
+    // Validación para borrar imágenes de Galería
+    if(!(arrayPathImages.length === 0)) {
+      //Iteramos el arreglo de objetos para acceder a la propiedad del path y eliminar las imágenes
+      arrayPathImages.forEach((pathImage:any) => {
+        //console.log(pathImage.path);
+        //Creamos la referencia
+        const refGaleriaImg = ref(this.storage, pathImage.path);
+        deleteObject(refGaleriaImg)
+        .then(() => {console.log('Se ha borrado la img Galeria')})
+        .catch((error) => {console.log('Error al borrar imgs Galería', error)});
+      })
+    } else {
+      console.log('El arreglo NO tiene elementos');
+      console.log(arrayPathImages);
+    }
 
   } //? -> Fin de Borrar los datos en el Storage para la opción de borrado en el Listado
 

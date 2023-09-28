@@ -120,7 +120,8 @@
       <!-- Imprimir las imágenes -->
       <!-- Crear una validación en caso de que no exístan imágenes a mostrar para que no se disparen los métodos y no muestre los botónes, se utiliza un ngIf -->
       <div>
-        <div *ngIf="imgPortada">
+        <!--Validación-->
+        <div *ngIf="imgPortadaVal">
           <h2>Imágen de Portada</h2>
           <div>
             <img [src]="imgPortada.url" width="200">
@@ -129,12 +130,15 @@
             </button>
           </div>
         </div>
-        <h2>Imágenes de Galería</h2>
-        <div *ngFor="let image of images; let i = index">
-          <img [src]="image.url" width="200">
-          <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-            Borrar
-          </button>
+        <!--Validación-->
+        <div *ngIf="!(images.length === 0)">
+          <h2>Imágenes de Galería</h2>
+          <div *ngFor="let image of images; let i = index">
+            <img [src]="image.url" width="200">
+            <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+              Borrar
+            </button>
+          </div>
         </div>
       </div> <!-- Fin Imprimir Imágenes -->
     </div>

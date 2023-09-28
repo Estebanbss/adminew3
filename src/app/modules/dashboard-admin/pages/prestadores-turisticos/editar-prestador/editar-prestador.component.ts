@@ -39,6 +39,9 @@ export class EditarPrestadorComponent  implements OnInit {
   //? -> Imágen de Portada
   imgPortada: any;
 
+  //? -> Validación
+  imgPortadaVal = true;
+
   //? Inyecciones de Dependencias
   constructor(
     private fb: FormBuilder, // Modulo para Formulario - Permite validar el formulario de manera sencilla.
@@ -145,19 +148,25 @@ export class EditarPrestadorComponent  implements OnInit {
 
     //? Mostrar imágenes
 
-    //TODO: Crear la validación en caso de que no exístan valores a mostrar de las imágenes no se llenen las propiedades
+    //Crear la validación en caso de que no exístan valores a mostrar de las imágenes no se llenen las propiedades
 
-    //Imágen de Portada
+    //? Imágen de Portada
     //Pasamos el objeto que vamos a mostrar a una propiedad local
-    this.imgPortada = this.prestador.pathImagePortada; //TODO: Se hace comparación de objetos por referencia
+    this.imgPortada = this.prestador.pathImagePortada;
+    //Hacemos una validación por propiedades del objeto
+    if(this.imgPortada.path === '' && this.imgPortada.url === '') {
+      this.imgPortadaVal = false;
+    } else {
+      this.imgPortadaVal = true;
+    }
 
-    //Imágenes de Galería
+    //? Imágenes de Galería
     //Primero colocamos nuestro arreglo de objetos de tipo {path: , url: } a un arreglo que vamos iterar en el html para mostrarlas
     this.prestador.pathImages?.forEach(obj => {
       this.images.push(obj);
     })
-    //console.log(this.images);
-    //this.images.forEach(image => {console.log(image.url)});
+    //console.log(this.prestador.pathImages?.length);
+    //console.log(this.images.length);
   } //? -> Fin método Llenar Formulario
 
   //? -> Método para borrar las imágenes del Storage y del objeto que tengo actual (Además: Actualizar la BD por si sólo entro al componente Actualizar borro una imágen y luego me devuelvo)
@@ -166,6 +175,8 @@ export class EditarPrestadorComponent  implements OnInit {
     this.prestadoresService.borrarImgPortada(imgPortada);
     //Luego hacemos el borrado en nuestra propiedad this.prestador (En este componente)
     this.prestador.pathImagePortada = {path: '', url: ''};
+    //Cambiamos el dato de la variable que valida la existéncia de imágen de portada
+    this.imgPortadaVal = false;
     //Luego actulizamos los datos de Firestore (Con nuetro this.prestador, para que queden igual los datos de la BD y los datos del componente)
     this.prestadoresService.actualizarPrestadorImgPrincipal(this.prestador);
   }
