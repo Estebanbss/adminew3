@@ -81,27 +81,6 @@ export class PrestadoresService {
     //? Constante para almacenar la Imágnen Principal
     const promiseImgPrinc: Promise<any>[] = [];
 
-    //? -> Código para subir imágen Principal
-    if(!(portadaFile === undefined)) {
-      //Creamos la referencia a la dirección donde vamos a cargar la imágen en el Storage
-      const imgRef = ref(this.storage, `prestadoresStorage/${prestador.name}/ImagenPrincipal/${portadaFile.name}`);
-
-      promiseImgPrinc.push(uploadBytes(imgRef, portadaFile)); // Insertamos la promesa en la constante
-
-      //Utilizamos el Promise.all para que el código espere la respuesta de las promesas antes de seguir ejecutandose
-      Promise.all(promiseImgPrinc)
-      .then( async resultados => {
-        const resultado = resultados[0];
-        const path = resultado.metadata.fullPath;
-        const pathReference = ref(this.storage, path);
-        const url = await getDownloadURL(pathReference);
-        prestador.pathImagePortada.path = path;
-        prestador.pathImagePortada.url = url;
-      })
-      .catch(error => console.log(error));
-
-    } //? -> Fin para subir imágen Principal
-
     //? -> Deberíamos ejecutar la carga de archivos antes de guardar los datos en la BD para que se guarde el arreglo de paths de las Imágenes de una vez en Firestore.
     //Hacer una validación para ejecutar el código si hay Archivos para cargar, de otra forma no es necesario
 
