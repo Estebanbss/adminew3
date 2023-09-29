@@ -30,6 +30,9 @@ export class EditarPrestadorComponent  implements OnInit {
   // ? -> Propiedad para almacenar los archivos antes de cargarlos a la BD
   files: any[] = []; //Presupongo que los archivos son un arreglo de tipo any, no estoy seguro
 
+  //? -> Propiedad para almacenar la imágen de portada antes de cargarla a la BD
+  portadaFile: any;
+
   // ? -> Propiedad Loading que nos va a determinar cuándo aparece el ícono de carga del html, se debe disparar la carga sólamente en caso de que el programa esté a la espera de una respuesta por parte de una promesa
   loading = false;
 
@@ -198,13 +201,11 @@ export class EditarPrestadorComponent  implements OnInit {
     this.prestadoresService.actualizarPrestador(this.prestador);
   }
 
-
   //? -> Método para editarPrestador
   editarPrestador() {
-
     //Creamos el objeto que queremos editar y que vamos a pasar a firebase, lo creamos con los valores que nos da el observable y lo que modificó el usuario en el formulario.
     this.prestadorTuristico = {
-      id: this.prestador.id, // -> Nos lo da firebase
+      id: this.prestador.id, // -> No se modifica con el Form
       name: this.createPrestador.value.nombre,
       rntRm: this.createPrestador.value.rntRm,
       descripcion: this.createPrestador.value.descripcion,
@@ -224,13 +225,13 @@ export class EditarPrestadorComponent  implements OnInit {
       pagWeb: this.createPrestador.value.pagWeb,
       correo: this.createPrestador.value.correo,
       horarioAtencion: this.createPrestador.value.horarioAtencion,
-      pathImages: this.prestador.pathImages, // -> lo conseguimos en la inserción de imágenes
-      meGusta: this.prestador.meGusta, // -> # de Me gustas en la App
-      pathImagePortada: this.prestador.pathImagePortada
+      pathImages: this.prestador.pathImages, // -> No se modifica con el Form
+      meGusta: this.prestador.meGusta, // -> No se modifica con el Form
+      pathImagePortada: this.prestador.pathImagePortada // -> No se modifica con el Form
     }
 
     //Utilizamos el servicio con el método de actualizar los datos en Firestore
-    this.prestadoresService.actualizarEmpleado(this.prestadorTuristico, this.files) //Manejamos la Promesa
+    this.prestadoresService.editarPrestador(this.prestadorTuristico, this.files, this.portadaFile) //Manejamos la Promesa
     .then(() => {
       //Informamos
       alert('El prestador fue modificado con éxito');
@@ -248,5 +249,11 @@ export class EditarPrestadorComponent  implements OnInit {
     //console.log(this.files.length); // quiero saber el largo de mi arreglo
   } //? -> Fin Método cargar archivo
 
+    //? -> Método para Cargar la imágen de portada o imágen principal
+    uploadFilePortada($event: any) {
+      //TODO: Hacer validación, en caso de que ya exísta una imágen principal no dejar que se muestre o carge en la opción de poner una imágen principal
+      this.portadaFile = $event.target.files[0];
+      // console.log(this.portadaFile);
+    }
 
 }

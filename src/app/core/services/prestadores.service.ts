@@ -325,24 +325,27 @@ export class PrestadoresService {
     .catch(error => console.log('Error', error));
   }
 
-
-
-
-  //? -> Método para Actualizar los datos de un Documento cuando se envía el Form
+  //? Método para generar los empleados e insertarlos en la base de datos
   //Update - U
-  actualizarEmpleado(prestador: any, files: any): Promise<any> {
+  editarPrestador(prestador: any, files: any, portadaFile: any): Promise<any> {
 
-    //? Propiedad Array de Promesas
+    //? Propiedad Array de Promesas para los path
     const arregloDePromesas: Promise<any>[] = []; //Lo utilizamos para guardar nuestras promesas en la carga de archivos al servicio storage y asegurarnos que se cumplan todas para poder trabajar con ellas sin problema.
 
-    // console.log(prestador.pathImages.length);
-    // console.log(prestador.pathImages);
+    //? Propiedad para almacenar los paths
+    const arrayPaths: any = [];
+
+    //? Array de Promesas para url imágenes
+    const urlPromesa: Promise<any>[] = [];
+
+    //? Constante para almacenar la Imágnen Principal
+    const promiseImgPrinc: Promise<any>[] = [];
 
     //? -> Deberíamos ejecutar la carga de archivos antes de guardar los datos en la BD para que se guarde el arreglo de paths de las Imágenes de una vez en Firestore.
     //Hacer una validación para ejecutar el código si hay Archivos para cargar, de otra forma no es necesario
 
     if(!(files.length === 0)) {
-      console.log('Exísten archivos a cargar');
+      //console.log('Exísten archivos a cargar');
 
       //Creamos una referencia al sitio de firebase
       //En la referencia se coloca el servicio y el path donde queremos guardar, aún si el path no exíste se puede declarar
@@ -364,33 +367,122 @@ export class PrestadoresService {
       //Utilizamos un Promise all para asegurarnos de que el código no avanza hasta que todas las promesas se cumplan
       Promise.all(arregloDePromesas)
       .then(resultados => {
-
         //Nos retorna un arreglo con las respuestas de las promesas
         //Procedemos a iterar para trabajar con cada resultado y obtener el o los path que queremos guardar
         for( let resultado of resultados) {
           // console.log(resultado);
           const fullPath = resultado.metadata.fullPath;
           // console.log(fullPath);
-          prestador.pathImages.push(fullPath); //Guardamos los Paths en nuestro arreglo pathImages
+          //prestador.pathImages.push(fullPath); //Guardamos los Paths en nuestro arreglo pathImages
+          arrayPaths.push(fullPath); //Tenemos un arreglo con todos los paths a las imágenes que vamos a recuperar
         }
 
-        //? ACTUALIZACIÓN DE DATOS
-        //Creamos la referencia al documento de firestore
-        const docRef = doc(this.firestore, `prestadores/${prestador.id}`);
-        return updateDoc(docRef, prestador); // Retornamos la promesa
+        //Vamos a recorrer el arreglo de arrayPaths para traer las URL de descarga de cada referencia y luego encerrar el resultado en un objeto
+        arrayPaths.forEach((path:any) => {
+          // Creamos una referencia a las imágenes que deseamos descargar
+          const pathReference = ref(this.storage, path);
+          // Hacemos la solicitud a Storage de las Url para descargar las imágenes
+          urlPromesa.push(getDownloadURL(pathReference));
+
+        })
+
+        Promise.all(urlPromesa)
+        .then(results => {
+
+          for(let [indice, result] of results.entries()) {
+            //Se está guardando el path y la url que obtenemos de la última promesa
+            prestador.pathImages.push({path: arrayPaths[indice] , url: result})
+          }
+
+          //? -> Código para subir imágen Principal
+          if(!(portadaFile === undefined)) {
+            //Creamos la referencia a la dirección donde vamos a cargar la imágen en el Storage
+            const imgRef = ref(this.storage, `prestadoresStorage/${prestador.name}/ImagenPrincipal/${portadaFile.name}`);
+
+            promiseImgPrinc.push(uploadBytes(imgRef, portadaFile)); // Insertamos la promesa en la constante
+
+            //Utilizamos el Promise.all para que el código espere la respuesta de las promesas antes de seguir ejecutandose
+            Promise.all(promiseImgPrinc)
+            .then(resultados => {
+              const resultado = resultados[0];
+              const path = resultado.metadata.fullPath;
+              const pathReference = ref(this.storage, path);
+              getDownloadURL(pathReference)
+              .then(url => {
+                prestador.pathImagePortada.path = path;
+                prestador.pathImagePortada.url = url;
+                //? ACTUALIZACIÓN DE DATOS EN FIRESTORE
+                //Primero creamos una referencia al documento que queremos actualizar
+                const docRef = doc(this.firestore, `prestadores/${prestador.id}`); //Actualizamos por id
+                updateDoc(docRef, prestador)
+                .then(() => {console.log('Se actualizó la información de Firestore')})
+                .catch(error => console.log('Error', error));
+              })
+              .catch(error => console.log('Error: ', error));
+            })
+            .catch(error => console.log(error));
+
+          } else { //? Si no hay archivos para cargar en Imágen Principal pero sí en Galería
+            //? ACTUALIZACIÓN DE DATOS EN FIRESTORE
+            //Primero creamos una referencia al documento que queremos actualizar
+            const docRef = doc(this.firestore, `prestadores/${prestador.id}`); //Actualizamos por id
+            updateDoc(docRef, prestador)
+            .then(() => {console.log('Se actualizó la información de Firestore')})
+            .catch(error => console.log('Error', error));
+          } //? -> Fin para subir imágen Principal
+
+          return //? Retornamos por petición de la función un undefined
+
+        })
+        .catch(error => {
+          console.log(error);
+          console.log('Error en el arreglo de Promesas de getDownload');
+        }); //? Fin del Promise.all
 
       })
       .catch(error => {
         console.log(error);
-        console.log('Error en el arreglo de Promesas');
+        console.log('Error en el arreglo de Promesas de uploadBytes');
       }); //? Fin del Promise.all
 
-    } else { // Si no hay archivos para cargar
+    } else { //? Si no hay archivos para cargar en Galería
 
-      //? ACTUALIZACIÓN DE DATOS
-      //Creamos la referencia al documento de firestore
-      const docRef = doc(this.firestore, `prestadores/${prestador.id}`);
-      return updateDoc(docRef, prestador); // Retornamos la promesa
+      //? -> Código para subir imágen Principal
+      if(!(portadaFile === undefined)) {
+        //Creamos la referencia a la dirección donde vamos a cargar la imágen en el Storage
+        const imgRef = ref(this.storage, `prestadoresStorage/${prestador.name}/ImagenPrincipal/${portadaFile.name}`);
+
+        promiseImgPrinc.push(uploadBytes(imgRef, portadaFile)); // Insertamos la promesa en la constante
+
+        //Utilizamos el Promise.all para que el código espere la respuesta de las promesas antes de seguir ejecutandose
+        Promise.all(promiseImgPrinc)
+        .then(resultados => {
+          const resultado = resultados[0];
+          const path = resultado.metadata.fullPath;
+          const pathReference = ref(this.storage, path);
+          getDownloadURL(pathReference)
+          .then(url => {
+            prestador.pathImagePortada.path = path;
+            prestador.pathImagePortada.url = url;
+            //? ACTUALIZACIÓN DE DATOS EN FIRESTORE
+            //Primero creamos una referencia al documento que queremos actualizar
+            const docRef = doc(this.firestore, `prestadores/${prestador.id}`); //Actualizamos por id
+            updateDoc(docRef, prestador)
+            .then(() => {console.log('Se actualizó la información de Firestore')})
+            .catch(error => console.log('Error', error));
+          })
+          .catch(error => console.log('Error: ', error));
+        })
+        .catch(error => console.log(error));
+
+      } else { //? Si no hay archivos para cargar en Galería y en Imágen Principal
+        //? ACTUALIZACIÓN DE DATOS EN FIRESTORE
+        //Primero creamos una referencia al documento que queremos actualizar
+        const docRef = doc(this.firestore, `prestadores/${prestador.id}`); //Actualizamos por id
+        updateDoc(docRef, prestador)
+        .then(() => {console.log('Se actualizó la información de Firestore')})
+        .catch(error => console.log('Error', error));
+      } //? -> Fin para subir imágen Principal
 
     } //? -> Fin de la validación para carga de imágenes
 
@@ -398,8 +490,7 @@ export class PrestadoresService {
     // Añadimos una declaración de retorno al final de la función
     return Promise.resolve(); // Puedes utilizar cualquier promesa vacía aquí
 
-  } //? -> Fin del método Actualizar Empleado
+  } //? Fin método agregar Prestador
 
-  //? -> Método para eliminar las imágenes
 
 }
