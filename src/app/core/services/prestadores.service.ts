@@ -170,15 +170,42 @@ export class PrestadoresService {
         console.log('Error en el arreglo de Promesas de uploadBytes');
       }); //? Fin del Promise.all
 
-    } else { // Si no hay archivos para cargar
+    } else { //? Si no hay archivos para cargar en Galería
 
+      //? -> Código para subir imágen Principal
+      if(!(portadaFile === undefined)) {
+        //Creamos la referencia a la dirección donde vamos a cargar la imágen en el Storage
+        const imgRef = ref(this.storage, `prestadoresStorage/${prestador.name}/ImagenPrincipal/${portadaFile.name}`);
 
+        promiseImgPrinc.push(uploadBytes(imgRef, portadaFile)); // Insertamos la promesa en la constante
 
-      //? CARGA DE DATOS A FIRESTORE
-      //Creamos una referencia a la colleción
-      const prestadorRef = collection(this.firestore, 'prestadores'); // Servicio y nombre de la colección
-      //Añadimos en un documento la referencia y los datos que lo componen
-      return addDoc(prestadorRef, prestador); // Retorna una Promesa
+        //Utilizamos el Promise.all para que el código espere la respuesta de las promesas antes de seguir ejecutandose
+        Promise.all(promiseImgPrinc)
+        .then(resultados => {
+          const resultado = resultados[0];
+          const path = resultado.metadata.fullPath;
+          const pathReference = ref(this.storage, path);
+          getDownloadURL(pathReference)
+          .then(url => {
+            prestador.pathImagePortada.path = path;
+            prestador.pathImagePortada.url = url;
+            //? CARGA DE DATOS A FIRESTORE
+            //Creamos una referencia a la colleción
+            const prestadorRef = collection(this.firestore, 'prestadores'); // Servicio y nombre de la colección
+            //Añadimos en un documento la referencia y los datos que lo componen
+            return addDoc(prestadorRef, prestador); // Retorna una Promesa
+          })
+          .catch(error => console.log('Error: ', error));
+        })
+        .catch(error => console.log(error));
+
+      } else { //? Si no hay archivos para cargar en Galería y en Imágen Principal
+        //? CARGA DE DATOS A FIRESTORE
+        //Creamos una referencia a la colleción
+        const prestadorRef = collection(this.firestore, 'prestadores'); // Servicio y nombre de la colección
+        //Añadimos en un documento la referencia y los datos que lo componen
+        return addDoc(prestadorRef, prestador); // Retorna una Promesa
+      } //? -> Fin para subir imágen Principal
 
     } //? -> Fin de la validación para carga de imágenes
 
