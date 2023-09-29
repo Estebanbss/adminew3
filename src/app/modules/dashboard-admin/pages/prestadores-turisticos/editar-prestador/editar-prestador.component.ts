@@ -42,6 +42,9 @@ export class EditarPrestadorComponent  implements OnInit {
   //? -> Validación
   imgPortadaVal = true;
 
+  //? -> Propiedad para controlar si se muestra un elemento en el *ngIf
+  mostrarElemento: boolean = true;
+
   //? Inyecciones de Dependencias
   constructor(
     private fb: FormBuilder, // Modulo para Formulario - Permite validar el formulario de manera sencilla.
@@ -178,7 +181,7 @@ export class EditarPrestadorComponent  implements OnInit {
     //Cambiamos el dato de la variable que valida la existéncia de imágen de portada
     this.imgPortadaVal = false;
     //Luego actulizamos los datos de Firestore (Con nuetro this.prestador, para que queden igual los datos de la BD y los datos del componente)
-    this.prestadoresService.actualizarPrestadorImgPrincipal(this.prestador);
+    this.prestadoresService.actualizarPrestador(this.prestador);
   }
 
   //? -> Método para borrar las imágenes del Storage y del objeto que tengo actual (Además: Actualizar la BD por si sólo entro al componente Actualizar borro una imágen y luego me devuelvo)
@@ -186,10 +189,13 @@ export class EditarPrestadorComponent  implements OnInit {
   actualizarImagenesGaleria(image: any, indice: any) {
     //Borramos la imágen seleccionada en el storage
     this.prestadoresService.borrarImg(image);
-    //Luego borramos las imágenes en el objeto que tenemos actualmente (En este componente)
+    //Luego borramos las imágenes en el arreglo de objetos que tenemos actualmente (En este componente)
     this.prestador.pathImages?.splice(indice, 1); //Pasamos la posición del elemento y la cantidad de elementos que quiero borrar
-    //TODO: Por último actualizamos los datos del objeto para que esté actualizado en caso de que sólo se quiera borrar imágenes y salir.
-
+    //Luego borramos las imágenes en el arreglo que se está renderizando en el html (Importante para mostrar el cambio de las imágenes en tiempo real ya que this.prestador.pathImages y this.images son dos arreglo distintos)
+    this.images.splice(indice, 1);
+    //this.mostrarElemento = !this.mostrarElemento;
+    //Luego actulizamos los datos de Firestore (Con nuetro this.prestador, para que queden igual los datos de la BD y los datos del componente)
+    this.prestadoresService.actualizarPrestador(this.prestador);
   }
 
 

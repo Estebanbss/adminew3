@@ -100,30 +100,6 @@ export class PrestadoresService {
       })
       .catch(error => console.log(error));
 
-      // //Insertamos la imágen
-      // uploadBytes(imgRef, portadaFile) //? HASTA AQUÍ FUNCIONA
-      // .then( async resultado => {
-      //   //Recogemos el path de la imágen
-      //   const path = resultado.metadata.fullPath;
-      //   // //Creamos la referencia para descargar la imágen
-      //   const pathReference = ref(this.storage, path);
-      //   // //Solicitamos la URL
-      //   const url = await getDownloadURL(pathReference);
-
-      //   console.log(path);
-      //   console.log(url);
-      //   // .then( url => {
-      //   //   //Insertamos los datos al prestador
-      //   //   prestador.pathImagePortada.path = path;
-      //   //   prestador.pathImagePortada.url = url;
-      //   // })
-      //   // .catch(error => {console.log(error)});
-      // })
-      // .catch(error =>
-      //   {
-      //     console.log(error)
-      //     console.log('Error en Agregar Imagen Principal');
-      //   })
     } //? -> Fin para subir imágen Principal
 
     //? -> Deberíamos ejecutar la carga de archivos antes de guardar los datos en la BD para que se guarde el arreglo de paths de las Imágenes de una vez en Firestore.
@@ -196,6 +172,8 @@ export class PrestadoresService {
 
     } else { // Si no hay archivos para cargar
 
+
+
       //? CARGA DE DATOS A FIRESTORE
       //Creamos una referencia a la colleción
       const prestadorRef = collection(this.firestore, 'prestadores'); // Servicio y nombre de la colección
@@ -248,7 +226,7 @@ export class PrestadoresService {
     const pathImgPrincipal = prestador.pathImagePortada.path; //path para borrar imagen portada
     const arrayPathImages = prestador.pathImages; // arreglo de Objetos de tipo PathImage
 
-    //TODO: Tenemos que hacer validación de si exíste algo qué borrar, ya que si se borra la imágen Principal en la actualización y se trata de borra todo el objeto en el listado y no exíste path entonces nos dispara un error y no nos deja borrar el elemento.
+    // Tenemos que hacer validación de si exíste algo qué borrar, ya que si se borra la imágen Principal en la actualización y se trata de borra todo el objeto en el listado y no exíste path entonces nos dispara un error y no nos deja borrar el elemento.
 
     //Primero borramos la imágen de portada
     // Validación para borrar imágenes Principales
@@ -285,7 +263,7 @@ export class PrestadoresService {
 
   } //? -> Fin de Borrar los datos en el Storage para la opción de borrado en el Listado
 
-  //? -> Método para borrar los datos del Storage para la imágen principal en componente Actualizar
+  //? -> Método para borrar los datos del Storage para las imágenes en el componente Actualizar
   borrarImg(imgABorrar: any) {
     //Primero capturamos el dato del path del objeto para borrar la imágen del Storage
     const pathImg = imgABorrar.path;
@@ -297,11 +275,10 @@ export class PrestadoresService {
     .catch((error) => {console.log('Error al borrar la Imágen: ', error)});
   }
 
-
   //? SECCIÓN ACTUALIZAR
 
   //? -> Actualizamos los datos del prestador una vez se haga el borrado de Img
-  actualizarPrestadorImgPrincipal(prestador: any) {
+  actualizarPrestador(prestador: any) {
     //Primero creamos una referencia al documento que queremos actualizar
     const docRef = doc(this.firestore, `prestadores/${prestador.id}`); //Actualizamos por id
     updateDoc(docRef, prestador)
