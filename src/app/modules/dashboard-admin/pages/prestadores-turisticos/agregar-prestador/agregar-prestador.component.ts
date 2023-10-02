@@ -57,6 +57,24 @@ export class AgregarPrestadorComponent implements OnInit {
       pagWeb: ['', Validators.required],
       correo: ['', Validators.required],
       horarioAtencion: ['', Validators.required],
+      alojamientoUrbano: ['', Validators.required],
+      alojamientoRural: ['', Validators.required],
+      restaurantes: ['', Validators.required],
+      tiendasDeCafe: ['', Validators.required],
+      antojosTipicos: ['', Validators.required],
+      sitioNatural: ['', Validators.required],
+      patrimonioCultural: ['', Validators.required],
+      miradores: ['', Validators.required],
+      parquesNaturales: ['', Validators.required],
+      agenciasDeViaje: ['', Validators.required],
+      centroRecreativo: ['', Validators.required],
+      guiasDeTurismo: ['', Validators.required],
+      aventura: ['', Validators.required],
+      agroYEcoturismo: ['', Validators.required],
+      planesORutas: ['', Validators.required],
+      artesanias: ['', Validators.required],
+      transportes: ['', Validators.required],
+      eventos: ['', Validators.required]
     })
 
     //Inicializamos la propiedad PrestadorTurístico
@@ -86,7 +104,25 @@ export class AgregarPrestadorComponent implements OnInit {
       pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
         path:'',
         url: ''
-      }
+      },
+      alojamientoUrbano: '',
+      alojamientoRural: '',
+      restaurantes: '',
+      tiendasDeCafe: '',
+      antojosTipicos: '',
+      sitioNatural: '',
+      patrimonioCultural: '',
+      miradores: '',
+      parquesNaturales: '',
+      agenciasDeViaje: '',
+      centroRecreativo: '',
+      guiasDeTurismo: '',
+      aventura: '',
+      agroYEcoturismo: '',
+      planesORutas: '',
+      artesanias: '',
+      transportes: '',
+      eventos: ''
     }
 
   } //? -> Fin Constructor
@@ -138,7 +174,25 @@ export class AgregarPrestadorComponent implements OnInit {
       pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
         path:'',
         url: ''
-      }
+      },
+      alojamientoUrbano: this.createPrestador.value.alojamientoUrbano,
+      alojamientoRural: this.createPrestador.value.alojamientoRural,
+      restaurantes: this.createPrestador.value.restaurantes,
+      tiendasDeCafe: this.createPrestador.value.tiendasDeCafe,
+      antojosTipicos: this.createPrestador.value.antojosTipicos,
+      sitioNatural: this.createPrestador.value.sitioNatural,
+      patrimonioCultural: this.createPrestador.value.patrimonioCultural,
+      miradores: this.createPrestador.value.miradores,
+      parquesNaturales: this.createPrestador.value.parquesNaturales,
+      agenciasDeViaje: this.createPrestador.value.agenciasDeViaje,
+      centroRecreativo: this.createPrestador.value.centroRecreativo,
+      guiasDeTurismo: this.createPrestador.value.guiasDeTurismo,
+      aventura: this.createPrestador.value.aventura,
+      agroYEcoturismo: this.createPrestador.value.agroYEcoturismo,
+      planesORutas: this.createPrestador.value.planesORutas,
+      artesanias: this.createPrestador.value.artesanias,
+      transportes: this.createPrestador.value.transportes,
+      eventos: this.createPrestador.value.eventos
     }
 
     console.log(this.prestadorTuristico); //Quiero ver lo que mi objeto guardó y se va a mandar a la BD

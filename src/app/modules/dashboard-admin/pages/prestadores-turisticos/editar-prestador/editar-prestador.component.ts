@@ -76,6 +76,24 @@ export class EditarPrestadorComponent  implements OnInit {
       pagWeb: ['', Validators.required],
       correo: ['', Validators.required],
       horarioAtencion: ['', Validators.required],
+      alojamientoUrbano: ['', Validators.required],
+      alojamientoRural: ['', Validators.required],
+      restaurantes: ['', Validators.required],
+      tiendasDeCafe: ['', Validators.required],
+      antojosTipicos: ['', Validators.required],
+      sitioNatural: ['', Validators.required],
+      patrimonioCultural: ['', Validators.required],
+      miradores: ['', Validators.required],
+      parquesNaturales: ['', Validators.required],
+      agenciasDeViaje: ['', Validators.required],
+      centroRecreativo: ['', Validators.required],
+      guiasDeTurismo: ['', Validators.required],
+      aventura: ['', Validators.required],
+      agroYEcoturismo: ['', Validators.required],
+      planesORutas: ['', Validators.required],
+      artesanias: ['', Validators.required],
+      transportes: ['', Validators.required],
+      eventos: ['', Validators.required]
     })
 
     //Inicializamos la propiedad PrestadorTurístico
@@ -105,7 +123,25 @@ export class EditarPrestadorComponent  implements OnInit {
       pathImagePortada: {
         path: '',
         url: ''
-      }
+      },
+      alojamientoUrbano: '',
+      alojamientoRural: '',
+      restaurantes: '',
+      tiendasDeCafe: '',
+      antojosTipicos: '',
+      sitioNatural: '',
+      patrimonioCultural: '',
+      miradores: '',
+      parquesNaturales: '',
+      agenciasDeViaje: '',
+      centroRecreativo: '',
+      guiasDeTurismo: '',
+      aventura: '',
+      agroYEcoturismo: '',
+      planesORutas: '',
+      artesanias: '',
+      transportes: '',
+      eventos: ''
     }
 
     //Inicializamos el Observable y nos suscribimos a él para obtener la información
@@ -150,6 +186,24 @@ export class EditarPrestadorComponent  implements OnInit {
       pagWeb: this.prestador.pagWeb,
       correo: this.prestador.correo,
       horarioAtencion: this.prestador.horarioAtencion,
+      alojamientoUrbano: this.prestador.alojamientoUrbano,
+      alojamientoRural: this.prestador.alojamientoRural,
+      restaurantes: this.prestador.restaurantes,
+      tiendasDeCafe: this.prestador.tiendasDeCafe,
+      antojosTipicos: this.prestador.antojosTipicos,
+      sitioNatural: this.prestador.sitioNatural,
+      patrimonioCultural: this.prestador.patrimonioCultural,
+      miradores: this.prestador.miradores,
+      parquesNaturales: this.prestador.parquesNaturales,
+      agenciasDeViaje: this.prestador.agenciasDeViaje,
+      centroRecreativo: this.prestador.centroRecreativo,
+      guiasDeTurismo: this.prestador.guiasDeTurismo,
+      aventura: this.prestador.aventura,
+      agroYEcoturismo: this.prestador.agroYEcoturismo,
+      planesORutas: this.prestador.planesORutas,
+      artesanias: this.prestador.artesanias,
+      transportes: this.prestador.transportes,
+      eventos: this.prestador.eventos
     })
 
     //? Mostrar imágenes
@@ -226,7 +280,25 @@ export class EditarPrestadorComponent  implements OnInit {
       horarioAtencion: this.createPrestador.value.horarioAtencion,
       pathImages: this.prestador.pathImages, // -> No se modifica con el Form
       meGusta: this.prestador.meGusta, // -> No se modifica con el Form
-      pathImagePortada: this.prestador.pathImagePortada // -> No se modifica con el Form
+      pathImagePortada: this.prestador.pathImagePortada, // -> No se modifica con el Form
+      alojamientoUrbano: this.createPrestador.value.alojamientoUrbano,
+      alojamientoRural: this.createPrestador.value.alojamientoRural,
+      restaurantes: this.createPrestador.value.restaurantes,
+      tiendasDeCafe: this.createPrestador.value.tiendasDeCafe,
+      antojosTipicos: this.createPrestador.value.antojosTipicos,
+      sitioNatural: this.createPrestador.value.sitioNatural,
+      patrimonioCultural: this.createPrestador.value.patrimonioCultural,
+      miradores: this.createPrestador.value.miradores,
+      parquesNaturales: this.createPrestador.value.parquesNaturales,
+      agenciasDeViaje: this.createPrestador.value.agenciasDeViaje,
+      centroRecreativo: this.createPrestador.value.centroRecreativo,
+      guiasDeTurismo: this.createPrestador.value.guiasDeTurismo,
+      aventura: this.createPrestador.value.aventura,
+      agroYEcoturismo: this.createPrestador.value.agroYEcoturismo,
+      planesORutas: this.createPrestador.value.planesORutas,
+      artesanias: this.createPrestador.value.artesanias,
+      transportes: this.createPrestador.value.transportes,
+      eventos: this.createPrestador.value.eventos
     }
 
     //Utilizamos el servicio con el método de actualizar los datos en Firestore

@@ -37,7 +37,25 @@ export class PrestadoresService {
           pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
             path:'',
             url: ''
-          }
+          },
+          alojamientoUrbano: '',
+          alojamientoRural: '',
+          restaurantes: '',
+          tiendasDeCafe: '',
+          antojosTipicos: '',
+          sitioNatural: '',
+          patrimonioCultural: '',
+          miradores: '',
+          parquesNaturales: '',
+          agenciasDeViaje: '',
+          centroRecreativo: '',
+          guiasDeTurismo: '',
+          aventura: '',
+          agroYEcoturismo: '',
+          planesORutas: '',
+          artesanias: '',
+          transportes: '',
+          eventos: ''
   } )
 
   //? -> Inyecciones de Dependencias
