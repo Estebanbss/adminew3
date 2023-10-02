@@ -171,8 +171,7 @@ export class EditarPrestadorComponent  implements OnInit {
     this.prestador.pathImages?.forEach(obj => {
       this.images.push(obj);
     })
-    //console.log(this.prestador.pathImages?.length);
-    //console.log(this.images.length);
+
   } //? -> Fin método Llenar Formulario
 
   //? -> Método para borrar las imágenes del Storage y del objeto que tengo actual (Además: Actualizar la BD por si sólo entro al componente Actualizar borro una imágen y luego me devuelvo)
@@ -251,7 +250,6 @@ export class EditarPrestadorComponent  implements OnInit {
 
     //? -> Método para Cargar la imágen de portada o imágen principal
     uploadFilePortada($event: any) {
-      //TODO: Hacer validación, en caso de que ya exísta una imágen principal no dejar que se muestre o carge en la opción de poner una imágen principal
       this.portadaFile = $event.target.files[0];
       // console.log(this.portadaFile);
     }

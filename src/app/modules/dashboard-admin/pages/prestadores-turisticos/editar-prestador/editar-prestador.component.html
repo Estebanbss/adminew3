@@ -4,7 +4,7 @@
     <div class="p-11">
       <!-- CONTENIDO -->
       <!-- Nuestro título -->
-      <h3 class="text-3xl text-center mb-4">Agregar Prestador Turistico
+      <h3 class="text-3xl text-center mb-4">Actualizar Prestador Turistico
         <!-- Inicio de Spinner - Hacemos el Banding de la propiedad loading para mostrar el spinner -->
         <div *ngIf="loading" class="h-full min-w-full flex flex-col bg-white  rounded-xl">
           <div class="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
@@ -104,9 +104,12 @@
           </div>
         </div>
         <!-- Input de Imagen Portada -->
-        <div class="flex mb-2">
-          <div class="flex-1">
-            <input class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="file" accept="image/*" (change)="uploadFilePortada($event)">
+        <!--Validación para que aparezca el botón sólo cuando no hay ImgPrincipal-->
+        <div *ngIf="(this.prestador.pathImagePortada?.path === '' && this.prestador.pathImagePortada?.url === '')">
+          <div class="flex mb-2">
+            <div class="flex-1">
+              <input class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="file" accept="image/*" (change)="uploadFilePortada($event)">
+            </div>
           </div>
         </div>
         <!-- Botónes -->
@@ -116,7 +119,7 @@
               Volver
             </button>
             <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-              Agregar
+              Actualizar
             </button>
             <!-- Fin Botónes -->
           </div>
