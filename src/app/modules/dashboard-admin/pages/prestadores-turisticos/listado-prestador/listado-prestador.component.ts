@@ -13,6 +13,9 @@ export class ListadoPrestadorComponent implements OnInit {
   //?Página donde estamos, propiedad para la paginación
   page: number = 1;
 
+  //? -> Propiedad para el Pipe en el filtro de texto
+  filterPost: string = '';
+
   //? -> Propiedad para almacenar el arreglo de objetos que nos va a traer la BD al disparar el método getPrestadores, la utilizamos para Bandear los datos en el html de list y mostrar los datos
   prestadores: PrestadorTuristico[] = [];
 

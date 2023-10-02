@@ -5,6 +5,7 @@ import { DashboardAdminRoutingModule } from './dashboard-admin-routing.module';
 import { ReactiveFormsModule } from '@angular/forms'; //Formularios Reactivos
 
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- Modulo descargado de npm para hacer paginaciónes
+import { FormsModule } from '@angular/forms'; // <-- Modulo para le ngModel del banding en el listado
 
 import { PaginaInicioComponent } from './pages/pagina-inicio/pagina-inicio.component';
 import { ListadoPrestadorComponent } from './pages/prestadores-turisticos/listado-prestador/listado-prestador.component';
@@ -19,6 +20,7 @@ import { AgregarMunicipioComponent } from './pages/municipios/agregar-municipio/
 import { EditarMunicipioComponent } from './pages/municipios/editar-municipio/editar-municipio.component';
 import { AgregarRutasComponent } from './pages/rutas-turisticas/agregar-rutas/agregar-rutas.component';
 import { EditarRutasComponent } from './pages/rutas-turisticas/editar-rutas/editar-rutas.component';
+import { FiltroTextoPipe } from './pipes/filtro-texto.pipe';
 
 
 @NgModule({
@@ -35,13 +37,15 @@ import { EditarRutasComponent } from './pages/rutas-turisticas/editar-rutas/edit
     AgregarMunicipioComponent,
     EditarMunicipioComponent,
     AgregarRutasComponent,
-    EditarRutasComponent
+    EditarRutasComponent,
+    FiltroTextoPipe
   ],
   imports: [
     CommonModule,
     DashboardAdminRoutingModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
   ]
 })
 export class DashboardAdminModule { }

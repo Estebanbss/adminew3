@@ -9,6 +9,14 @@
       <div class="flex justify-end">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/dashboard-admin/pagina-inicio/agregar-prestadores-turisticos">Agregar</button>
       </div>
+      <!-- Nuestro espacio de búsquedas en texto-->
+      <div>
+        <div>
+          <div> <!-- ngModel -> se tiene que importar FormsModule en app module y colocar un name al input -->
+            <input type="text" class="form-control" name="filterPost" placeholder="Search ..." [(ngModel)]='filterPost'>
+          </div>
+        </div>
+      </div>
       <!--Nuestra Tabla-->
       <table class="min-w-full mt-4">
         <!-- Encabezado de la Tabla -->
@@ -49,7 +57,7 @@
         <!-- Cuerpo de la Tabla -->
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Elementos Renderizados desde la BD -->
-          <tr *ngFor="let prestador of prestadores | paginate: { itemsPerPage: 10, currentPage: page }" class="bg-gray-100">
+          <tr *ngFor="let prestador of prestadores | paginate: { itemsPerPage: 10, currentPage: page } | filtroTexto:filterPost " class="bg-gray-100">
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               {{ prestador.name }}
             </td>
