@@ -49,7 +49,7 @@
         <!-- Cuerpo de la Tabla -->
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Elementos Renderizados desde la BD -->
-          <tr *ngFor="let prestador of prestadores" class="bg-gray-100">
+          <tr *ngFor="let prestador of prestadores | paginate: { itemsPerPage: 10, currentPage: page }" class="bg-gray-100">
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               {{ prestador.name }}
             </td>
@@ -69,9 +69,9 @@
               <i (click)="eliminarPrestador(prestador)" class="fa-solid fa-trash-can fa-lg text-red-500 cursor-pointer"></i>
             </td>
           </tr>
-
+          <!-- Paginación propia de la librería que importamos -->
+          <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </tbody>
-
       </table> <!-- Fin tabla -->
 
     </div>

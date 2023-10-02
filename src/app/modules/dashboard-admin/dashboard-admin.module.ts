@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { DashboardAdminRoutingModule } from './dashboard-admin-routing.module';
 import { ReactiveFormsModule } from '@angular/forms'; //Formularios Reactivos
 
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- Modulo descargado de npm para hacer paginaciónes
+
 import { PaginaInicioComponent } from './pages/pagina-inicio/pagina-inicio.component';
 import { ListadoPrestadorComponent } from './pages/prestadores-turisticos/listado-prestador/listado-prestador.component';
 import { ListadoAtractivoComponent } from './pages/atractivos-turisticos/listado-atractivo/listado-atractivo.component';
@@ -38,7 +40,8 @@ import { EditarRutasComponent } from './pages/rutas-turisticas/editar-rutas/edit
   imports: [
     CommonModule,
     DashboardAdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class DashboardAdminModule { }
