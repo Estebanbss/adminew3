@@ -21,6 +21,7 @@ import { EditarMunicipioComponent } from './pages/municipios/editar-municipio/ed
 import { AgregarRutasComponent } from './pages/rutas-turisticas/agregar-rutas/agregar-rutas.component';
 import { EditarRutasComponent } from './pages/rutas-turisticas/editar-rutas/editar-rutas.component';
 import { FiltroTextoPipe } from './pipes/filtro-texto.pipe';
+import { BotonServiciosPipe } from './pipes/boton-servicios.pipe';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { FiltroTextoPipe } from './pipes/filtro-texto.pipe';
     EditarMunicipioComponent,
     AgregarRutasComponent,
     EditarRutasComponent,
-    FiltroTextoPipe
+    FiltroTextoPipe,
+    BotonServiciosPipe
   ],
   imports: [
     CommonModule,
