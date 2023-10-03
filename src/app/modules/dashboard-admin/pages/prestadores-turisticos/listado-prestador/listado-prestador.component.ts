@@ -19,6 +19,9 @@ export class ListadoPrestadorComponent implements OnInit {
   //? -> Propiedad para el Pipe en el filtro por botón de Servicios
   servicio: string = 'todos'; //Almacena el valor de la opción que se elija en el botón a filtrar.
 
+  //? -> Propiedad para el Pipe en el filtro por botón de Municipios
+  municipio: string = 'todos'; //Almacena el valor de la opción que se elija en el botón a filtrar.
+
   //? -> Propiedad para almacenar el arreglo de objetos que nos va a traer la BD al disparar el método getPrestadores, la utilizamos para Bandear los datos en el html de list y mostrar los datos
   prestadores: PrestadorTuristico[] = [];
 
@@ -67,11 +70,16 @@ export class ListadoPrestadorComponent implements OnInit {
     this.router.navigate(['/dashboard-admin/pagina-inicio/editar-prestadores-turisticos']);
   }
 
-    //? -> Método para filtrar por medio del botón
-    applyFilterServices(selectedCategory: any) {
-      this.servicio = selectedCategory.target.value; // Obtenemos el valor seleccionado en el html.
-      this.servicio = this.servicio.toLowerCase(); // Los valores de las opciones pasan a minúsculas para comparar.
-      //console.log(this.servicio);
-    } //Fin Función applyFilterServices
+  //? -> Método para filtrar por medio del botón
+  applyFilterServices(selectedCategory: any) {
+    this.servicio = selectedCategory.target.value; // Obtenemos el valor seleccionado en el html.
+    this.servicio = this.servicio.toLowerCase(); // Los valores de las opciones pasan a minúsculas para comparar.
+  } //Fin Función applyFilterServices
+
+  //? -> Método para filtrar por medio del botón
+  applyFilterMunicipio(selectedCategory: any) {
+    this.municipio = selectedCategory.target.value; // Obtenemos el valor seleccionado en el html.
+    this.municipio = this.municipio.toLowerCase(); // Los valores de las opciones pasan a minúsculas para comparar.
+  } //Fin Función applyFilterServices
 
 }

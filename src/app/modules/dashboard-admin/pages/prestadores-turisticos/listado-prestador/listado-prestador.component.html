@@ -13,6 +13,7 @@
       <div>
         <div>
           <div> <!-- ngModel -> se tiene que importar FormsModule en app module y colocar un name al input -->
+            <span>Nombre:</span>
             <input type="text" class="form-control" name="filterPost" placeholder="Search ..." [(ngModel)]='filterPost'>
           </div>
         </div>
@@ -21,6 +22,7 @@
       <div>
         <div>
           <div> <!-- Botónes para filtrar por opción, filtrando varios elementos -->
+            <span>Servicios:</span>
             <select (change)="applyFilterServices($event)">
               <option value="todos">Todos</option>
               <option value="Alojamiento Urbano">Alojamiento Urbano</option>
@@ -41,6 +43,55 @@
               <option value="Artesanias">Artesanias</option>
               <option value="Transportes">Transportes</option>
               <option value="Eventos">Eventos</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- Espacio de búsqueda en botónes para Municipios -->
+      <div>
+        <div>
+          <div> <!-- Botónes para filtrar por opción, filtrando varios elementos -->
+            <span>Municipios:</span>
+            <select (change)="applyFilterMunicipio($event)">
+              <option value="todos">Todos</option>
+              <option value="Acevedo">Acevedo</option>
+              <option value="Agrado">Agrado</option>
+              <option value="Aipe">Aipe</option>
+              <option value="Algeciras">Algeciras</option>
+              <option value="Altamira">Altamira</option>
+              <option value="Baraya">Baraya</option>
+              <option value="Campoalegre">Campoalegre</option>
+              <option value="Colombia">Colombia</option>
+              <option value="El Pital">El Pital</option>
+              <option value="Elias">Elias</option>
+              <option value="Garzon">Garzon</option>
+              <option value="Gigante">Gigante</option>
+              <option value="Guadalupe">Guadalupe</option>
+              <option value="Hobo">Hobo</option>
+              <option value="Isnos">Isnos</option>
+              <option value="La Argentina">La Argentina</option>
+              <option value="La Plata">La Plata</option>
+              <option value="Neiva">Neiva</option>
+              <option value="Nataga">Nataga</option>
+              <option value="Oporapa">Oporapa</option>
+              <option value="Paicol">Paicol</option>
+              <option value="Palermo">Palermo</option>
+              <option value="Palestina">Palestina</option>
+              <option value="El Pital">El Pital</option>
+              <option value="Pitalito">Pitalito</option>
+              <option value="Rivera">Rivera</option>
+              <option value="Saladoblanco">Saladoblanco</option>
+              <option value="San Agustin">San Agustin</option>
+              <option value="Santa Maria">Santa Maria</option>
+              <option value="Suaza">Suaza</option>
+              <option value="Tarqui">Tarqui</option>
+              <option value="Tello">Tello</option>
+              <option value="Teruel">Teruel</option>
+              <option value="Tesalia">Tesalia</option>
+              <option value="Timana">Timana</option>
+              <option value="Villavieja">Villavieja</option>
+              <option value="Yaguara">Yaguara</option>
+              <option value="Iquira">Iquira</option>
             </select>
           </div>
         </div>
@@ -85,7 +136,7 @@
         <!-- Cuerpo de la Tabla -->
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Elementos Renderizados desde la BD -->
-          <tr *ngFor="let prestador of prestadores | paginate: { itemsPerPage: 10, currentPage: page } | filtroTexto:filterPost | botonServicios:servicio " class="bg-gray-100">
+          <tr *ngFor="let prestador of prestadores | paginate: { itemsPerPage: 10, currentPage: page } | filtroTexto:filterPost | botonServicios:servicio | botonMunicipio:municipio " class="bg-gray-100">
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               {{ prestador.name }}
             </td>
