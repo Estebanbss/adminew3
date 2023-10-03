@@ -73,7 +73,7 @@ export class AgregarPrestadorComponent implements OnInit {
       agroYEcoturismo: ['', Validators.required],
       planesORutas: ['', Validators.required],
       artesanias: ['', Validators.required],
-      transportes: ['', Validators.required],
+      transporte: ['', Validators.required],
       eventos: ['', Validators.required]
     })
 
@@ -121,7 +121,7 @@ export class AgregarPrestadorComponent implements OnInit {
       agroYEcoturismo: '',
       planesORutas: '',
       artesanias: '',
-      transportes: '',
+      transporte: '',
       eventos: ''
     }
 
@@ -191,7 +191,7 @@ export class AgregarPrestadorComponent implements OnInit {
       agroYEcoturismo: this.createPrestador.value.agroYEcoturismo,
       planesORutas: this.createPrestador.value.planesORutas,
       artesanias: this.createPrestador.value.artesanias,
-      transportes: this.createPrestador.value.transportes,
+      transporte: this.createPrestador.value.transporte,
       eventos: this.createPrestador.value.eventos
     }
 

@@ -41,7 +41,7 @@
               <option value="Agro y Ecoturismo">Agro y Ecoturismo</option>
               <option value="Planes o Rutas">Planes o Rutas</option>
               <option value="Artesanias">Artesanias</option>
-              <option value="Transportes">Transportes</option>
+              <option value="Transporte">Transporte</option>
               <option value="Eventos">Eventos</option>
             </select>
           </div>
@@ -136,7 +136,7 @@
         <!-- Cuerpo de la Tabla -->
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Elementos Renderizados desde la BD -->
-          <tr *ngFor="let prestador of prestadores | paginate: { itemsPerPage: 10, currentPage: page } | filtroTexto:filterPost | botonServicios:servicio | botonMunicipio:municipio " class="bg-gray-100">
+          <tr *ngFor="let prestador of prestadores | filtroTexto:filterPost | botonServicios:servicio | botonMunicipio:municipio | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100">
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               {{ prestador.name }}
             </td>

@@ -65,7 +65,7 @@ export interface PrestadorTuristico extends Place {
   agroYEcoturismo: string;
   planesORutas: string;
   artesanias: string;
-  transportes: string;
+  transporte: string;
   eventos: string;
 }
 

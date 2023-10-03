@@ -54,7 +54,7 @@ export class PrestadoresService {
           agroYEcoturismo: '',
           planesORutas: '',
           artesanias: '',
-          transportes: '',
+          transporte: '',
           eventos: ''
   } )
 
