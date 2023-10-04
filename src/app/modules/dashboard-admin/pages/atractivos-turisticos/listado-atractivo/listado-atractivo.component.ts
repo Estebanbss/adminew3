@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PrestadorTuristico } from 'src/app/common/place.interface';
-import { PrestadoresService } from 'src/app/core/services/prestadores.service';
+import { AtractivoTuristico } from 'src/app/common/place.interface';
+import { AtractivosService } from 'src/app/core/services/atractivos.service';
 
 @Component({
   selector: 'app-listado-atractivo',
@@ -22,52 +22,52 @@ export class ListadoAtractivoComponent implements OnInit {
   //? -> Propiedad para el Pipe en el filtro por botón de Municipios
   municipio: string = 'todos'; //Almacena el valor de la opción que se elija en el botón a filtrar.
 
-  //? -> Propiedad para almacenar el arreglo de objetos que nos va a traer la BD al disparar el método getPrestadores, la utilizamos para Bandear los datos en el html de list y mostrar los datos
-  prestadores: PrestadorTuristico[] = [];
+  //? -> Propiedad para almacenar el arreglo de objetos que nos va a traer la BD al disparar el método getAtractivo, la utilizamos para Bandear los datos en el html de list y mostrar los datos
+  atractivosTuristicos: AtractivoTuristico[] = [];
 
   //? -> Inyecciones de dependencias
   constructor(
-    private prestadoresService: PrestadoresService, // Inyectamos el servicio
+    private atractivosService: AtractivosService, // Inyectamos el servicio
     private router: Router, // Clase Router para moverme a otro componente una vez enviado el form
   ) {
 
   }
 
   ngOnInit() {
-    //Lo ejecutamos en el método OnInit para que dispare el método getPrestadores y me cargue los datos apenas se cargue el componente. Además de que disparamos el cold Observable para que se actualizen los datos a tiempo real.
-    this.getPrestadores();
+    //Lo ejecutamos en el método OnInit para que dispare el método getAtractivo y me cargue los datos apenas se cargue el componente. Además de que disparamos el cold Observable para que se actualizen los datos a tiempo real.
+    this.getAtractivo();
   }
 
   //? -> Método para obtener los elementos de la BD
-  getPrestadores() {
+  getAtractivo() {
     //? -> Aquí nos suscribimos a nuestro observable desde el método de nuestro servicio para que esté atento a los cambios que se hagan a tiempo real.
-    this.prestadoresService.obtenerPrestadores().subscribe(data => {
+    this.atractivosService.obtenerAtractivos().subscribe(data => {
       // data nos trae un arreglo con el conjunto de elemento de tipo Object - Arreglo de Objetos
       // console.log(data);
-      this.prestadores = data; //Pasamos la información a una propiedad nativa de la clase para hacer el Banding
+      this.atractivosTuristicos = data; //Pasamos la información a una propiedad nativa de la clase para hacer el Banding
     })
   }
 
 
   //? -> Método para eliminar un Prestador
-  eliminarPrestador(prestador: any) {
+  eliminarAtractivo(atractivo: any) {
     //Primero borramos los datos del Storage ya que necesitamos el path de la imágenes que tiene nuestro objeto guardado en Firestore
     // Hacer Validación de si exísten imágenes para borrar en cada caso
-    this.prestadoresService.borrarImagenesPrestador(prestador);
+    this.atractivosService.borrarImagenesAtractivo(atractivo);
 
     //Aquí eliminamos los datos de Firestore
-    this.prestadoresService.borrarPrestador(prestador)
+    this.atractivosService.borrarAtractivo(atractivo)
     .then(() => {
-      alert('Prestador Turistico Eliminado');
+      alert('Atractivo Turistico Eliminado');
     })
     .catch(error => console.log(error));
   }
 
   //? -> Método para obtener objeto a actualizar y enviarlo por medio de Observables
-  obtenerPrestador(prestador: any) {
+  obtenerAtractivo(atractivo: any) {
     //Utilizamos un BehaviorSubject para obtener el dato que queremos actualizar
-    this.prestadoresService.editPrestadorData = prestador;
-    this.router.navigate(['/dashboard-admin/pagina-inicio/editar-prestadores-turisticos']);
+    this.atractivosService.editAtractivoData = atractivo;
+    this.router.navigate(['/dashboard-admin/pagina-inicio/editar-atractivo-turistico']);
   }
 
   //? -> Método para filtrar por medio del botón

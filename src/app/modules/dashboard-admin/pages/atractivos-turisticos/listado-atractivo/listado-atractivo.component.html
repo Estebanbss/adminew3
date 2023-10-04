@@ -7,7 +7,7 @@
       <h3 class="text-3xl text-center mb-4">Listado Prestadores Turisticos</h3>
       <!-- Botón Para llevarnos al componente de Agregar Prestador -->
       <div class="flex justify-end">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/dashboard-admin/pagina-inicio/agregar-prestadores-turisticos">Agregar</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/dashboard-admin/pagina-inicio/agregar-atractivo-turistico">Agregar</button>
       </div>
       <!-- Nuestro espacio de búsquedas en texto-->
       <div>
@@ -111,49 +111,43 @@
               scope="col"
               class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Servicios
+              Municipio
             </th>
             <th
               scope="col"
               class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Ciudad
+              Zona
             </th>
             <th
               scope="col"
               class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
-              Celular
-            </th>
-            <th
-              scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Acciones
+              Bien o Lugar
             </th>
           </tr>
         </thead>
         <!-- Cuerpo de la Tabla -->
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Elementos Renderizados desde la BD -->
-          <tr *ngFor="let prestador of prestadores | filtroTexto:filterPost | botonServicios:servicio | botonMunicipio:municipio | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100">
+          <tr *ngFor="let atractivo of atractivosTuristicos | filtroTexto:filterPost | botonServicios:servicio | botonMunicipio:municipio | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100">
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-              {{ prestador.name }}
+              {{ atractivo.name }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-              {{ prestador.servicios }}
+              {{ atractivo.municipio }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-              {{ prestador.municipio }}
+              {{ atractivo.zona }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-              {{ prestador.celular1 }}
+              {{ atractivo.bienOLugar }}
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               <!-- Para los íconos de Acciones - FontAwesome -->
-              <i (click)="obtenerPrestador(prestador)" class="fa-solid fa-pen-to-square fa-lg text-blue-500 mr-10 cursor-pointer"></i>
+              <i (click)="obtenerAtractivo(atractivo)" class="fa-solid fa-pen-to-square fa-lg text-blue-500 mr-10 cursor-pointer"></i>
               <!-- Pasamos por parámetro el objeto listado para manipularlo, en este caso borrarlo -->
-              <i (click)="eliminarPrestador(prestador)" class="fa-solid fa-trash-can fa-lg text-red-500 cursor-pointer"></i>
+              <i (click)="eliminarAtractivo(atractivo)" class="fa-solid fa-trash-can fa-lg text-red-500 cursor-pointer"></i>
             </td>
           </tr>
           <!-- Paginación propia de la librería que importamos -->

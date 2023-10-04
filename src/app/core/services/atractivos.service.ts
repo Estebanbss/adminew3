@@ -18,60 +18,40 @@ import {
   uploadBytes,
 } from '@angular/fire/storage';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PrestadorTuristico } from 'src/app/common/place.interface';
+import { AtractivoTuristico } from 'src/app/common/place.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AtractivosService {
   //? Observable con el que compartimos información para editar un elemento de List a Editar
-  private sharingDataPrestador: BehaviorSubject<PrestadorTuristico> =
-    new BehaviorSubject<PrestadorTuristico>({
+  private sharingDataAtractivo: BehaviorSubject<AtractivoTuristico> =
+    new BehaviorSubject<AtractivoTuristico>({
       id: '', // -> Nos lo crea Firebase
       name: '',
-      rntRm: '',
+      bienOLugar: '',
       descripcion: '',
-      servicios: '',
+      clima: '',
       zona: '',
       municipio: '',
-      direccion: '',
+      direccionBarrioVereda: '',
       indicacionesAcceso: '',
-      googleMaps: '',
       latitud: 0,
       longitud: 0,
-      whatsapp: 0,
-      celular1: 0,
-      celular2: 0,
-      facebook: '',
-      instagram: '',
-      pagWeb: '',
-      correo: '',
+      googleMaps: '',
+      recomendaciones: '',
+      actividades: '',
       horarioAtencion: '',
+      administrador: '',
+      contactoAdmin: '',
+      redSocial: '',
       pathImages: [], // -> lo conseguimos en la inserción de imágenes
       meGusta: 0, // -> # de Me gustas en la App
       pathImagePortada: {
         // -> lo conseguimos en la inserción de imágenes
         path: '',
         url: '',
-      },
-      alojamientoUrbano: '',
-      alojamientoRural: '',
-      restaurantes: '',
-      tiendasDeCafe: '',
-      antojosTipicos: '',
-      sitioNatural: '',
-      patrimonioCultural: '',
-      miradores: '',
-      parquesNaturales: '',
-      agenciasDeViaje: '',
-      centroRecreativo: '',
-      guiasDeTurismo: '',
-      aventura: '',
-      agroYEcoturismo: '',
-      planesORutas: '',
-      artesanias: '',
-      transporte: '',
-      eventos: '',
+      }
     });
 
   //? -> Inyecciones de Dependencias
@@ -88,13 +68,13 @@ export class AtractivosService {
   //? Métodos para compartir información entre componentes por Observable
 
   //? Nos suscribimos a éste método para obtener los datos que tiene el observable
-  get sharingPrestador() {
-    return this.sharingDataPrestador.asObservable();
+  get sharingAtractivo() {
+    return this.sharingDataAtractivo.asObservable();
   }
 
   //? Cambiamos la Información al observable
-  set editPrestadorData(newValue: PrestadorTuristico) {
-    this.sharingDataPrestador.next(newValue);
+  set editAtractivoData(newValue: AtractivoTuristico) {
+    this.sharingDataAtractivo.next(newValue);
   }
 
   //? SECCIÓN AGREGAR
@@ -272,7 +252,7 @@ export class AtractivosService {
 
   //? -> Creamos un método para obtener los datos de una colección
   //Read - R
-  obteneratractivos(): Observable<PrestadorTuristico[]> {
+  obtenerAtractivos(): Observable<AtractivoTuristico[]> {
     // Creamos una referencia a la colección de la que queremos recibir los datos
     const atractivoRef = collection(this.firestore, 'atractivos'); // Servicio y nombre de la colección
 
@@ -282,7 +262,7 @@ export class AtractivosService {
 
     //Retornamos el observable que nos devuelve una función anónima a la que nos debemos suscribir y en la que recibimos los datos solicitados de la colección
     return collectionData(q, { idField: 'id' }) as Observable<
-      PrestadorTuristico[]
+      AtractivoTuristico[]
     >;
   } //? -> Fin del método obtener Prestador
 
@@ -293,14 +273,14 @@ export class AtractivosService {
   //Aquí podemos elegir pasar como parámetro el objeto entero con todos los elementos ó sólo el elemento con el que queremos crear la referencia para borrar
   //En este caso pasamos el objeto con todos los elementos
   //? Aquí borramos los datos de Firestore para la opción de borrado en el Listado
-  borrarPrestador(atractivo: any): Promise<any> {
+  borrarAtractivo(atractivo: any): Promise<any> {
     //Creamos la referencia al documento que queremos borrar
     const docRef = doc(this.firestore, `atractivos/${atractivo.id}`); // Borramos por id
     return deleteDoc(docRef); // Nos retorna una promesa
   } //? Fin método eleminar atractivo para la opción de borrado en el Listado
 
   //? Aquí borramos los datos de Storage para la opción de borrado en el Listado
-  borrarImagenesPrestador(atractivo: any) {
+  borrarImagenesAtractivo(atractivo: any) {
     //Primero capturamos los datos de path y arreglo de objetos con el path de las imágenes para borrarlas del Storage
     const pathImgPrincipal = atractivo.pathImagePortada.path; //path para borrar imagen portada
     const arrayPathImages = atractivo.pathImages; // arreglo de Objetos de tipo PathImage
@@ -368,7 +348,7 @@ export class AtractivosService {
   //? SECCIÓN ACTUALIZAR
 
   //? -> Actualizamos los datos del atractivo una vez se haga el borrado de Img
-  actualizarPrestador(atractivo: any) {
+  actualizarAtractivo(atractivo: any) {
     //Primero creamos una referencia al documento que queremos actualizar
     const docRef = doc(this.firestore, `atractivos/${atractivo.id}`); //Actualizamos por id
     updateDoc(docRef, atractivo)
@@ -380,7 +360,7 @@ export class AtractivosService {
 
   //? Método para generar los empleados e insertarlos en la base de datos
   //Update - U
-  editarPrestador(atractivo: any, files: any, portadaFile: any): Promise<any> {
+  editarAtractivo(atractivo: any, files: any, portadaFile: any): Promise<any> {
     //? Propiedad Array de Promesas para los path
     const arregloDePromesas: Promise<any>[] = []; //Lo utilizamos para guardar nuestras promesas en la carga de archivos al servicio storage y asegurarnos que se cumplan todas para poder trabajar con ellas sin problema.
 
