@@ -72,7 +72,7 @@ export interface PrestadorTuristico extends Place {
 // Interfaz Atractivo turístico
 export interface AtractivoTuristico extends Place {
   //id
-  //nombre: string;
+  //name: string;
   bienOLugar: string;
   //descripcion: string;
   clima: string;
@@ -97,7 +97,7 @@ export interface AtractivoTuristico extends Place {
 // Interfaz Municipio
 export interface Municipio extends Place {
   //id
-  //nombre: string;
+  //name: string;
   subregion: string;
   //descripcion: string;
   poblacion: string;
@@ -122,7 +122,7 @@ export interface Municipio extends Place {
 // Interfaz Ruta
 export interface Ruta extends Place {
   //id
-  //nombre: string
+  //name: string
   informacionAdicional: string;
   agenciaDeViajes: string;
   //descripcion: string;
