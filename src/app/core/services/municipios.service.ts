@@ -349,7 +349,7 @@ export class MunicipiosService {
   //? SECCIÓN ACTUALIZAR
 
   //? -> Actualizamos los datos del municipio una vez se haga el borrado de Img
-  actualizarmunicipio(municipio: any) {
+  actualizarMunicipio(municipio: any) {
     //Primero creamos una referencia al documento que queremos actualizar
     const docRef = doc(this.firestore, `municipios/${municipio.id}`); //Actualizamos por id
     updateDoc(docRef, municipio)
@@ -361,7 +361,7 @@ export class MunicipiosService {
 
   //? Método para generar los empleados e insertarlos en la base de datos
   //Update - U
-  editarmunicipio(municipio: any, files: any, portadaFile: any): Promise<any> {
+  editarMunicipio(municipio: any, files: any, portadaFile: any): Promise<any> {
     //? Propiedad Array de Promesas para los path
     const arregloDePromesas: Promise<any>[] = []; //Lo utilizamos para guardar nuestras promesas en la carga de archivos al servicio storage y asegurarnos que se cumplan todas para poder trabajar con ellas sin problema.
 
