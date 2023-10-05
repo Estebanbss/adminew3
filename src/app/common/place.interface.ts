@@ -98,13 +98,13 @@ export interface AtractivoTuristico extends Place {
 export interface Municipio extends Place {
   //id
   //name: string;
-  subregion: string;
+  zona: string;
   //descripcion: string;
   poblacion: string;
   gentilicio: string;
   clima: string;
   servicios: string;
-  FiestasEventos: string;
+  fiestasEventos: string;
   hechosHistoricos: string;
   sitioWeb: string;
   facebook: string;
