@@ -18,80 +18,17 @@
           </div>
         </div>
       </div>
-      <!-- Espacio de búsqueda en botónes para Servicios -->
-      <div>
-        <div>
-          <div> <!-- Botónes para filtrar por opción, filtrando varios elementos -->
-            <span>Servicios:</span>
-            <select (change)="applyFilterServices($event)">
-              <option value="todos">Todos</option>
-              <option value="Alojamiento Urbano">Alojamiento Urbano</option>
-              <option value="Alojamiento Rural">Alojamiento Rural</option>
-              <option value="Restaurantes">Restaurantes</option>
-              <option value="Tiendas de Cafe">Tiendas de Cafe</option>
-              <option value="Antojos Tipicos">Antojos Tipicos</option>
-              <option value="Sitio Natural">Sitio Natural</option>
-              <option value="Patrimonio Cultural">Patrimonio Cultural</option>
-              <option value="Miradores">Miradores</option>
-              <option value="Parques Naturales">Parques Naturales</option>
-              <option value="Agencias de Viajes">Agencias de Viajes</option>
-              <option value="Centro Recreativo">Centro Recreativo</option>
-              <option value="Guias de Turismo">Guias de Turismo</option>
-              <option value="Aventura">Aventura</option>
-              <option value="Agro y Ecoturismo">Agro y Ecoturismo</option>
-              <option value="Planes o Rutas">Planes o Rutas</option>
-              <option value="Artesanias">Artesanias</option>
-              <option value="Transporte">Transporte</option>
-              <option value="Eventos">Eventos</option>
-            </select>
-          </div>
-        </div>
-      </div>
       <!-- Espacio de búsqueda en botónes para Municipios -->
       <div>
         <div>
           <div> <!-- Botónes para filtrar por opción, filtrando varios elementos -->
-            <span>Municipios:</span>
-            <select (change)="applyFilterMunicipio($event)">
+            <span>Zonas:</span>
+            <select (change)="applyFilterZona($event)">
               <option value="todos">Todos</option>
-              <option value="Acevedo">Acevedo</option>
-              <option value="Agrado">Agrado</option>
-              <option value="Aipe">Aipe</option>
-              <option value="Algeciras">Algeciras</option>
-              <option value="Altamira">Altamira</option>
-              <option value="Baraya">Baraya</option>
-              <option value="Campoalegre">Campoalegre</option>
-              <option value="Colombia">Colombia</option>
-              <option value="El Pital">El Pital</option>
-              <option value="Elias">Elias</option>
-              <option value="Garzon">Garzon</option>
-              <option value="Gigante">Gigante</option>
-              <option value="Guadalupe">Guadalupe</option>
-              <option value="Hobo">Hobo</option>
-              <option value="Isnos">Isnos</option>
-              <option value="La Argentina">La Argentina</option>
-              <option value="La Plata">La Plata</option>
-              <option value="Neiva">Neiva</option>
-              <option value="Nataga">Nataga</option>
-              <option value="Oporapa">Oporapa</option>
-              <option value="Paicol">Paicol</option>
-              <option value="Palermo">Palermo</option>
-              <option value="Palestina">Palestina</option>
-              <option value="El Pital">El Pital</option>
-              <option value="Pitalito">Pitalito</option>
-              <option value="Rivera">Rivera</option>
-              <option value="Saladoblanco">Saladoblanco</option>
-              <option value="San Agustin">San Agustin</option>
-              <option value="Santa Maria">Santa Maria</option>
-              <option value="Suaza">Suaza</option>
-              <option value="Tarqui">Tarqui</option>
-              <option value="Tello">Tello</option>
-              <option value="Teruel">Teruel</option>
-              <option value="Tesalia">Tesalia</option>
-              <option value="Timana">Timana</option>
-              <option value="Villavieja">Villavieja</option>
-              <option value="Yaguara">Yaguara</option>
-              <option value="Iquira">Iquira</option>
+              <option value="Centro">Centro</option>
+              <option value="Norte">Norte</option>
+              <option value="Occidente">Occidente</option>
+              <option value="Sur">Sur</option>
             </select>
           </div>
         </div>
@@ -136,7 +73,7 @@
         <!-- Cuerpo de la Tabla -->
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Elementos Renderizados desde la BD -->
-          <tr *ngFor="let municipio of municipios | filtroTexto:filterPost | botonServicios:servicio | botonMunicipio:municipioFilter | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100">
+          <tr *ngFor="let municipio of municipios | filtroTexto:filterPost | botonZona:zonaFilter | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100">
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               {{ municipio.name }}
             </td>
@@ -160,7 +97,6 @@
           <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </tbody>
       </table> <!-- Fin tabla -->
-
     </div>
   </div>
 </div>

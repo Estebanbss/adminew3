@@ -19,7 +19,7 @@ export class ListadoMunicipioComponent implements OnInit {
   servicio: string = 'todos'; //Almacena el valor de la opción que se elija en el botón a filtrar.
 
   //? -> Propiedad para el Pipe en el filtro por botón de Municipios
-  municipioFilter: string = 'todos'; //Almacena el valor de la opción que se elija en el botón a filtrar.
+  zonaFilter: string = 'todos'; //Almacena el valor de la opción que se elija en el botón a filtrar.
 
   //? -> Propiedad para almacenar el arreglo de objetos que nos va a traer la BD al disparar el método getAtractivo, la utilizamos para Bandear los datos en el html de list y mostrar los datos
   municipios: Municipio[] = [];
@@ -69,16 +69,16 @@ export class ListadoMunicipioComponent implements OnInit {
     this.router.navigate(['/dashboard-admin/pagina-inicio/editar-municipio']);
   }
 
-  //? -> Método para filtrar por medio del botón
-  applyFilterServices(selectedCategory: any) {
-    this.servicio = selectedCategory.target.value; // Obtenemos el valor seleccionado en el html.
-    this.servicio = this.servicio.toLowerCase(); // Los valores de las opciones pasan a minúsculas para comparar.
-  } //Fin Función applyFilterServices
+  // //? -> Método para filtrar por medio del botón
+  // applyFilterServices(selectedCategory: any) {
+  //   this.servicio = selectedCategory.target.value; // Obtenemos el valor seleccionado en el html.
+  //   this.servicio = this.servicio.toLowerCase(); // Los valores de las opciones pasan a minúsculas para comparar.
+  // } //Fin Función applyFilterServices
 
   //? -> Método para filtrar por medio del botón
-  applyFilterMunicipio(selectedCategory: any) {
-    this.municipioFilter = selectedCategory.target.value; // Obtenemos el valor seleccionado en el html.
-    this.municipioFilter = this.municipioFilter.toLowerCase(); // Los valores de las opciones pasan a minúsculas para comparar.
+  applyFilterZona(selectedCategory: any) {
+    this.zonaFilter = selectedCategory.target.value; // Obtenemos el valor seleccionado en el html.
+    this.zonaFilter = this.zonaFilter.toLowerCase(); // Los valores de las opciones pasan a minúsculas para comparar.
   } //Fin Función applyFilterServices
 
 }
