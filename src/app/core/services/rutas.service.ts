@@ -243,7 +243,7 @@ export class RutasService {
 
   //? -> Creamos un método para obtener los datos de una colección
   //Read - R
-  obtenerrutas(): Observable<Ruta[]> {
+  obtenerRutas(): Observable<Ruta[]> {
     // Creamos una referencia a la colección de la que queremos recibir los datos
     const rutaRef = collection(this.firestore, 'rutas'); // Servicio y nombre de la colección
 
@@ -264,14 +264,14 @@ export class RutasService {
   //Aquí podemos elegir pasar como parámetro el objeto entero con todos los elementos ó sólo el elemento con el que queremos crear la referencia para borrar
   //En este caso pasamos el objeto con todos los elementos
   //? Aquí borramos los datos de Firestore para la opción de borrado en el Listado
-  borrarruta(ruta: any): Promise<any> {
+  borrarRuta(ruta: any): Promise<any> {
     //Creamos la referencia al documento que queremos borrar
     const docRef = doc(this.firestore, `rutas/${ruta.id}`); // Borramos por id
     return deleteDoc(docRef); // Nos retorna una promesa
   } //? Fin método eleminar ruta para la opción de borrado en el Listado
 
   //? Aquí borramos los datos de Storage para la opción de borrado en el Listado
-  borrarImagenesruta(ruta: any) {
+  borrarImagenesRuta(ruta: any) {
     //Primero capturamos los datos de path y arreglo de objetos con el path de las imágenes para borrarlas del Storage
     const pathImgPrincipal = ruta.pathImagePortada.path; //path para borrar imagen portada
     const arrayPathImages = ruta.pathImages; // arreglo de Objetos de tipo PathImage
