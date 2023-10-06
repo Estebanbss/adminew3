@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./pagina-inicio.component.css']
 })
 export class PaginaInicioComponent {
-  public ha: boolean = false;
+  public cerrado: boolean = true;
 
   hidden(){
-    this.ha == false ? this.ha = true : this.ha = false;
+    this.cerrado == true ? this.cerrado = false : this.cerrado = true;
   }
 }
 

@@ -1,5 +1,5 @@
 <!-- Contenedor -->
-<div class="container mx-auto">
+<div class=" md:w-[90%]  xl:w-[1280px] max-w-[1280px] container mx-auto">
   <div class="bg-white rounded-lg shadow-lg mt-4">
     <div class="p-4">
       <!-- CONTENIDO -->
@@ -97,13 +97,13 @@
         </div>
       </div>
       <!--Nuestra Tabla-->
-      <table class="min-w-full mt-4">
+      <table class="w-[300px] md:w-[700px] xl:w-[1200px] max-w-[300px] md:max-w-[700px] xl:max-w-[1200px] mx-auto mt-4">
         <!-- Encabezado de la Tabla -->
-        <thead>
+        <thead class="">
           <tr>
             <th
               scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="w-[400px] px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Nombre
             </th>
@@ -134,33 +134,33 @@
           </tr>
         </thead>
         <!-- Cuerpo de la Tabla -->
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="bg-white divide-y divide-gray-200 ">
           <!-- Elementos Renderizados desde la BD -->
-          <tr *ngFor="let prestador of prestadores | filtroTexto:filterPost | botonServicios:servicio | botonMunicipio:municipio | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+          <tr *ngFor="let prestador of prestadores | filtroTexto:filterPost | botonServicios:servicio | botonMunicipio:municipio | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100 ">
+            <td class="px-6 py-4  text-sm text-gray-900 max-w-[15%] overflow-hidden text-ellipsis">
               {{ prestador.name }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4  text-sm text-gray-900 max-w-[15%]    overflow-hidden text-ellipsis">
               {{ prestador.servicios }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4  text-sm text-gray-900  max-w-[15%]   overflow-hidden text-ellipsis">
               {{ prestador.municipio }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4  text-sm text-gray-900  max-w-[15%]      overflow-hidden text-ellipsis">
               {{ prestador.celular1 }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4  text-sm text-gray-900  max-w-[30%]     overflow-hidden text-ellipsis">
               <!-- Para los íconos de Acciones - FontAwesome -->
-              <i (click)="obtenerPrestador(prestador)" class="fa-solid fa-pen-to-square fa-lg text-blue-500 mr-10 cursor-pointer"></i>
+              <i (click)="obtenerPrestador(prestador)" class="fa-solid fa-pen-to-square fa-lg text-blue-500 mr-5 cursor-pointer"></i>
               <!-- Pasamos por parámetro el objeto listado para manipularlo, en este caso borrarlo -->
               <i (click)="eliminarPrestador(prestador)" class="fa-solid fa-trash-can fa-lg text-red-500 cursor-pointer"></i>
             </td>
           </tr>
           <!-- Paginación propia de la librería que importamos -->
-          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
         </tbody>
       </table> <!-- Fin tabla -->
-
+      <pagination-controls class="w-full"  (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>
 </div>
