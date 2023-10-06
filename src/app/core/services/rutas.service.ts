@@ -339,7 +339,7 @@ export class RutasService {
   //? SECCIÓN ACTUALIZAR
 
   //? -> Actualizamos los datos del ruta una vez se haga el borrado de Img
-  actualizarruta(ruta: any) {
+  actualizarRuta(ruta: any) {
     //Primero creamos una referencia al documento que queremos actualizar
     const docRef = doc(this.firestore, `rutas/${ruta.id}`); //Actualizamos por id
     updateDoc(docRef, ruta)
@@ -351,7 +351,7 @@ export class RutasService {
 
   //? Método para generar los empleados e insertarlos en la base de datos
   //Update - U
-  editarruta(ruta: any, files: any, portadaFile: any): Promise<any> {
+  editarRuta(ruta: any, files: any, portadaFile: any): Promise<any> {
     //? Propiedad Array de Promesas para los path
     const arregloDePromesas: Promise<any>[] = []; //Lo utilizamos para guardar nuestras promesas en la carga de archivos al servicio storage y asegurarnos que se cumplan todas para poder trabajar con ellas sin problema.
 
