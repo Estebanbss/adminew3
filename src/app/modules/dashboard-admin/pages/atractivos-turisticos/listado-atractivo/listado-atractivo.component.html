@@ -1,43 +1,48 @@
 <!-- Contenedor -->
 <div (keydown)="onKeyDown($event)" class="container mx-auto">
   <div class="bg-white rounded-lg shadow-lg mt-4">
-    <div class="p-4">
+    <div class="w-full p-4">
       <!-- CONTENIDO -->
       <!-- Nuestro título -->
       <h3 class="text-3xl text-center  font-bold text-gray-500">Listado Atractivos Turisticos</h3>
       <hr class="h-[1px] border-gray-300 mb-5 border-[1px] ">
       <!-- Botón Para llevarnos al componente de Agregar Prestador -->
-      <div class="flex justify-center gap-5">
-        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4  rounded" (click)="openmodalwarning('atractivos')">Eliminar Atractivos</button>
-        <button class="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded" (click)="openmodalatrac()">Importar Atractivo</button>
+      <div class="flex justify-center gap-2">
+        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4  rounded" (click)="openmodalwarning('atractivos')">Eliminar</button>
+        <button class="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded" (click)="openmodalatrac()">Importar</button>
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/dashboard-admin/pagina-inicio/agregar-atractivo-turistico">Agregar</button>
-      </div>
-      <div class="" *ngIf="warning === true" >
+        <div class="" *ngIf="warning === true" >
 
-        <app-warning></app-warning>
+          <app-warning></app-warning>
 
-      </div>
-
-      <div class="" *ngIf="modalsuichatrac === true" >
-
-        <app-import-atractivo></app-import-atractivo>
-
-      </div>
-      <!-- Nuestro espacio de búsquedas en texto-->
-      <div>
-        <div>
-          <div> <!-- ngModel -> se tiene que importar FormsModule en app module y colocar un name al input -->
-            <span>Nombre:</span>
-            <input type="text" class="form-control" name="filterPost" placeholder="Search ..." [(ngModel)]='filterPost'>
-          </div>
         </div>
+
+        <div class="" *ngIf="modalsuichatrac === true" >
+
+          <app-import-atractivo></app-import-atractivo>
+
+        </div>
+
+
       </div>
+
+      <!-- Nuestro espacio de búsquedas en texto-->
+      <div  class="flex flex-col gap-5 my-5 ">
+          <div class=" w-full "> <!-- ngModel -> se tiene que importar FormsModule en app module y colocar un name al input -->
+            <span class="text-xl text-center  font-bold text-gray-500">Nombre:</span>
+            <div>
+              <input type="text" class="form-control w-full rounded-3xl border-2 border-gray-300 h-12 pe-10 shadow-sm bg:text-base xl:text-lg flex flex-col items-center py-4.5 px-7  font-Work" name="filterPost" placeholder="¿Que buscas?" [(ngModel)]='filterPost'>
+            </div>
+
+          </div>
+
+
       <!-- Espacio de búsqueda en botónes para Municipios -->
-      <div>
+      <div class="flex flex-row gap-5 justify-center">
         <div>
-          <div> <!-- Botónes para filtrar por opción, filtrando varios elementos -->
-            <span>Municipios:</span>
-            <select (change)="applyFilterMunicipio($event)">
+
+            <span class="text-center w-full  flex flex-row justify-center text-xl   font-bold text-gray-500">Municipios:</span>
+            <select  class="px-2 py-2 border-[1px] rounded-lg border-gray-500 w-[140px]"  (change)="applyFilterMunicipio($event)">
               <option value="todos">Todos</option>
               <option value="Acevedo">Acevedo</option>
               <option value="Agrado">Agrado</option>
@@ -78,9 +83,13 @@
               <option value="Yaguara">Yaguara</option>
               <option value="Iquira">Iquira</option>
             </select>
-          </div>
         </div>
+
       </div>
+
+      <hr class="h-[1px] border-gray-300 mb-5 border-[1px] ">
+
+    </div >
       <!--Nuestra Tabla-->
       <table class="min-w-full mt-4">
         <!-- Encabezado de la Tabla -->
@@ -94,52 +103,58 @@
             </th>
             <th
               scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-6 py-3 hidden md:table-cell text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Municipio
             </th>
             <th
               scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-6 py-3 hidden md:table-cell text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Zona
             </th>
             <th
               scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-6 py-3 hidden md:table-cell text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Bien o Lugar
             </th>
+            <th
+            scope="col"
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Acciones
+          </th>
           </tr>
         </thead>
         <!-- Cuerpo de la Tabla -->
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Elementos Renderizados desde la BD -->
           <tr *ngFor="let atractivo of atractivosTuristicos | filtroTexto:filterPost | botonMunicipio:municipio | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4 max-w-[15%] overflow-hidden text-ellipsis text-sm text-gray-900">
               {{ atractivo.name }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4 max-w-[15%] overflow-hidden text-ellipsis text-sm hidden md:table-cell text-gray-900">
               {{ atractivo.municipio }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4 max-w-[15%] overflow-hidden text-ellipsis text-sm hidden md:table-cell text-gray-900">
               {{ atractivo.zona }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4 max-w-[15%] overflow-hidden text-ellipsis text-sm hidden md:table-cell text-gray-900">
               {{ atractivo.bienOLugar }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4 max-w-[30%] overflow-hidden text-ellipsis text-sm text-gray-900">
               <!-- Para los íconos de Acciones - FontAwesome -->
-              <i (click)="obtenerAtractivo(atractivo)" class="fa-solid fa-pen-to-square fa-lg text-blue-500 mr-10 cursor-pointer"></i>
+              <i (click)="obtenerAtractivo(atractivo)" class="fa-solid fa-pen-to-square fa-lg text-blue-500 mr-5 cursor-pointer"></i>
               <!-- Pasamos por parámetro el objeto listado para manipularlo, en este caso borrarlo -->
               <i (click)="eliminarAtractivo(atractivo)" class="fa-solid fa-trash-can fa-lg text-red-500 cursor-pointer"></i>
             </td>
           </tr>
           <!-- Paginación propia de la librería que importamos -->
-          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
         </tbody>
       </table> <!-- Fin tabla -->
-
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>
 </div>

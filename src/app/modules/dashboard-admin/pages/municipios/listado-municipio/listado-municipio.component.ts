@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Municipio } from 'src/app/common/place.interface';
 import { MunicipiosService } from 'src/app/core/services/municipios.service';
+import { ModalServiceService } from 'src/app/core/services/modal-service.service';
 
 @Component({
   selector: 'app-listado-municipio',
@@ -9,6 +10,31 @@ import { MunicipiosService } from 'src/app/core/services/municipios.service';
   styleUrls: ['./listado-municipio.component.css']
 })
 export class ListadoMunicipioComponent implements OnInit {
+
+  modalsuichmuni!:boolean;
+  warning!:boolean;
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.closemodal();
+    }
+  }
+
+  openmodalmuni() {
+    this.modalService.setModalSuichMuni(true);
+  }
+
+  openmodalwarning(value: string) {
+    this.modalService.setWarning(true);
+    this.modalService.setValue(value);
+  }
+
+  closemodal() {
+    this.modalService.setModalSuichMuni(false);//cierra el modal
+    this.modalService.setWarning(false);
+   }
+
+
   //?Página donde estamos, propiedad para la paginación
   page: number = 1;
 
@@ -28,11 +54,20 @@ export class ListadoMunicipioComponent implements OnInit {
   constructor(
     private municipiosService: MunicipiosService, // Inyectamos el servicio
     private router: Router, // Clase Router para moverme a otro componente una vez enviado el form
+    private modalService: ModalServiceService
   ) {
 
   }
 
   ngOnInit() {
+
+    this.modalService.modalsuichmuni$.subscribe((value) => {
+      this.modalsuichmuni = value;
+    });
+
+    this.modalService.warning$.subscribe((value) => {
+      this.warning = value;
+    });
     //Lo ejecutamos en el método OnInit para que dispare el método getAtractivo y me cargue los datos apenas se cargue el componente. Además de que disparamos el cold Observable para que se actualizen los datos a tiempo real.
     this.getAtractivo();
   }

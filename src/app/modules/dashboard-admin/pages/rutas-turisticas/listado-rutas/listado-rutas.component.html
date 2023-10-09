@@ -1,22 +1,43 @@
 <!-- Contenedor -->
-<div class="container mx-auto">
+<div (keydown)="onKeyDown($event)" class="container mx-auto">
   <div class="bg-white rounded-lg shadow-lg mt-4">
-    <div class="p-4">
+    <div class=" w-full p-4">
       <!-- CONTENIDO -->
       <!-- Nuestro título -->
-      <h3 class="text-3xl text-center mb-4">Listado Rutas</h3>
+      <h3 class="text-3xl text-center  font-bold text-gray-500">Listado Rutas</h3>
+      <hr class="h-[1px] border-gray-300 mb-5 border-[1px] ">
       <!-- Botón Para llevarnos al componente de Agregar Prestador -->
-      <div class="flex justify-end">
+      <div class="flex justify-center gap-2">
+        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4  rounded" (click)="openmodalwarning('atractivos')">Eliminar</button>
+        <button class="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded" (click)="openmodalrutas()">Importar</button>
+
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/dashboard-admin/pagina-inicio/agregar-rutas-turisticas">Agregar</button>
+
+        <div class="" *ngIf="modalsuichrutas === true" >
+
+          <app-import-rutas></app-import-rutas>
+
+        </div>
+        <div class="" *ngIf="warning === true" >
+
+          <app-warning></app-warning>
+
+        </div>
+
       </div>
       <!-- Nuestro espacio de búsquedas en texto-->
-      <div>
-        <div>
-          <div> <!-- ngModel -> se tiene que importar FormsModule en app module y colocar un name al input -->
-            <span>Nombre:</span>
-            <input type="text" class="form-control" name="filterPost" placeholder="Search ..." [(ngModel)]='filterPost'>
+      <div class="flex flex-col gap-5 my-5 ">
+
+          <div class=" w-full "> <!-- ngModel -> se tiene que importar FormsModule en app module y colocar un name al input -->
+            <span class="text-xl text-center  font-bold text-gray-500">Nombre:</span>
+            <div>
+
+              <input type="text" class="form-control w-full rounded-3xl border-2 border-gray-300 h-12 pe-10 shadow-sm bg:text-base xl:text-lg flex flex-col items-center py-4.5 px-7  font-Work" name="filterPost" placeholder="¿Que buscas?" [(ngModel)]='filterPost'>
+            </div>
           </div>
-        </div>
+
+
+          <hr class="h-[1px] border-gray-300 mb-5 border-[1px] ">
       </div>
       <!--Nuestra Tabla-->
       <table class="min-w-full mt-4">
@@ -31,19 +52,19 @@
             </th>
             <th
               scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-6 py-3 text-left text-xs hidden md:table-cell  font-medium text-gray-500 uppercase tracking-wider"
             >
               Descripción
             </th>
             <th
               scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-6 py-3 text-left text-xs hidden md:table-cell  font-medium text-gray-500 uppercase tracking-wider"
             >
               Información Adicional
             </th>
             <th
               scope="col"
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              class="px-6 py-3 text-left text-xs  font-medium text-gray-500 uppercase tracking-wider"
             >
               Acciones
             </th>
@@ -53,27 +74,27 @@
         <tbody class="bg-white divide-y divide-gray-200">
           <!-- Elementos Renderizados desde la BD -->
           <tr *ngFor="let ruta of rutas | filtroTexto:filterPost | paginate: { itemsPerPage: 10, currentPage: page } " class="bg-gray-100">
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4  text-sm max-w-[15%] overflow-hidden text-ellipsis text-gray-900">
               {{ ruta.name }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4 hidden max-w-[15%] overflow-hidden text-ellipsis md:table-cell   text-sm text-gray-900">
               {{ ruta.descripcion }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4 hidden  max-w-[15%] overflow-hidden text-ellipsis md:table-cell   text-sm text-gray-900">
               {{ ruta.informacionAdicional }}
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <td class="px-6 py-4  text-sm max-w-[30%] overflow-hidden text-ellipsis text-gray-900">
               <!-- Para los íconos de Acciones - FontAwesome -->
-              <i (click)="obtenerRuta(ruta)" class="fa-solid fa-pen-to-square fa-lg text-blue-500 mr-10 cursor-pointer"></i>
+              <i (click)="obtenerRuta(ruta)" class="fa-solid fa-pen-to-square fa-lg text-blue-500 mr-5 cursor-pointer"></i>
               <!-- Pasamos por parámetro el objeto listado para manipularlo, en este caso borrarlo -->
               <i (click)="eliminarRuta(ruta)" class="fa-solid fa-trash-can fa-lg text-red-500 cursor-pointer"></i>
             </td>
           </tr>
           <!-- Paginación propia de la librería que importamos -->
-          <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
         </tbody>
       </table> <!-- Fin tabla -->
-
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
     </div>
   </div>
 </div>

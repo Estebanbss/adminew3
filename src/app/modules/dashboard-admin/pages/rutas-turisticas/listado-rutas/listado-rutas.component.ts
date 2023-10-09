@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ruta } from 'src/app/common/place.interface';
 import { RutasService } from 'src/app/core/services/rutas.service';
+import { ModalServiceService } from 'src/app/core/services/modal-service.service';
 
 @Component({
   selector: 'app-listado-rutas',
@@ -9,6 +10,27 @@ import { RutasService } from 'src/app/core/services/rutas.service';
   styleUrls: ['./listado-rutas.component.css']
 })
 export class ListadoRutasComponent {
+  modalsuichrutas!:boolean;
+  warning!:boolean;
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.closemodal();
+    }
+  }
+
+  openmodalrutas() {
+    this.modalService.setModalSuichRutas(true);
+  }
+  openmodalwarning(value: string) {
+    this.modalService.setWarning(true);
+    this.modalService.setValue(value);
+  }
+
+  closemodal() {
+    this.modalService.setModalSuichRutas(false);//cierra el modal
+    this.modalService.setWarning(false);//cierra el modal
+   }
 
   //?Página donde estamos, propiedad para la paginación
   page: number = 1;
@@ -29,11 +51,19 @@ export class ListadoRutasComponent {
   constructor(
     private rutasService: RutasService, // Inyectamos el servicio
     private router: Router, // Clase Router para moverme a otro componente una vez enviado el form
+    private modalService: ModalServiceService
   ) {
 
   }
 
   ngOnInit() {
+
+    this.modalService.modalsuichrutas$.subscribe((value) => {
+      this.modalsuichrutas = value;
+    });
+    this.modalService.warning$.subscribe((value) => {
+      this.warning = value;
+    });
     //Lo ejecutamos en el método OnInit para que dispare el método getAtractivo y me cargue los datos apenas se cargue el componente. Además de que disparamos el cold Observable para que se actualizen los datos a tiempo real.
     this.getAtractivo();
   }
