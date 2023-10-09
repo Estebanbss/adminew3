@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PrestadorTuristico } from 'src/app/common/place.interface';
 import { PrestadoresService } from 'src/app/core/services/prestadores.service';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-agregar-prestador',
@@ -10,6 +12,9 @@ import { PrestadoresService } from 'src/app/core/services/prestadores.service';
   styleUrls: ['./agregar-prestador.component.css']
 })
 export class AgregarPrestadorComponent implements OnInit {
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
 
   // ? -> La propiedad createPrestador no es un Objeto, es una Propiedad de Almacén de los datos HTML
   createPrestador: FormGroup; //Propiedad para almacenar los valores del Formulario y Gestionarlos.
@@ -33,7 +38,8 @@ export class AgregarPrestadorComponent implements OnInit {
   constructor(
     private fb: FormBuilder, // Modulo para Formulario - Permite validar el formulario de manera sencilla.
     private prestadoresService: PrestadoresService, // Servicio con los métodos CRUD para Prestadores
-    private router: Router, // Clase Router para moverme a otro componente una vez enviado el form
+    private router: Router,
+    private sanitizer: DomSanitizer// Clase Router para moverme a otro componente una vez enviado el form
   ) {
     //Aquí inicializamos propiedades.
     //Formulario - Se declaran las variables que lo conforman.
@@ -125,7 +131,11 @@ export class AgregarPrestadorComponent implements OnInit {
       eventos: ''
     }
 
-  } //? -> Fin Constructor
+  }
+
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+}
 
   ngOnInit():void {
 

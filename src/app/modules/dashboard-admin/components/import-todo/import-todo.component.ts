@@ -35,6 +35,25 @@ export class ImportTodoComponent {
       pagWeb: '',
       correo: '',
       horarioAtencion: '',
+      alojamientoUrbano:"",
+      alojamientoRural: "",
+      tiendasDeCafe: "",
+      antojosTipicos: "",
+      sitioNatural:"",
+      patrimonioCultural: "",
+      miradores:"",
+      parquesNaturales:"",
+      agenciasDeViaje:"",
+      centroRecreativo:"",
+      guiasDeTurismo:"",
+      aventura:"",
+      agroYEcoturismo:"",
+      planesORutas:"",
+      artesanias:"",
+      transporte:"",
+      eventos:"",
+      restaurantes:"",
+
       pathImages: [], // -> lo conseguimos en la inserción de imágenes
       meGusta: 0, // -> # de Me gustas en la App
       pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
@@ -189,7 +208,7 @@ datocurioso(){
       pagWeb: this.data[0][index].pagWeb === undefined  ? '--' : this.data[0][index].pagWeb,
       correo: this.data[0][index].correo === undefined  ? '--' : this.data[0][index].correo,
       horarioAtencion: this.data[0][index].horarioAtencion === undefined  ? '--' : this.data[0][index].horarioAtencion,
-
+      alojamientoUrbano:this.data[0][index].alojamientoUrbano === undefined  ? '--' : this.data[0][index].alojamientoUrbano,
       alojamientoRural: this.data[0][index].alojamientoRural === undefined  ? '--' : this.data[0][index].alojamientoRural,
       tiendasDeCafe: this.data[0][index].tiendasDeCafe === undefined  ? '--' : this.data[0][index].tiendasDeCafe,
       antojosTipicos:this.data[0][index].antojosTipicos === undefined  ? '--' : this.data[0][index].antojosTipicos,
@@ -206,7 +225,7 @@ datocurioso(){
       artesanias: this.data[0][index].artesanias === undefined  ? '--' : this.data[0][index].artesanias,
       transporte: this.data[0][index].transporte === undefined  ? '--' : this.data[0][index].transporte,
       eventos: this.data[0][index].eventos === undefined  ? '--' : this.data[0][index].eventos,
-
+      restaurantes: this.data[0][index].restaurantes === undefined  ? '--' : this.data[0][index].restaurantes,
       pathImages: [], // -> lo conseguimos en la inserción de imágenes
       meGusta: 0, // -> # de Me gustas en la App
       pathImagePortada: { // -> lo conseguimos en la inserción de imágenes

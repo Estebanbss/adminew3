@@ -24,9 +24,6 @@ export class WarningComponent {
   this.modalService.currentValue.subscribe(value => this.Value = value);
  }
 
-
-
-
   borrartodo(){
     this.prestadoresService.borrarTodosLosDocumentos(this.Value);
     this.closemodal()

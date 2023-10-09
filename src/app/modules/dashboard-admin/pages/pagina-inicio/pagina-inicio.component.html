@@ -1,5 +1,17 @@
 <!-- Página para navegar entres módulos -->
-<div class="  h-full ">
+<div  class="absolute top-0 right-0 left-0 bottom-0" *ngIf="modalsuichtodo === true" >
+
+  <app-import-todo></app-import-todo>
+
+</div >
+
+<div class=" absolute top-0 right-0 left-0 bottom-0" *ngIf="warningAll === true">
+
+  <app-warning-all></app-warning-all>
+
+</div>
+
+<div (keydown)="onKeyDown($event)"  class="  h-full ">
   <div class=" min-w-full flex flex-row">
     <!-- Sidebar -->
     <aside *ngIf="cerrado"class="fixed flex flex-col bg-indigo-600   h-full p-4">
@@ -19,6 +31,15 @@
               <a class="text-white hover:text-indigo-200 flex justify-center items-center " routerLink="list-rutas-turisticas">Rutas Turísticas</a>
           </li>
       </ul>
+
+      <div class="flex flex-col gap-1 mt-auto">
+        <button class="bg-red-500  hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex flex-row justify-center" (click)="openWarningtodo()" >Borrar Todo <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z"/></svg></button>
+        <button class="bg-green-500  hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="openmodaltodo()" >Importar Todo</button>
+        <button class="bg-yellow-500  hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded" (click)="DescargarArchivo()" >Descargar formato</button>
+      </div>
+
+
+
 
       <div class="bottom-5 flex flex-col gap-2 mt-auto">
         <hr class="h-[5px] ">

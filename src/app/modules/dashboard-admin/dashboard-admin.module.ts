@@ -33,6 +33,8 @@ import { ImportMunicipioModule } from './components/import-municipio/import-muni
 import { ImportRutasModule } from './components/import-rutas/import-rutas.module';
 import { ImportTodoModule } from './components/import-todo/import-todo.module';
 import { WarningModule } from './components/warning/warning.module';
+import { WarningALLModule } from './components/warning-all/warning-all.module';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { WarningModule } from './components/warning/warning.module';
     FiltroTextoPipe,
     BotonServiciosPipe,
     BotonMunicipioPipe,
-    BotonZonaPipe
+    BotonZonaPipe,
+
   ],
   imports: [
     CommonModule,
@@ -66,7 +69,9 @@ import { WarningModule } from './components/warning/warning.module';
     ImportMunicipioModule,
     ImportRutasModule,
     ImportTodoModule,
-    WarningModule
+    WarningModule,
+    WarningALLModule,
+    ImageCropperModule
   ]
 })
 export class DashboardAdminModule { }

@@ -10,16 +10,38 @@ import { PrestadoresService } from 'src/app/core/services/prestadores.service';
 export class PaginaInicioComponent implements OnInit {
   public cerrado: boolean = true;
   modalsuichtodo!:boolean;
-  warning!:boolean;
 
-  openmodalwarningtodo(){
-    this.prestadoresService.borrarTodosLosDocumentos("prestadores")
-    this.prestadoresService.borrarTodosLosDocumentos("atractivos")
-    this.prestadoresService.borrarTodosLosDocumentos("rutas")
-    this.prestadoresService.borrarTodosLosDocumentos("municipios")
-    alert("SE BORRO TODO D:")
+  warningAll!:boolean;
 
+
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.closemodal();
+    }
   }
+
+  openmodaltodo() {
+    this.modalService.setModalSuichTodo(true);
+  }
+  openWarningtodo() {
+    this.modalService.setWarningAll(true);
+  }
+
+
+  DescargarArchivo(){
+        // URL del archivo que deseas descargar
+        const url = 'https://firebasestorage.googleapis.com/v0/b/centurhuila-b9e47.appspot.com/o/ManualDeUsuario%2FFormato.xlsx?alt=media&token=a5cd4d6c-bec4-416c-a4ca-1860633d1fd3&_gl=1*ywew72*_ga*NDA2NDgyOTM3LjE2ODY3NDgyNjA.*_ga_CW55HF8NVT*MTY5Njg4ODYzNy41MC4xLjE2OTY4ODg2NzcuMjAuMC4w';
+
+        // Abre la URL en una nueva pestaña para forzar la descarga
+        window.open(url, '_blank');
+  }
+
+ closemodal() {
+    this.modalService.setWarning(false);//cierra el modal
+    this.modalService.setModalSuichTodo(false);//cierra el modal
+    this.modalService.setWarningAll(false);//cierra el modal
+   }
+
 
 
   hidden(){
@@ -34,9 +56,13 @@ export class PaginaInicioComponent implements OnInit {
       this.modalsuichtodo = value;
     });
 
-    this.modalService.warning$.subscribe((value) => {
-      this.warning = value;
+
+    this.modalService.warningAll$.subscribe((value) => {
+      this.warningAll = value;
     });
+
+
+
   }
 }
 
