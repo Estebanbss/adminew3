@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrestadorTuristico } from 'src/app/common/place.interface';
 import { PrestadoresService } from 'src/app/core/services/prestadores.service';
+import { ModalServiceService } from 'src/app/core/services/modal-service.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-listado-prestador',
@@ -9,6 +11,33 @@ import { PrestadoresService } from 'src/app/core/services/prestadores.service';
   styleUrls: ['./listado-prestador.component.css']
 })
 export class ListadoPrestadorComponent implements OnInit {
+
+
+
+  modalsuich!:boolean; //*Modal para el button de importar de registro de prestadores
+  warning!:boolean;
+
+  //?-> función que detecta la tecla presionada y si es igual a escape cierra el modal
+  onKeyDown(event: KeyboardEvent) {//Función que detecta la tecla presionada y si es igual a escape cierra el modal
+    if (event.key === "Escape") {//Si la tecla presionada es igual a escape
+      this.closemodal();//Se ejecuta la función closemodal
+    }
+  }
+
+
+  openmodalpst() {
+    this.modalService.setModalSuichPst(true);
+  }
+
+  closemodal() {
+    this.modalService.setModalSuichPst(false);//cierra el modal   de prestadores
+    this.modalService.setWarning(false);//cierra el modal   de warning
+   }
+
+   openmodalwarning(value: string) {
+    this.modalService.setWarning(true);
+    this.modalService.setValue(value);
+  }
 
   //?Página donde estamos, propiedad para la paginación
   page: number = 1;
@@ -29,11 +58,22 @@ export class ListadoPrestadorComponent implements OnInit {
   constructor(
     private prestadoresService: PrestadoresService, // Inyectamos el servicio
     private router: Router, // Clase Router para moverme a otro componente una vez enviado el form
+    private modalService: ModalServiceService //Inyectamos el servicio del modal
   ) {
 
   }
 
   ngOnInit() {
+
+    this.modalService.modalsuich$.subscribe((value) => {
+      this.modalsuich = value;
+    });
+
+        this.modalService.warning$.subscribe((value) => {
+      this.warning = value;
+    });
+
+
     //Lo ejecutamos en el método OnInit para que dispare el método getPrestadores y me cargue los datos apenas se cargue el componente. Además de que disparamos el cold Observable para que se actualizen los datos a tiempo real.
     this.getPrestadores();
   }
@@ -47,6 +87,7 @@ export class ListadoPrestadorComponent implements OnInit {
       this.prestadores = data; //Pasamos la información a una propiedad nativa de la clase para hacer el Banding
     })
   }
+
 
 
   //? -> Método para eliminar un Prestador

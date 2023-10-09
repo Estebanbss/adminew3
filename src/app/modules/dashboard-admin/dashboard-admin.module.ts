@@ -7,6 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms'; //Formularios Reactivos
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- Modulo descargado de npm para hacer paginaciónes
 import { FormsModule } from '@angular/forms'; // <-- Modulo para le ngModel del banding en el listado
 
+
+
+
 import { PaginaInicioComponent } from './pages/pagina-inicio/pagina-inicio.component';
 import { ListadoPrestadorComponent } from './pages/prestadores-turisticos/listado-prestador/listado-prestador.component';
 import { ListadoAtractivoComponent } from './pages/atractivos-turisticos/listado-atractivo/listado-atractivo.component';
@@ -24,6 +27,12 @@ import { FiltroTextoPipe } from './pipes/filtro-texto.pipe';
 import { BotonServiciosPipe } from './pipes/boton-servicios.pipe';
 import { BotonMunicipioPipe } from './pipes/boton-municipio.pipe';
 import { BotonZonaPipe } from './pipes/boton-zona.pipe';
+import { ImportModule } from './components/import-pst/import-pst.module';
+import { ImportAtractivoModule } from './components/import-atractivo/import-atractivo.module';
+import { ImportMunicipioModule } from './components/import-municipio/import-municipio.module';
+import { ImportRutasModule } from './components/import-rutas/import-rutas.module';
+import { ImportTodoModule } from './components/import-todo/import-todo.module';
+import { WarningModule } from './components/warning/warning.module';
 
 
 @NgModule({
@@ -51,7 +60,13 @@ import { BotonZonaPipe } from './pipes/boton-zona.pipe';
     DashboardAdminRoutingModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    ImportModule,
+    ImportAtractivoModule,
+    ImportMunicipioModule,
+    ImportRutasModule,
+    ImportTodoModule,
+    WarningModule
   ]
 })
 export class DashboardAdminModule { }

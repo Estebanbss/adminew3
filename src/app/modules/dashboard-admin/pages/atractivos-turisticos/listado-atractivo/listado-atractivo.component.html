@@ -1,13 +1,27 @@
 <!-- Contenedor -->
-<div class="container mx-auto">
+<div (keydown)="onKeyDown($event)" class="container mx-auto">
   <div class="bg-white rounded-lg shadow-lg mt-4">
     <div class="p-4">
       <!-- CONTENIDO -->
       <!-- Nuestro título -->
-      <h3 class="text-3xl text-center mb-4">Listado Atractivos Turisticos</h3>
+      <h3 class="text-3xl text-center  font-bold text-gray-500">Listado Atractivos Turisticos</h3>
+      <hr class="h-[1px] border-gray-300 mb-5 border-[1px] ">
       <!-- Botón Para llevarnos al componente de Agregar Prestador -->
-      <div class="flex justify-end">
+      <div class="flex justify-center gap-5">
+        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4  rounded" (click)="openmodalwarning('atractivos')">Eliminar Atractivos</button>
+        <button class="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded" (click)="openmodalatrac()">Importar Atractivo</button>
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/dashboard-admin/pagina-inicio/agregar-atractivo-turistico">Agregar</button>
+      </div>
+      <div class="" *ngIf="warning === true" >
+
+        <app-warning></app-warning>
+
+      </div>
+
+      <div class="" *ngIf="modalsuichatrac === true" >
+
+        <app-import-atractivo></app-import-atractivo>
+
       </div>
       <!-- Nuestro espacio de búsquedas en texto-->
       <div>

@@ -49,24 +49,26 @@ export interface PrestadorTuristico extends Place {
   //pathImage?: PathImage[]; -> Se toma por código
   //meGusta?: number; -> Se toma por código
   //pathImagePortada?: PathImage;
-  alojamientoUrbano: string;
-  alojamientoRural: string;
-  restaurantes: string;
-  tiendasDeCafe: string;
-  antojosTipicos: string;
-  sitioNatural: string;
-  patrimonioCultural: string;
-  miradores: string;
-  parquesNaturales: string;
-  agenciasDeViaje: string;
-  centroRecreativo: string;
-  guiasDeTurismo: string;
-  aventura: string;
-  agroYEcoturismo: string;
-  planesORutas: string;
-  artesanias: string;
-  transporte: string;
-  eventos: string;
+  alojamientoUrbano?: string;
+  alojamientoRural?: string;
+  restaurantes?: string;
+  tiendasDeCafe?: string;
+  antojosTipicos?: string;
+  sitioNatural?: string;
+  patrimonioCultural?: string;
+  miradores?: string;
+  parquesNaturales?: string;
+  agenciasDeViaje?: string;
+  centroRecreativo?: string;
+  guiasDeTurismo?: string;
+  aventura?: string;
+  agroYEcoturismo?: string;
+  planesORutas?: string;
+  artesanias?: string;
+  transporte?: string;
+  eventos?: string;
+  [key: string]: any;
+
 }
 
 // Interfaz Atractivo turístico

@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, query, orderBy, doc, deleteDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, query, orderBy, doc, deleteDoc, updateDoc, getDocs } from '@angular/fire/firestore';
 import { Storage, deleteObject, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PrestadorTuristico } from 'src/app/common/place.interface';
+import { AtractivoTuristico, Municipio, PrestadorTuristico, Ruta } from 'src/app/common/place.interface';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PrestadoresService {
+
+  //? Exportar excel
+
+
 
   //? Observable con el que compartimos información para editar un elemento de List a Editar
   private sharingDataPrestador: BehaviorSubject<PrestadorTuristico> = new BehaviorSubject<PrestadorTuristico>( {
@@ -82,6 +86,121 @@ export class PrestadoresService {
   }
 
   //? SECCIÓN AGREGAR
+
+  async agregarPrestadoresImportacion(
+    prestadores: PrestadorTuristico[]
+  ): Promise<any> {
+    const prestadorRef = collection(this.firestore, 'prestadores');
+
+    try {
+      const prestadorDocs = await getDocs(prestadorRef);
+
+      prestadores.forEach(async (prestador) => {
+        const existingDoc = prestadorDocs.docs.find(
+          (docSnap) => docSnap.data()['name'] === prestador.name
+        );
+
+        if (existingDoc) {
+          // El documento existe, así que lo actualizamos
+          await updateDoc(existingDoc.ref, prestador as object);
+          console.log('update');
+        } else {
+          // El documento no existe, así que lo agregamos
+          await addDoc(prestadorRef, prestador);
+          console.log('add');
+        }
+      });
+
+      alert('Se importaron los prestadores correctamente!');
+    } catch (error) {
+      console.error('Error al agregar prestadores:', error);
+      alert('Error al agregar los prestadores:');
+      // Manejar el error según sea necesario
+      return [];
+    }
+  }
+
+  async agregarAtractivoImportacion(atractivos: AtractivoTuristico[] ) : Promise<any> {
+    const atractivoRef = collection(this.firestore, 'atractivos');
+
+    try {
+      const atractivoDocs = await getDocs(atractivoRef);
+      atractivos.forEach(async (atractivo) => {
+        const existingDoc = atractivoDocs.docs.find(
+          (docSnap) => docSnap.data()['name'] === atractivo.name
+        );
+        if (existingDoc) {
+          // El documento existe, así que lo actualizamos
+          await updateDoc(existingDoc.ref, atractivo as object);
+          console.log('update');
+        } else {
+          // El documento no existe, así que lo agregamos
+          await addDoc(atractivoRef, atractivo);
+          console.log('add');
+        }
+      }),
+        alert('Se importaron los atractivos correctamente!');
+    } catch (error) {
+      console.error('Error al agregar los atractivos:', error);
+      alert('Error al agregar los atractivos');
+      // Manejar el error según sea necesario
+      return [];
+    }
+  }
+
+  async agregarMunicipioImportacion(municipios: Municipio[]): Promise<any> {
+    const muniRef = collection(this.firestore, 'municipios');
+
+    try {
+      const muniDocs = await getDocs(muniRef);
+      municipios.forEach(async (muni) => {
+        const existingDoc = muniDocs.docs.find(
+          (docSnap) => docSnap.data()['name'] === muni.name
+        );
+        if(existingDoc){
+          // El documento existe, así que lo actualizamos
+          await updateDoc(existingDoc.ref, muni as object);
+          console.log('update');
+        }else{
+          // El documento no existe, así que lo agregamos
+          await addDoc(muniRef, muni);
+          console.log('add');
+        }
+       });
+      alert('Se importaron los municipios correctamente!');
+    } catch (error) {
+      console.error('Error al agregar los municipios:', error);
+      alert('Error al agregar los municipios:');
+      // Manejar el error según sea necesario
+      return [];
+    }
+  }
+
+  async agregarRutasImportacion(rutas: Ruta[]): Promise<any> {
+    const rutaRef = collection(this.firestore, 'rutas');
+
+    try {
+      const rutaDocs = await getDocs(rutaRef);
+      rutas.forEach(async (ruta) => {
+        const existingDoc = rutaDocs.docs.find((docSnap) => docSnap.data()['name'] === ruta.name);
+        if(existingDoc){
+          // El documento existe, así que lo actualizamos
+          await updateDoc(existingDoc.ref, ruta as object);
+          console.log('update');
+           }else{
+          // El documento no existe, así que lo agregamos
+          await addDoc(rutaRef, ruta);
+          console.log('add');
+           }
+         });
+      alert('Se importaron las rutas correctamente!');
+    } catch (error) {
+      console.error('Error al agregar rutas:', error);
+      alert('Error al agregar las rutas');
+      // Manejar el error según sea necesario
+      return [];
+    }
+  }
 
   //? Método para generar los empleados e insertarlos en la base de datos
   //Create - C
@@ -265,6 +384,15 @@ export class PrestadoresService {
   } //? -> Fin del método obtener Prestador
 
   //? SECCIÓN BORRAR
+
+    //? -> Método para eliminar datos de la BD
+
+    async borrarTodosLosDocumentos(option: string) {
+      const collectionRef = collection(this.firestore, option);
+      const querySnapshot = await getDocs(collectionRef);
+      querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
+      alert('Se borraron todos los documentos');
+    }
 
   //? -> Método para eliminar datos de la BD
   //Delete - D

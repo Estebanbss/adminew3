@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AtractivoTuristico } from 'src/app/common/place.interface';
 import { AtractivosService } from 'src/app/core/services/atractivos.service';
+import { ModalServiceService } from 'src/app/core/services/modal-service.service';
+import { PrestadoresService } from 'src/app/core/services/prestadores.service';
 
 @Component({
   selector: 'app-listado-atractivo',
@@ -9,6 +11,32 @@ import { AtractivosService } from 'src/app/core/services/atractivos.service';
   styleUrls: ['./listado-atractivo.component.css']
 })
 export class ListadoAtractivoComponent implements OnInit {
+
+  warning!:boolean;
+  modalsuichatrac!:boolean;
+
+
+    //?-> función que detecta la tecla presionada y si es igual a escape cierra el modal
+    onKeyDown(event: KeyboardEvent) {//Función que detecta la tecla presionada y si es igual a escape cierra el modal
+      if (event.key === "Escape") {//Si la tecla presionada es igual a escape
+        this.closemodal();//Se ejecuta la función closemodal
+      }
+    }
+
+    openmodalatrac() {
+      this.modalService.setModalSuichAtrac(true);
+    }
+
+    openmodalwarning(value: string) {
+      this.modalService.setWarning(true);
+      this.modalService.setValue(value);
+    }
+
+    closemodal() {
+      this.modalService.setModalSuichAtrac(false);//cierra el modal
+      this.modalService.setWarning(false);//cierra el modal
+     }
+
 
   //?Página donde estamos, propiedad para la paginación
   page: number = 1;
@@ -27,13 +55,24 @@ export class ListadoAtractivoComponent implements OnInit {
 
   //? -> Inyecciones de dependencias
   constructor(
+    private prestadoresService: PrestadoresService, // Inyectamos el servicio
     private atractivosService: AtractivosService, // Inyectamos el servicio
     private router: Router, // Clase Router para moverme a otro componente una vez enviado el form
+    private modalService: ModalServiceService //Inyectamos el servicio del modal
   ) {
 
   }
 
   ngOnInit() {
+
+    this.modalService.modalsuichatrac$.subscribe((value) => {
+      this.modalsuichatrac = value;
+    });
+
+        this.modalService.warning$.subscribe((value) => {
+      this.warning = value;
+    });
+
     //Lo ejecutamos en el método OnInit para que dispare el método getAtractivo y me cargue los datos apenas se cargue el componente. Además de que disparamos el cold Observable para que se actualizen los datos a tiempo real.
     this.getAtractivo();
   }
