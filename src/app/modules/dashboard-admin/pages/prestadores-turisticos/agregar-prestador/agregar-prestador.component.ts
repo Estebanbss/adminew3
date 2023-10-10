@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PrestadorTuristico } from 'src/app/common/place.interface';
 import { PrestadoresService } from 'src/app/core/services/prestadores.service';
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

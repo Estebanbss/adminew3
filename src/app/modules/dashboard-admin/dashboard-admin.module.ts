@@ -34,7 +34,7 @@ import { ImportRutasModule } from './components/import-rutas/import-rutas.module
 import { ImportTodoModule } from './components/import-todo/import-todo.module';
 import { WarningModule } from './components/warning/warning.module';
 import { WarningALLModule } from './components/warning-all/warning-all.module';
-import { ImageCropperModule } from 'ngx-image-cropper';
+
 
 
 @NgModule({
@@ -71,7 +71,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ImportTodoModule,
     WarningModule,
     WarningALLModule,
-    ImageCropperModule
   ]
 })
 export class DashboardAdminModule { }

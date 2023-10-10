@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PrestadorTuristico } from 'src/app/common/place.interface';
 import { PrestadoresService } from 'src/app/core/services/prestadores.service';
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
-import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-editar-prestador',
@@ -58,7 +57,7 @@ export class EditarPrestadorComponent  implements OnInit {
     private fb: FormBuilder, // Modulo para Formulario - Permite validar el formulario de manera sencilla.
     private prestadoresService: PrestadoresService, // Servicio con los métodos CRUD para Prestadores
     private router: Router, // Clase Router para moverme a otro componente una vez enviado el form
-    private sanitizer: DomSanitizer// Clase Router para moverme a otro componente una vez enviado el form
+
 
   ) {
     //Aquí inicializamos propiedades.
@@ -155,25 +154,7 @@ export class EditarPrestadorComponent  implements OnInit {
     this.data$ = this.prestadoresService.sharingPrestador;
 
   } //? -> Fin Constructor
-  fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-}
-imageCropped(event: ImageCroppedEvent) {
-  if (event.objectUrl) {
-    this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl);
-    // event.blob can be used to upload the cropped image
-  }
-}
 
-imageLoaded(image: LoadedImage) {
-    // show cropper
-}
-cropperReady() {
-    // cropper ready
-}
-loadImageFailed() {
-    // show message
-}//? -> Fin Constructor
   ngOnInit():void {
     // this.data$.subscribe((valor) => {
     //   console.log('Valor emitido por BehaviorSubject:', valor);
