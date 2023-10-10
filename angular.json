@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "https://estebanbss.github.io/adminew3/",
             "outputPath": "dist/admin-administrator",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -97,6 +98,9 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
