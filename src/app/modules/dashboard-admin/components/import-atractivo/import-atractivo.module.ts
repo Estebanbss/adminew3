@@ -14,4 +14,5 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   exports:[
     ImportAtractivoComponent]
 })
+
 export class ImportAtractivoModule { }

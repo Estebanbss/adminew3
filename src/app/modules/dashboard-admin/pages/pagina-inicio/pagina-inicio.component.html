@@ -11,6 +11,15 @@
 
 </div>
 
+<div class=" absolute top-0 right-0 left-0 bottom-0" *ngIf="modaldata === true">
+
+  <app-data></app-data>
+
+</div>
+
+
+
+
 <div (keydown)="onKeyDown($event)"  class="  h-full ">
   <div class=" min-w-full flex flex-row">
     <!-- Sidebar -->
@@ -36,6 +45,7 @@
         <button class="bg-red-500  hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex flex-row justify-center" (click)="openWarningtodo()" >Borrar Todo <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z"/></svg></button>
         <button class="bg-green-500  hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="openmodaltodo()" >Importar Todo</button>
         <button class="bg-yellow-500  hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded" (click)="DescargarArchivo()" >Descargar formato</button>
+        <button class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="openmodaldata()" >Información</button>
       </div>
 
 

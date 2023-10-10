@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "baseHref": "https://estebanbss.github.io/adminew3/",
+            "baseHref": "/",
             "outputPath": "dist/admin-administrator",
             "index": "src/index.html",
             "main": "src/main.ts",

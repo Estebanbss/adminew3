@@ -34,6 +34,7 @@ import { ImportRutasModule } from './components/import-rutas/import-rutas.module
 import { ImportTodoModule } from './components/import-todo/import-todo.module';
 import { WarningModule } from './components/warning/warning.module';
 import { WarningALLModule } from './components/warning-all/warning-all.module';
+import { DataModule } from './components/data/data.module';
 
 
 
@@ -71,6 +72,7 @@ import { WarningALLModule } from './components/warning-all/warning-all.module';
     ImportTodoModule,
     WarningModule,
     WarningALLModule,
+    DataModule
   ]
 })
 export class DashboardAdminModule { }

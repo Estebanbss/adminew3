@@ -14,6 +14,9 @@ export class ModalServiceService {;
   private modalsuichpstSubject = new BehaviorSubject<boolean>(false);
   modalsuich$ = this.modalsuichpstSubject.asObservable();
 
+  private modaldataSubject = new BehaviorSubject<boolean>(false);
+  modaldata$ = this.modaldataSubject.asObservable();
+
   private warningSubject = new BehaviorSubject<boolean>(false);
   warning$ = this.warningSubject.asObservable();
 
@@ -58,6 +61,9 @@ export class ModalServiceService {;
   }
   setModalSuichTodo(value: boolean) {
     this.modalsuichtodoSubject.next(value);
+  }
+  setData(value: boolean) {
+    this.modaldataSubject.next(value);
   }
 
 

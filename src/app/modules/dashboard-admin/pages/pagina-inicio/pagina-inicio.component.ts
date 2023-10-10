@@ -10,6 +10,7 @@ import { PrestadoresService } from 'src/app/core/services/prestadores.service';
 export class PaginaInicioComponent implements OnInit {
   public cerrado: boolean = true;
   modalsuichtodo!:boolean;
+  modaldata!:boolean;
 
   warningAll!:boolean;
 
@@ -23,6 +24,11 @@ export class PaginaInicioComponent implements OnInit {
   openmodaltodo() {
     this.modalService.setModalSuichTodo(true);
   }
+
+  openmodaldata() {
+    this.modalService.setData(true);
+  }
+
   openWarningtodo() {
     this.modalService.setWarningAll(true);
   }
@@ -40,6 +46,7 @@ export class PaginaInicioComponent implements OnInit {
     this.modalService.setWarning(false);//cierra el modal
     this.modalService.setModalSuichTodo(false);//cierra el modal
     this.modalService.setWarningAll(false);//cierra el modal
+    this.modalService.setData(false);//cierra el modal
    }
 
 
@@ -59,6 +66,10 @@ export class PaginaInicioComponent implements OnInit {
 
     this.modalService.warningAll$.subscribe((value) => {
       this.warningAll = value;
+    });
+
+    this.modalService.modaldata$.subscribe((value) => {
+      this.modaldata = value;
     });
 
 

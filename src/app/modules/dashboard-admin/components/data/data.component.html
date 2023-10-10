@@ -1,0 +1,29 @@
+<div class=" absolute flex justify-center items-center top-0 left-0 right-0 bottom-0 bg-lime-900 bg-opacity-75">
+
+  <div class="relative flex-col justify-center w-[90%] h-[90%] xl:w-[700px] xl:h-[500px]   mx-auto bg-white drop-shadow-2xl rounded-lg">
+
+
+
+<div class="flex flex-col justify-center items-center h-full my-auto gap-5 font-bold text-2xl">
+  <h4>Numero de atractivos: {{atractivos.length}}</h4>
+  <h4>Numero de prestadores: {{prestadores.length}}</h4>
+  <h4>Numero de municipios: {{municipios.length}}</h4>
+  <h4>Numero de rutas: {{rutas.length}}</h4>
+
+  <h5 class="bg-lime-500 text-white px-2">Total de todo:
+    {{ atractivos.length + prestadores.length + municipios.length + rutas.length }}
+</h5>
+
+
+
+
+
+</div>
+
+<button (click)="closemodal()" class="absolute top-5 right-5"><svg class="fill-lime-700  rounded-lg stroke-[20]" xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></button>
+
+</div>
+
+
+</div>
+
