@@ -25,20 +25,40 @@
     <!-- Sidebar -->
     <aside *ngIf="cerrado"class="fixed flex flex-col bg-indigo-600   h-full p-4">
       <div class="text-white text-4xl text-center  mt-24 font-bold"> Pa'l Huila Admin</div>
-      <div class="text-white text-3xl text-center  mt-10 font-bold">Secciones</div>
+      <div class="text-white text-3xl text-center  mt-10 font-bold ">Secciones</div>
       <ul class="mt-6">
-          <li class="mb-[2px] rounded-lg text-center text-xl font-semibold active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500">
-              <a class="text-white hover:text-indigo-200 flex justify-center items-center " routerLink="list-prestadores-turisticos">Prestadores Turísticos</a>
-          </li>
-          <li class="mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500">
-              <a class="text-white hover:text-indigo-200 flex justify-center items-center " routerLink="list-atractivo-turistico">Atractivos Turísticos</a>
-          </li>
-          <li class="mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500">
-              <a class="text-white hover:text-indigo-200 flex justify-center items-center " routerLink="list-municipio">Municipios</a>
-          </li>
-          <li class="mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500">
-              <a class="text-white hover:text-indigo-200 flex justify-center items-center " routerLink="list-rutas-turisticas">Rutas Turísticas</a>
-          </li>
+          <button routerLink="list-prestadores-turisticos" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500" [ngClass]="{
+                  'bg-cyan-500 text-white border-primary-400':
+                    botonActivo === 1
+                }"
+                (click)="
+                  activarBoton(1);">
+              <span class="text-white hover:text-indigo-200 flex justify-center items-center ">Prestadores Turísticos</span>
+          </button>
+          <button routerLink="list-atractivo-turistico" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500" [ngClass]="{
+                  'bg-cyan-500 text-white border-primary-400':
+                    botonActivo === 2
+                }"
+                (click)="
+                  activarBoton(2);">
+              <span class="text-white hover:text-indigo-200 flex justify-center items-center ">Atractivos Turísticos</span>
+          </button>
+          <button  [ngClass]="{
+            'bg-cyan-500 text-white border-cyan-500':
+              botonActivo === 3
+          }"
+          (click)="
+            activarBoton(3);"  routerLink="list-municipio" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500">
+              <span class="text-white hover:text-indigo-200 flex justify-center items-center ">Municipios</span>
+          </button>
+        <button   routerLink="list-rutas-turisticas"  class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500" [ngClass]="{
+                  'bg-cyan-500 text-white border-primary-400':
+                    botonActivo === 4
+                }"
+                (click)="
+                  activarBoton(4);">
+              <span class="text-white hover:text-indigo-200 flex justify-center items-center ">Rutas Turísticas</span>
+          </button>
       </ul>
 
       <div class="flex flex-col gap-1 mt-auto">

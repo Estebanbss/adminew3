@@ -14,7 +14,11 @@ export class PaginaInicioComponent implements OnInit {
 
   warningAll!:boolean;
 
+  botonActivo: number = 0; // Variable para guardar el botón activo
 
+  activarBoton(boton: number) {// Función para activar el botón seleccionado
+    this.botonActivo = boton;// Guarda el botón seleccionado en la variable
+  }
   onKeyDown(event: KeyboardEvent) {
     if (event.key === "Escape") {
       this.closemodal();
