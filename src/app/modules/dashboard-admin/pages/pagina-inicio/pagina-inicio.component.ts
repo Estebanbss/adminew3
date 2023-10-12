@@ -14,11 +14,14 @@ export class PaginaInicioComponent implements OnInit {
 
   warningAll!:boolean;
 
-  botonActivo: number = 0; // Variable para guardar el botón activo
+  botonActivo:string = ""; // Variable para guardar el botón activo
 
-  activarBoton(boton: number) {// Función para activar el botón seleccionado
+  activarBoton(boton: string) {// Función para activar el botón seleccionado
     this.botonActivo = boton;// Guarda el botón seleccionado en la variable
+    console.log(this.botonActivo )
   }
+
+
   onKeyDown(event: KeyboardEvent) {
     if (event.key === "Escape") {
       this.closemodal();

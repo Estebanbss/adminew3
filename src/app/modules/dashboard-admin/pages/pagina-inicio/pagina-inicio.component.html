@@ -27,37 +27,37 @@
       <div class="text-white text-4xl text-center  mt-24 font-bold"> Pa'l Huila Admin</div>
       <div class="text-white text-3xl text-center  mt-10 font-bold ">Secciones</div>
       <ul class="mt-6">
-          <button routerLink="list-prestadores-turisticos" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500" [ngClass]="{
-                  'bg-cyan-500 text-white border-primary-400':
-                    botonActivo === 1
+          <button routerLink="list-prestadores-turisticos" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold  h-10 justify-center items-center  flex border" [ngClass]="{
+                  'bg-cyan-500 text-white border-cyan-400':
+                    botonActivo === 'uno'
                 }"
                 (click)="
-                  activarBoton(1);">
-              <span class="text-white hover:text-indigo-200 flex justify-center items-center ">Prestadores Turísticos</span>
+                  activarBoton('uno');">
+              <span class="text-white  flex justify-center items-center ">Prestadores Turísticos</span>
           </button>
-          <button routerLink="list-atractivo-turistico" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500" [ngClass]="{
-                  'bg-cyan-500 text-white border-primary-400':
-                    botonActivo === 2
+          <button routerLink="list-atractivo-turistico" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold   h-10 justify-center items-center  flex border" [ngClass]="{
+                  'bg-cyan-500 text-white border-cyan-400':
+                    botonActivo === 'dos'
                 }"
                 (click)="
-                  activarBoton(2);">
-              <span class="text-white hover:text-indigo-200 flex justify-center items-center ">Atractivos Turísticos</span>
+                  activarBoton('dos');">
+              <span class="text-white  flex justify-center items-center ">Atractivos Turísticos</span>
           </button>
           <button  [ngClass]="{
             'bg-cyan-500 text-white border-cyan-500':
-              botonActivo === 3
+              botonActivo === 'tres'
           }"
           (click)="
-            activarBoton(3);"  routerLink="list-municipio" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500">
-              <span class="text-white hover:text-indigo-200 flex justify-center items-center ">Municipios</span>
+            activarBoton('tres');"  routerLink="list-municipio" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold   h-10 justify-center items-center  flex border">
+              <span class="text-white  flex justify-center items-center ">Municipios</span>
           </button>
-        <button   routerLink="list-rutas-turisticas"  class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold  active:bg-indigo-400 h-10 justify-center items-center  flex bg-indigo-500" [ngClass]="{
-                  'bg-cyan-500 text-white border-primary-400':
-                    botonActivo === 4
+        <button   routerLink="list-rutas-turisticas"  class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold   h-10 justify-center items-center  flex border" [ngClass]="{
+                  'bg-cyan-500 text-white border-cyan-400':
+                    botonActivo === 'cuatro'
                 }"
                 (click)="
-                  activarBoton(4);">
-              <span class="text-white hover:text-indigo-200 flex justify-center items-center ">Rutas Turísticas</span>
+                  activarBoton('cuatro');">
+              <span class="text-white  flex justify-center items-center ">Rutas Turísticas</span>
           </button>
       </ul>
 
