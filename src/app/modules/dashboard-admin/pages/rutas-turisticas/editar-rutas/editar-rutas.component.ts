@@ -193,16 +193,43 @@ export class EditarRutasComponent {
 
   } //? -> Fin método para Editar rutaObservable
 
+  selectedImages: any[] = [];
+  selectedImages2: any[] = [];
   //? -> Método para Capturar los Archivos antes de enviar el Form - Se dispara el método con el Input
   uploadFiles($event: any) {
-    //files es un arreglo de archivos que cargamos desde el html
-    this.files = $event.target.files; //Apuntamos al input y luego los ficheros - los ficheros son un arreglo
-    //console.log(this.files.length); // quiero saber el largo de mi arreglo
+
+    const files = $event.target.files as FileList;
+    this.files = $event.target.files;
+    // Convertir FileList a Array y obtener vistas previas
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.selectedImages.push(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
   } //? -> Fin Método cargar archivo
+
 
   //? -> Método para Cargar la imágen de portada o imágen principal
   uploadFilePortada($event: any) {
+    this.selectedImages2 = []; //Vaciamos el arreglo de imágenes
+    const files = $event.target.files as FileList;
     this.portadaFile = $event.target.files[0];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        this.selectedImages2.push(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
     // console.log(this.portadaFile);
   }
 

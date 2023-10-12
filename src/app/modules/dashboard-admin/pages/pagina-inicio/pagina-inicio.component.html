@@ -23,7 +23,7 @@
 <div (keydown)="onKeyDown($event)"  class="  h-full ">
   <div class=" min-w-full flex flex-row">
     <!-- Sidebar -->
-    <aside *ngIf="cerrado"class="fixed flex flex-col bg-indigo-600   h-full p-4">
+    <aside *ngIf="cerrado"class="fixed flex flex-col bg-indigo-600 z-40   h-full p-4">
       <div class="text-white text-4xl text-center  mt-24 font-bold"> Pa'l Huila Admin</div>
       <div class="text-white text-3xl text-center  mt-10 font-bold ">Secciones</div>
       <ul class="mt-6">
@@ -87,7 +87,7 @@
       <router-outlet class=""></router-outlet>
     </section>
 
-    <button (click)="hidden()" class="fixed"><svg *ngIf="cerrado" class="fill-white" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M508-481 310-679l65-65 263 263-263 262-65-65 198-197Z"/></svg>
+    <button (click)="hidden()" class="fixed z-50"><svg *ngIf="cerrado" class="fill-white" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M508-481 310-679l65-65 263 263-263 262-65-65 198-197Z"/></svg>
       <svg *ngIf="!cerrado" class="fill-indigo-500" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M561-219 298-481l263-263 65 65-198 198 198 197-65 65Z"/></svg></button>
     <!-- Vistas -->
   <!-- Se coloca donde queremos que se muestren las vistas de las rutas -->

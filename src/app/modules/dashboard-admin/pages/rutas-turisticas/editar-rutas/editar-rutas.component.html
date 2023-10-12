@@ -47,23 +47,51 @@
             <input type="number" class="w-full px-3 py-2 border rounded-lg" formControlName="longitud" placeholder="longitud">
           </div>
         </div>
-        <!-- Último Input -->
-        <input type="text" class="w-full px-3 py-2 border rounded-lg mb-2" formControlName="googleMaps" placeholder="Google Maps">
-        <!-- Input de Imágenes -->
-        <div class="flex mb-2">
-          <div class="flex-1">
-            <input class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="file" multiple accept="image/*" (change)="uploadFiles($event)">
-          </div>
-        </div>
-        <!-- Input de Imagen Portada -->
-        <!--Validación para que aparezca el botón sólo cuando no hay ImgPrincipal-->
-        <div *ngIf="(this.rutaObservable.pathImagePortada?.path === '' && this.rutaObservable.pathImagePortada?.url === '')">
-          <div class="flex mb-2">
-            <div class="flex-1">
-              <input class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="file" accept="image/*" (change)="uploadFilePortada($event)">
-            </div>
-          </div>
-        </div>
+
+                <!-- Input de Imágenes -->
+                <h1 class="text-center text-green-500 text-xl font-bold my-5">FOTOS DE GALERIA</h1>
+                <div class="relative p-6 border-2 border-green-500 border-dashed rounded-md my-2">
+
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                    (change)="uploadFiles($event)">
+                  <div class="flex items-center justify-center space-x-2">
+                    <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H5a1 1 0 110-2h5V3a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                    <span class="text-green-500 font-medium">Aqui van las imagenes de galeria</span>
+                  </div>
+                  <!-- Mostrar miniaturas de las imágenes seleccionadas -->
+                  <div class="flex space-x-2 mt-4">
+                    <img *ngFor="let img of selectedImages" src="{{img}}" alt="Uploaded preview" class="w-20 h-20 object-cover rounded">
+                  </div>
+                </div>
+
+
+
+
+              <!-- Input de Imágenes -->
+              <DIV *ngIf="(this.rutaObservable.pathImagePortada?.path === '' && this.rutaObservable.pathImagePortada?.url === '')">
+
+                <h1 class="text-center text-red-500 text-xl font-bold my-5">FOTO DE PORTADA</h1>
+                <div class="relative p-6 border-2 border-red-500 border-dashed rounded-md my-2">
+
+                  <input
+                    type="file"
+                    accept="image/*"
+                    class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                    (change)="uploadFilePortada($event)">
+                  <div class="flex items-center justify-center space-x-2">
+                    <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H5a1 1 0 110-2h5V3a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                    <span class="text-red-500 font-medium">Aqui va la imagen de portada</span>
+                  </div>
+                  <!-- Mostrar miniaturas de las imágenes seleccionadas -->
+                  <div class="flex space-x-2 mt-4">
+                    <img *ngFor="let img of selectedImages2" src="{{img}}" alt="Uploaded preview" class="w-20 h-20 object-cover rounded">
+                  </div>
+                </div>
+              </DIV>
         <!-- Botónes -->
         <div class="flex justify-center mt-10">
           <div class="space-x-4">
@@ -81,26 +109,30 @@
       <!-- Imprimir las imágenes -->
       <!-- Crear una validación en caso de que no exístan imágenes a mostrar para que no se disparen los métodos y no muestre los botónes, se utiliza un ngIf -->
       <div>
-        <!--Validación-->
-        <div *ngIf="imgPortadaVal">
-          <h2>Imágen de Portada</h2>
-          <div>
-            <img [src]="imgPortada.url" width="200">
+        <div class="flex  relative  w-full my-20 gap-5 h-[200px] flex-col" *ngIf="imgPortadaVal">
+          <h2 class="  text-center justify-center flex flex-row text-xl font-bold ">Imágen de Portada</h2>
+
+          <div  class=" w-[200px] h-[160px] my-5 items-center flex flex-col justify-center " >
+            <img class="min-w-full min-h-full object-cover border-[5px] border-green-500 rounded-md" [src]="imgPortada.url" width="200" height="200">
             <button (click)="actualizarImagenPortada(imgPortada)" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
               Borrar
             </button>
           </div>
         </div>
         <!--Validación-->
-        <div *ngIf="!(images.length === 0)">
-          <h2>Imágenes de Galería</h2>
-          <div *ngFor="let image of images; let i = index">
+
+        <div class="flex flex-row relative  overflow-x-scroll w-full my-20 gap-5 h-[280px]" *ngIf="!(images.length === 0)">
+          <h2 class=" absolute -top- text-center justify-center flex flex-row text-xl font-bold w-full ">Imágenes de Galería</h2>
+          <div class="my-auto" *ngFor="let image of images; let i = index">
             <!--Validación por imágen-->
-            <div *ngIf="image.url">
-              <img [src]="image.url" width="200">
-              <button (click)="actualizarImagenesGaleria(image, i)" type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                Borrar
-              </button>
+            <div class=" w-[200px] h-[160px] my-5 items-center flex flex-col justify-center "   *ngIf="image.url">
+
+              <img class="min-w-full min-h-full object-cover border-[5px] border-green-500 rounded-md" [src]="image.url">
+              <div class="flex flex-row justify-center">
+                <button (click)="actualizarImagenesGaleria(image, i)" type="button" class=" justify-center mx-auto bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                  Borrar
+                </button>
+              </div>
             </div>
           </div>
         </div>

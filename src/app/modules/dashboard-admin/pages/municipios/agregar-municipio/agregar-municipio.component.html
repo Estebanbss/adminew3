@@ -90,17 +90,46 @@
         <!-- Último Input -->
         <input type="text" class="w-full px-3 py-2 border rounded-lg mb-2" formControlName="googleMaps" placeholder="Google Maps">
         <!-- Input de Imágenes -->
-        <div class="flex mb-2">
-          <div class="flex-1">
-            <input class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="file" multiple accept="image/*" (change)="uploadFiles($event)">
+        <h1 class="text-center text-green-500 text-xl font-bold my-5">FOTOS DE GALERIA</h1>
+        <div class="relative p-6 border-2 border-green-500 border-dashed rounded-md my-2">
+
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            (change)="uploadFiles($event)">
+          <div class="flex items-center justify-center space-x-2">
+            <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H5a1 1 0 110-2h5V3a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+            <span class="text-green-500 font-medium">Aqui van las imagenes de galeria</span>
+          </div>
+          <!-- Mostrar miniaturas de las imágenes seleccionadas -->
+          <div class="flex space-x-2 mt-4">
+            <img *ngFor="let img of selectedImages" src="{{img}}" alt="Uploaded preview" class="w-20 h-20 object-cover rounded">
           </div>
         </div>
-        <!-- Input de Imagen Portada -->
-        <div class="flex mb-2">
-          <div class="flex-1">
-            <input class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="file" accept="image/*" (change)="uploadFilePortada($event)">
-          </div>
+
+
+
+
+      <!-- Input de Imágenes -->
+      <h1 class="text-center text-red-500 text-xl font-bold my-5">FOTO DE PORTADA</h1>
+      <div class="relative p-6 border-2 border-red-500 border-dashed rounded-md my-2">
+
+        <input
+          type="file"
+          accept="image/*"
+          class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+          (change)="uploadFilePortada($event)">
+        <div class="flex items-center justify-center space-x-2">
+          <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H5a1 1 0 110-2h5V3a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+          <span class="text-red-500 font-medium">Aqui va la imagen de portada</span>
         </div>
+        <!-- Mostrar miniaturas de las imágenes seleccionadas -->
+        <div class="flex space-x-2 mt-4">
+          <img *ngFor="let img of selectedImages2" src="{{img}}" alt="Uploaded preview" class="w-20 h-20 object-cover rounded">
+        </div>
+      </div>
         <!-- Botónes -->
         <div class="flex justify-center mt-10">
           <div class="space-x-4">
