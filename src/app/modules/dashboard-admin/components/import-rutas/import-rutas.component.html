@@ -1,15 +1,15 @@
 <div class="absolute flex  justify-center items-center top-0 left-0 right-0 bottom-0 bg-lime-900 bg-opacity-75">
 
-  <div class="relative flex-col justify-center w-[90%] h-[90%] xl:w-[700px] xl:h-[500px]   mx-auto bg-white drop-shadow-2xl rounded-lg">
+  <div class="relative flex-col justify-center w-[90%] h-[500px] xl:w-[700px] xl:h-[500px]   mx-auto bg-white drop-shadow-2xl rounded-lg">
 
     <mat-progress-bar mode="determinate" [value]="value" color="Primary" role="progressbar"> </mat-progress-bar>
 
 
 
 <div class="flex flex-col justify-center items-center h-full my-auto gap-5">
-  <label class="text-4xl text-lime-700 font-black flex items-center ">Importar datos de Rutas <svg class="fill-lime-700" xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 -960 960 960" width="50"><path d="M435-59v-170q0-45-12.5-79T372-379l65-65q9 10 22 27t21 27q15-21 30-39t33-32q69-50 94.5-118.5T655-729l-91 92-65-64 202-201 202 201-64 64-91-91q3 113-26 186.5T602-391q-51 46-63.5 82T526-229v170h-91ZM221-600q-4-17-7.5-52.5T211-727l-89 90-65-64 202-201 201 201-64 64-91-91q-4 32-1.5 59.5T310-622l-89 22Zm100 174q-21-19-43-47.5T243-532l93-25q7 18 21 37.5t27 29.5l-63 64Z"/></svg></label>
+  <label class="text-4xl text-lime-700 font-black flex items-center md:flex-row flex-col  ">Importar datos de Rutas <svg class="fill-lime-700" xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 -960 960 960" width="50"><path d="M435-59v-170q0-45-12.5-79T372-379l65-65q9 10 22 27t21 27q15-21 30-39t33-32q69-50 94.5-118.5T655-729l-91 92-65-64 202-201 202 201-64 64-91-91q3 113-26 186.5T602-391q-51 46-63.5 82T526-229v170h-91ZM221-600q-4-17-7.5-52.5T211-727l-89 90-65-64 202-201 201 201-64 64-91-91q-4 32-1.5 59.5T310-622l-89 22Zm100 174q-21-19-43-47.5T243-532l93-25q7 18 21 37.5t27 29.5l-63 64Z"/></svg></label>
   <input class="font-bold text-lg text-lime-700  file:bg-lime-700 file:text-white file:stroke-none file:border-none file:py-2 file:px-2 file:rounded-sm block w-[85%] md:w-[500px]   border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none " id="file" (change)="fileUpload($event)" accept=".xls,.xlsx"  type="file">
-  <label class="text-2xl text-gray-500  flex h-[50px]  gap-5 text-center items-center">Formatos aceptados:
+  <label class="text-2xl text-gray-500  flex h-[50px]  gap-5 text-center items-center"><span class="w-[120px]">Formatos aceptados:</span>
     <!--?svg excel-->
     <svg class="my-auto w-[50px] h-[50px]" version="1.1" id="Livello_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2289.75 2130"

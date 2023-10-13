@@ -23,11 +23,56 @@ export class DataComponent {
     ) {
 
     }
+
+    muni: string[] = [ // Array de municipios del Huila
+    'Acevedo',
+    'Aipe',
+    'Algeciras',
+    'Altamira',
+    'Baraya',
+    'Campoalegre',
+    'Colombia',
+    'Elías',
+    'El Agrado',
+    'Garzón',
+    'Gigante',
+    'Guadalupe',
+    'Hobo',
+    'Íquira',
+    'Isnos',
+    'La Argentina',
+    'La Plata',
+    'Nátaga',
+    'Neiva',
+    'Oporapa',
+    'Paicol',
+    'Palermo',
+    'Palestina',
+    'Pital',
+    'Pitalito',
+    'Rivera',
+    'Saladoblanco',
+    'Santa María',
+    'San Agustín',
+    'Suaza',
+    'Tarqui',
+    'Tello',
+    'Teruel',
+    'Tesalia',
+    'Timaná',
+    'Villavieja',
+    'Yaguará', // ... (tu lista de municipios)
+    ];
+
   modaldata!:boolean;
   rutas: Ruta[] = [];
  prestadores: PrestadorTuristico[] = [];
   municipios: Municipio[] = [];
   atractivos: AtractivoTuristico[] = [];
+
+  see(){
+    console.log(this.rutas, this.prestadores, this.municipios, this.atractivos)
+  }
 
   onKeyDown(event: KeyboardEvent) {
     if (event.key === "Escape") {
@@ -43,12 +88,20 @@ export class DataComponent {
     this.modalService.modaldata$.subscribe((value) => {
       this.modaldata = value;
     });
+
+
+
     //Lo ejecutamos en el método OnInit para que dispare el método getAtractivo y me cargue los datos apenas se cargue el componente. Además de que disparamos el cold Observable para que se actualizen los datos a tiempo real.
     this.getAtractivo();
     this.getPrestador();
     this.getRutas();
     this.getMunicipio();
   }
+
+  prestadorPorMunicipio() {
+    console.log(this.prestadores)
+  }
+
 
 
     //? -> Método para obtener los elementos de la BD
@@ -60,6 +113,7 @@ export class DataComponent {
         this.atractivos = data; //Pasamos la información a una propiedad nativa de la clase para hacer el Banding
       })
     }
+
     getPrestador() {
       //? -> Aquí nos suscribimos a nuestro observable desde el método de nuestro servicio para que esté atento a los cambios que se hagan a tiempo real.
       this.prestadoresService.obtenerPrestadores().subscribe(data => {
@@ -68,6 +122,7 @@ export class DataComponent {
         this.prestadores = data; //Pasamos la información a una propiedad nativa de la clase para hacer el Banding
       })
     }
+
     getRutas() {
       //? -> Aquí nos suscribimos a nuestro observable desde el método de nuestro servicio para que esté atento a los cambios que se hagan a tiempo real.
       this.rutasService.obtenerRutas().subscribe(data => {
@@ -76,6 +131,7 @@ export class DataComponent {
         this.rutas = data; //Pasamos la información a una propiedad nativa de la clase para hacer el Banding
       })
     }
+
     getMunicipio() {
       //? -> Aquí nos suscribimos a nuestro observable desde el método de nuestro servicio para que esté atento a los cambios que se hagan a tiempo real.
       this.municipiosService.obtenerMunicipios().subscribe(data => {

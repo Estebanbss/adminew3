@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ModalServiceService } from 'src/app/core/services/modal-service.service';
 import { PrestadoresService } from 'src/app/core/services/prestadores.service';
 
@@ -8,7 +8,7 @@ import { PrestadoresService } from 'src/app/core/services/prestadores.service';
   styleUrls: ['./pagina-inicio.component.css']
 })
 export class PaginaInicioComponent implements OnInit {
-  public cerrado: boolean = true;
+  public cerrado: boolean = false;
   modalsuichtodo!:boolean;
   modaldata!:boolean;
 
@@ -21,6 +21,10 @@ export class PaginaInicioComponent implements OnInit {
     console.log(this.botonActivo )
   }
 
+  // Escucha el evento mousedown
+  onCloseMousedown(event: MouseEvent) {
+    this.cerrado = false;
+  }
 
   onKeyDown(event: KeyboardEvent) {
     if (event.key === "Escape") {
@@ -54,12 +58,15 @@ export class PaginaInicioComponent implements OnInit {
     this.modalService.setModalSuichTodo(false);//cierra el modal
     this.modalService.setWarningAll(false);//cierra el modal
     this.modalService.setData(false);//cierra el modal
+    this.modalService.setModalSuichAtrac(false);//cierra el modal
+    this.modalService.setModalSuichPst(false);//cierra el modal
+    this.cerrado = false;
    }
 
 
 
   hidden(){
-    this.cerrado == true ? this.cerrado = false : this.cerrado = true;
+    this.cerrado == false ? this.cerrado = true : this.cerrado = false;
   }
   constructor(  private prestadoresService: PrestadoresService, // Inyectamos el servicio
   private modalService: ModalServiceService){

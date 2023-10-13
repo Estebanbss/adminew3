@@ -16,6 +16,7 @@ export class ListadoAtractivoComponent implements OnInit {
   modalsuichatrac!:boolean;
 
 
+
     //?-> función que detecta la tecla presionada y si es igual a escape cierra el modal
     onKeyDown(event: KeyboardEvent) {//Función que detecta la tecla presionada y si es igual a escape cierra el modal
       if (event.key === "Escape") {//Si la tecla presionada es igual a escape

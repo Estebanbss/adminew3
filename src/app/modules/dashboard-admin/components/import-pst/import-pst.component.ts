@@ -74,7 +74,7 @@ export class ImportComponent implements OnInit{
 
   ngOnInit(): void {
 
-    
+
 
   }
 
@@ -172,6 +172,12 @@ procesarValor(valor: any): number {
     return valorComoNumero;
   } else {
     return 0;
+  }
+}
+
+onKeyDown(event: KeyboardEvent) {
+  if (event.key === "Escape") {
+    this.closemodal();
   }
 }
 
