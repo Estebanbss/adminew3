@@ -149,6 +149,9 @@ export class ImportTodoComponent {
 
 //?->data en crudo formato JSON (esta crudo osea hay que cocinarlo como un pollo asado)
   data:any = [];//almacena el archivo en formato JSON
+  data2:any = [];//almacena el archivo en formato JSON
+  data3:any = [];//almacena el archivo en formato JSON
+  data4:any = [];//almacena el archivo en formato JSON
 
   //* -> valores de la barra de progreso
   progress:number = 0;//almacena el progreso de la carga del archivo
@@ -177,9 +180,9 @@ export class ImportTodoComponent {
 datocurioso(){
   console.log(this.data)
   console.log(this.data[0])
-  console.log(this.data[1])
-  console.log(this.data[2])
-  console.log(this.data[3])
+  console.log(this.data2[0])
+  console.log(this.data3[0])
+  console.log(this.data4[0])
   this.prestarrays=[]
   this.prestarrays2=[]
   this.prestarrays3=[]
@@ -236,26 +239,26 @@ datocurioso(){
     this.prestarrays.push(this.prestadorTuristico)
   }
 
-  for (let index = 0; index < this.data[1].length; index++) {
+  for (let index = 0; index < this.data2[0].length; index++) {
     this.atractivoTuristico = {
       //id -> Nos lo da firebase
-      name: this.data[1][index].name === undefined  ? '--' : this.data[1][index].name,
-      bienOLugar: this.data[1][index].bienOLugar === undefined  ? '--' : this.data[1][index].bienOLugar,
-      descripcion: this.data[1][index].descripcion === undefined  ? '--' : this.data[1][index].descripcion,
-      clima: this.data[1][index].clima === undefined  ? '--' : this.data[1][index].clima,
-      zona: this.data[1][index].zona === undefined  ? '--' : this.data[1][index].zona,
-      municipio: this.data[1][index].municipio === undefined  ? '--' : this.data[1][index].municipio,
-      direccionBarrioVereda: this.data[1][index].direccionBarrioVereda === undefined  ? '--' : this.data[1][index].direccionBarrioVereda,
-      indicacionesAcceso: this.data[1][index].indicacionesAcceso === undefined  ? '--' : this.data[1][index].indicacionesAcceso,
-      googleMaps: this.data[1][index].googleMaps === undefined  ? '--' : this.data[1][index].googleMaps,
-      latitud: this.data[1][index].latitud === undefined  ? 0 : this.data[1][index].latitud,
-      longitud: this.data[1][index].longitud === undefined  ? 0 : (this.data[1][index].longitud)*-1,
-      actividades: this.data[1][index].actividades === undefined  ? '--' : this.data[1][index].actividades,
-      horarioAtencion: this.data[1][index].horarioAtencion === undefined  ? '--' : this.data[1][index].horarioAtencion,
-      recomendaciones: this.data[1][index].recomendaciones === undefined  ? '--' : this.data[1][index].recomendaciones,
-      administrador: this.data[1][index].administrador === undefined  ? '--' : this.data[1][index].administrador,
-      contactoAdmin : this.data[1][index].contactoAdmin === undefined  ? '--' : this.data[1][index].contactoAdmin,
-      redSocial: this.data[1][index].redSocial === undefined  ? '--' : this.data[1][index].redSocial,
+      name: this.data2[0][index].name === undefined  ? '--' : this.data2[0][index].name,
+      bienOLugar: this.data2[0][index].bienOLugar === undefined  ? '--' : this.data2[0][index].bienOLugar,
+      descripcion: this.data2[0][index].descripcion === undefined  ? '--' : this.data2[0][index].descripcion,
+      clima: this.data2[0][index].clima === undefined  ? '--' : this.data2[0][index].clima,
+      zona: this.data2[0][index].zona === undefined  ? '--' : this.data2[0][index].zona,
+      municipio: this.data2[0][index].municipio === undefined  ? '--' : this.data2[0][index].municipio,
+      direccionBarrioVereda: this.data2[0][index].direccionBarrioVereda === undefined  ? '--' : this.data2[0][index].direccionBarrioVereda,
+      indicacionesAcceso: this.data2[0][index].indicacionesAcceso === undefined  ? '--' : this.data2[0][index].indicacionesAcceso,
+      googleMaps: this.data2[0][index].googleMaps === undefined  ? '--' : this.data2[0][index].googleMaps,
+      latitud: this.data2[0][index].latitud === undefined  ? 0 : this.data2[0][index].latitud,
+      longitud: this.data2[0][index].longitud === undefined  ? 0 : (this.data2[0][index].longitud)*-1,
+      actividades: this.data2[0][index].actividades === undefined  ? '--' : this.data2[0][index].actividades,
+      horarioAtencion: this.data2[0][index].horarioAtencion === undefined  ? '--' : this.data2[0][index].horarioAtencion,
+      recomendaciones: this.data2[0][index].recomendaciones === undefined  ? '--' : this.data2[0][index].recomendaciones,
+      administrador: this.data2[0][index].administrador === undefined  ? '--' : this.data2[0][index].administrador,
+      contactoAdmin : this.data2[0][index].contactoAdmin === undefined  ? '--' : this.data2[0][index].contactoAdmin,
+      redSocial: this.data2[0][index].redSocial === undefined  ? '--' : this.data2[0][index].redSocial,
      pathImages: [], // -> lo conseguimos en la inserción de imágenes
      meGusta: 0, // -> # de Me gustas en la App
      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
@@ -266,26 +269,26 @@ datocurioso(){
    this.prestarrays2.push(this .atractivoTuristico)
   }
 
-  for (let index = 0; index < this.data[2].length; index++) {
+  for (let index = 0; index < this.data3[0].length; index++) {
    this.municipio = {
     //id -> Nos lo da firebase
-    name: this.data[2][index].name === undefined  ? '--' : this.data[2][index].name,
-    descripcion: this.data[2][index].descripcion === undefined  ? '--' : this.data[2][index].descripcion,
-    servicios: this.data[2][index].servicios === undefined  ? '--' : this.data[2][index].servicios,
-    gentilicio: this.data[2][index].gentilicio === undefined  ? '--' : this.data[2][index].gentilicio,
-    clima: this.data[2][index].clima === undefined  ? '--' : this.data[2][index].clima,
-    zona: this.data[2][index].zona === undefined  ? '--' : this.data[2][index].zona,
-    poblacion: this.data[2][index].poblacion === undefined  ? '--' : this.data[2][index].poblacion,
-    googleMaps: this.data[2][index].googleMaps === undefined  ? '--' : this.data[2][index].googleMaps,
-    latitud: this.data[2][index].latitud === undefined  ? 0 : this.data[2][index].latitud,
-    longitud: this.data[2][index].longitud === undefined  ? 0 : (this.data[2][index].longitud)*-1,
-    facebook: this.data[2][index].facebook === undefined  ? '--' : this.data[2][index].facebook,
-    twitter: this.data[2][index].twitter === undefined  ? '--' : this.data[2][index].twitter,
-    youtube: this.data[2][index].youtube === undefined  ? '--' : this.data[2][index].youtube,
-    fiestasEventos: this.data[2][index].fiestasEventos === undefined  ? '--' : this.data[2][index].fiestasEventos,
-    hechosHistoricos: this.data[2][index].hechosHistoricos === undefined  ? '--' : this.data[2][index].hechosHistoricos,
-    instagram: this.data[2][index].instagram === undefined  ? '--' : this.data[2][index].instagram,
-    sitioWeb: this.data[2][index].sitioWeb === undefined  ? '--' : this.data[2][index].sitioWeb,
+    name: this.data3[0][index].name === undefined  ? '--' : this.data3[0][index].name,
+    descripcion: this.data3[0][index].descripcion === undefined  ? '--' : this.data3[0][index].descripcion,
+    servicios: this.data3[0][index].servicios === undefined  ? '--' : this.data3[0][index].servicios,
+    gentilicio: this.data3[0][index].gentilicio === undefined  ? '--' : this.data3[0][index].gentilicio,
+    clima: this.data3[0][index].clima === undefined  ? '--' : this.data3[0][index].clima,
+    zona: this.data3[0][index].zona === undefined  ? '--' : this.data3[0][index].zona,
+    poblacion: this.data3[0][index].poblacion === undefined  ? '--' : this.data3[0][index].poblacion,
+    googleMaps: this.data3[0][index].googleMaps === undefined  ? '--' : this.data3[0][index].googleMaps,
+    latitud: this.data3[0][index].latitud === undefined  ? 0 : this.data3[0][index].latitud,
+    longitud: this.data3[0][index].longitud === undefined  ? 0 : (this.data3[0][index].longitud)*-1,
+    facebook: this.data3[0][index].facebook === undefined  ? '--' : this.data3[0][index].facebook,
+    twitter: this.data3[0][index].twitter === undefined  ? '--' : this.data3[0][index].twitter,
+    youtube: this.data3[0][index].youtube === undefined  ? '--' : this.data3[0][index].youtube,
+    fiestasEventos: this.data3[0][index].fiestasEventos === undefined  ? '--' : this.data3[0][index].fiestasEventos,
+    hechosHistoricos: this.data3[0][index].hechosHistoricos === undefined  ? '--' : this.data3[0][index].hechosHistoricos,
+    instagram: this.data3[0][index].instagram === undefined  ? '--' : this.data3[0][index].instagram,
+    sitioWeb: this.data3[0][index].sitioWeb === undefined  ? '--' : this.data3[0][index].sitioWeb,
     pathImages: [], // -> lo conseguimos en la inserción de imágenes
     meGusta: 0, // -> # de Me gustas en la App
     pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
@@ -296,16 +299,16 @@ datocurioso(){
   this.prestarrays3.push(this.municipio)
 }
 
-for (let index = 0; index < this.data[3].length; index++) {
+for (let index = 0; index < this.data4[0].length; index++) {
   this.ruta = {
     //id -> Nos lo da firebase
-    name: this.data[3][index].name === undefined  ? '--' : this.data[3][index].name,
-    descripcion: this.data[3][index].descripcion === undefined  ? '--' : this.data[3][index].descripcion,
-    googleMaps: this.data[3][index].googleMaps === undefined  ? '--' : this.data[3][index].googleMaps,
-    latitud: this.data[3][index].latitud === undefined  ? 0 : this.data[3][index].latitud,
-    longitud: this.data[3][index].longitud === undefined  ? 0: (this.data[3][index].longitud)*-1,
-    informacionAdicional: this.data[3][index].informacionAdicional === undefined  ? '--' : this.data[3][index].informacionAdicional,
-    agenciaDeViajes: this.data[3][index].agenciaDeViajes === undefined  ? '--' : this.data[3][index].agenciaDeViajes,
+    name: this.data4[0][index].name === undefined  ? '--' : this.data4[0][index].name,
+    descripcion: this.data4[0][index].descripcion === undefined  ? '--' : this.data4[0][index].descripcion,
+    googleMaps: this.data4[0][index].googleMaps === undefined  ? '--' : this.data4[0][index].googleMaps,
+    latitud: this.data4[0][index].latitud === undefined  ? 0 : this.data4[0][index].latitud,
+    longitud: this.data4[0][index].longitud === undefined  ? 0: (this.data4[0][index].longitud)*-1,
+    informacionAdicional: this.data4[0][index].informacionAdicional === undefined  ? '--' : this.data4[0][index].informacionAdicional,
+    agenciaDeViajes: this.data4[0][index].agenciaDeViajes === undefined  ? '--' : this.data4[0][index].agenciaDeViajes,
     pathImages: [], // -> lo conseguimos en la inserción de imágenes
     meGusta: 0, // -> # de Me gustas en la App
     pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
@@ -340,24 +343,32 @@ procesarValor(valor: any): number {
 }
 
 
-//?metodo para subir el archivo
-  fileUpload(event:any){
-    this.progress = 0;//reincia la barra de progreso cuando se sube un nuevo archivo
-    const selectedFile = event.target.files[0];//obtiene el archivo seleccionado
-    const fileReader = new FileReader();//lee el archivo
-    fileReader.readAsBinaryString(selectedFile);//lo convierte en binario
-    fileReader.onprogress = (event) => {//muestra el progreso de la carga del archivo
-      this.progress = Math.round((event.loaded / event.total) * 100);//calcula el porcentaje de carga
-      this.value=this.progress//asigna el valor del porcentaje a la barra de progreso
-      console.log(`Progress: ${this.progress}%`);//muestra el porcentaje de carga en la consola
-    };//muestra el progreso de la carga del archivo
+//? Método para subir el archivo
+fileUpload(event:any) {
+  this.progress = 0;
+  const selectedFile = event.target.files[0];
+  const fileReader = new FileReader();
 
-//?metodo para leer el archivo
-    fileReader.onload = (event) => {//cuando el archivo se carga
-      let binaryData = event.target?.result;//obtiene el archivo en binario
-      let workbook = XLSX.read(binaryData, {type: 'binary'});//lo convierte en un libro de trabajo
-      workbook.SheetNames.forEach(sheet => {const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]); this.data.push(data) })//convierte el libro de trabajo en un objeto JSON
-    }
+  fileReader.readAsBinaryString(selectedFile);
+  fileReader.onprogress = (event) => {
+    this.progress = Math.round((event.loaded / event.total) * 100);
+    this.value = this.progress;
+    console.log(`Progress: ${this.progress}%`);
+  };
 
+  fileReader.onload = (event) => {
+    let binaryData = event.target?.result;
+    let workbook = XLSX.read(binaryData, {type: 'binary'});
+    console.log("SheetNames del archivo:", workbook.SheetNames); // Lista todas las hojas
+    let targetSheetNames = ["rutas", "routes", "roots", "rutasturisticas"];
+    workbook.SheetNames.forEach(sheet => {
+      if(targetSheetNames.includes(sheet.toLowerCase().trim())) {
+        const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+        console.log("Datos de la hoja", sheet, ":", data);
+        this.data.push(data);
+      }
+    });
+    console.log("Data final:", this.data); // Muestra el arreglo completo
   }
+}
 }

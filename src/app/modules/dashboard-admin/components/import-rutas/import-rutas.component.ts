@@ -89,24 +89,32 @@ datocurioso(){
   this.prestadoresService.agregarRutasImportacion(this.prestarrays)
 }
 
-//?metodo para subir el archivo
-  fileUpload(event:any){
-    this.progress = 0;//reincia la barra de progreso cuando se sube un nuevo archivo
-    const selectedFile = event.target.files[0];//obtiene el archivo seleccionado
-    const fileReader = new FileReader();//lee el archivo
-    fileReader.readAsBinaryString(selectedFile);//lo convierte en binario
-    fileReader.onprogress = (event) => {//muestra el progreso de la carga del archivo
-      this.progress = Math.round((event.loaded / event.total) * 100);//calcula el porcentaje de carga
-      this.value=this.progress//asigna el valor del porcentaje a la barra de progreso
-      console.log(`Progress: ${this.progress}%`);//muestra el porcentaje de carga en la consola
-    };//muestra el progreso de la carga del archivo
+//? Método para subir el archivo
+fileUpload(event:any) {
+  this.progress = 0;
+  const selectedFile = event.target.files[0];
+  const fileReader = new FileReader();
 
-//?metodo para leer el archivo
-    fileReader.onload = (event) => {//cuando el archivo se carga
-      let binaryData = event.target?.result;//obtiene el archivo en binario
-      let workbook = XLSX.read(binaryData, {type: 'binary'});//lo convierte en un libro de trabajo
-      workbook.SheetNames.forEach(sheet => {const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]); this.data.push(data) })//convierte el libro de trabajo en un objeto JSON
-    }
+  fileReader.readAsBinaryString(selectedFile);
+  fileReader.onprogress = (event) => {
+    this.progress = Math.round((event.loaded / event.total) * 100);
+    this.value = this.progress;
+    console.log(`Progress: ${this.progress}%`);
+  };
 
+  fileReader.onload = (event) => {
+    let binaryData = event.target?.result;
+    let workbook = XLSX.read(binaryData, {type: 'binary'});
+    console.log("SheetNames del archivo:", workbook.SheetNames); // Lista todas las hojas
+    let targetSheetNames = ["rutas", "routes", "roots", "rutasturisticas"];
+    workbook.SheetNames.forEach(sheet => {
+      if(targetSheetNames.includes(sheet.toLowerCase().trim())) {
+        const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+        console.log("Datos de la hoja", sheet, ":", data);
+        this.data.push(data);
+      }
+    });
+    console.log("Data final:", this.data); // Muestra el arreglo completo
   }
+}
 }

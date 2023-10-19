@@ -213,8 +213,8 @@ export class EditarMunicipioComponent {
       instagram: this.createMunicipio.value.instagram,
       twitter: this.createMunicipio.value.twitter,
       youtube: this.createMunicipio.value.youtube,
-      latitud: 0,
-      longitud: 0,
+      latitud: this.createMunicipio.value.latitud,
+      longitud: this.createMunicipio.value.longitud,
       googleMaps: this.createMunicipio.value.googleMaps,
       pathImages: this.municipioObservable.pathImages, // -> No se modifica con el Form
       meGusta: this.municipioObservable.meGusta, // -> No se modifica con el Form
