@@ -34,12 +34,7 @@ export class ImportMunicipioComponent {
       hechosHistoricos: '',
       instagram: '',
       sitioWeb: '',
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
     }
 
 
@@ -100,12 +95,7 @@ datocurioso(){
       hechosHistoricos: this.data[0][index].hechosHistoricos === undefined  ? '--' : this.data[0][index].hechosHistoricos,
       instagram: this.data[0][index].instagram === undefined  ? '--' : this.data[0][index].instagram,
       sitioWeb: this.data[0][index].sitioWeb === undefined  ? '--' : this.data[0][index].sitioWeb,
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
 
     }
     this.prestarrays.push(this.municipio)

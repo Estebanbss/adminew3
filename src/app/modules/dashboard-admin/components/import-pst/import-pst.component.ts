@@ -57,12 +57,6 @@ export class ImportComponent implements OnInit{
       eventos:"",
       restaurantes:"",
 
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
     }
 
 
@@ -148,12 +142,7 @@ datocurioso(){
       eventos: this.data[0][index].eventos === undefined  ? '--' : this.data[0][index].eventos,
       restaurantes: this.data[0][index].restaurantes === undefined  ? '--' : this.data[0][index].restaurantes,
 
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
     }
     this.prestarrays.push(this.prestadorTuristico)
   }

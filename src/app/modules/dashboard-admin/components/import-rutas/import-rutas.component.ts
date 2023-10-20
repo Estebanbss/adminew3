@@ -21,12 +21,7 @@ export class ImportRutasComponent {
       longitud: 0,
       informacionAdicional: '',
       agenciaDeViajes: '',
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      // meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
     }
 
 
@@ -76,12 +71,7 @@ datocurioso(){
       longitud: this.data[0][index].longitud === undefined  ? 0 : (this.data[0][index].longitud)*-1,
       informacionAdicional: this.data[0][index].informacionAdicional === undefined  ? '--' : this.data[0][index].informacionAdicional,
       agenciaDeViajes: this.data[0][index].agenciaDeViajes === undefined  ? '--' : this.data[0][index].agenciaDeViajes,
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
     }
     this.prestarrays.push(this.ruta)
   }

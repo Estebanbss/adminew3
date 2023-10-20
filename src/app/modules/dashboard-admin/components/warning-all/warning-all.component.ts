@@ -29,7 +29,8 @@ export class WarningALLComponent implements OnInit {
     this.prestadoresService.borrarTodosLosDocumentos("atractivos")
     this.prestadoresService.borrarTodosLosDocumentos("rutas")
     this.prestadoresService.borrarTodosLosDocumentos("municipios")
-    alert("SE BORRO TODO D:")
+  this.closemodal()
+    alert("Ya 👍")
 
   }
 }

@@ -33,12 +33,7 @@ export class ImportAtractivoComponent {
       administrador: '',
       contactoAdmin : '',
       redSocial: '',
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
     }
   }
 
@@ -97,12 +92,6 @@ datocurioso(){
        administrador: this.data[0][index].administrador === undefined  ? '--' : this.data[0][index].administrador,
        contactoAdmin : this.data[0][index].contactoAdmin === undefined  ? '--' : this.data[0][index].contactoAdmin,
        redSocial: this.data[0][index].redSocial === undefined  ? '--' : this.data[0][index].redSocial,
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
     }
     this.prestarrays.push(this.atractivoTuristico)
   }

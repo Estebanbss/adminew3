@@ -53,13 +53,6 @@ export class ImportTodoComponent {
       transporte:"",
       eventos:"",
       restaurantes:"",
-
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
     }
 
     this.atractivoTuristico = {
@@ -81,12 +74,7 @@ export class ImportTodoComponent {
       administrador: '',
       contactoAdmin : '',
       redSocial: '',
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
     }
 
 
@@ -109,12 +97,7 @@ export class ImportTodoComponent {
       hechosHistoricos: '',
       instagram: '',
       sitioWeb: '',
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
     }
 
     this.ruta = {
@@ -126,12 +109,7 @@ export class ImportTodoComponent {
       longitud: 0,
       informacionAdicional: '',
       agenciaDeViajes: '',
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      // meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
+
     }
 
 
@@ -148,10 +126,10 @@ export class ImportTodoComponent {
 
 
 //?->data en crudo formato JSON (esta crudo osea hay que cocinarlo como un pollo asado)
-  data:any = [];//almacena el archivo en formato JSON
-  data2:any = [];//almacena el archivo en formato JSON
-  data3:any = [];//almacena el archivo en formato JSON
-  data4:any = [];//almacena el archivo en formato JSON
+  data:any = [];//almacena el archivo en formato JSON ROUTES
+  data2:any = [];//almacena el archivo en formato JSON PST
+  data3:any = [];//almacena el archivo en formato JSON MUNI
+  data4:any = [];//almacena el archivo en formato JSON ATRAC
 
   //* -> valores de la barra de progreso
   progress:number = 0;//almacena el progreso de la carga del archivo
@@ -229,12 +207,6 @@ datocurioso(){
       transporte: this.data[0][index].transporte === undefined  ? '--' : this.data[0][index].transporte,
       eventos: this.data[0][index].eventos === undefined  ? '--' : this.data[0][index].eventos,
       restaurantes: this.data[0][index].restaurantes === undefined  ? '--' : this.data[0][index].restaurantes,
-      pathImages: [], // -> lo conseguimos en la inserción de imágenes
-      meGusta: 0, // -> # de Me gustas en la App
-      pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-        path:'',
-        url: ''
-      }
     }
     this.prestarrays.push(this.prestadorTuristico)
   }
@@ -259,14 +231,8 @@ datocurioso(){
       administrador: this.data2[0][index].administrador === undefined  ? '--' : this.data2[0][index].administrador,
       contactoAdmin : this.data2[0][index].contactoAdmin === undefined  ? '--' : this.data2[0][index].contactoAdmin,
       redSocial: this.data2[0][index].redSocial === undefined  ? '--' : this.data2[0][index].redSocial,
-     pathImages: [], // -> lo conseguimos en la inserción de imágenes
-     meGusta: 0, // -> # de Me gustas en la App
-     pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-       path:'',
-       url: ''
-     }
    }
-   this.prestarrays2.push(this .atractivoTuristico)
+   this.prestarrays2.push(this.atractivoTuristico)
   }
 
   for (let index = 0; index < this.data3[0].length; index++) {
@@ -289,12 +255,6 @@ datocurioso(){
     hechosHistoricos: this.data3[0][index].hechosHistoricos === undefined  ? '--' : this.data3[0][index].hechosHistoricos,
     instagram: this.data3[0][index].instagram === undefined  ? '--' : this.data3[0][index].instagram,
     sitioWeb: this.data3[0][index].sitioWeb === undefined  ? '--' : this.data3[0][index].sitioWeb,
-    pathImages: [], // -> lo conseguimos en la inserción de imágenes
-    meGusta: 0, // -> # de Me gustas en la App
-    pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-      path:'',
-      url: ''
-    }
   }
   this.prestarrays3.push(this.municipio)
 }
@@ -309,12 +269,6 @@ for (let index = 0; index < this.data4[0].length; index++) {
     longitud: this.data4[0][index].longitud === undefined  ? 0: (this.data4[0][index].longitud)*-1,
     informacionAdicional: this.data4[0][index].informacionAdicional === undefined  ? '--' : this.data4[0][index].informacionAdicional,
     agenciaDeViajes: this.data4[0][index].agenciaDeViajes === undefined  ? '--' : this.data4[0][index].agenciaDeViajes,
-    pathImages: [], // -> lo conseguimos en la inserción de imágenes
-    meGusta: 0, // -> # de Me gustas en la App
-    pathImagePortada: { // -> lo conseguimos en la inserción de imágenes
-      path:'',
-      url: ''
-    }
   }
   this.prestarrays4.push(this.ruta)
 }
@@ -360,15 +314,46 @@ fileUpload(event:any) {
     let binaryData = event.target?.result;
     let workbook = XLSX.read(binaryData, {type: 'binary'});
     console.log("SheetNames del archivo:", workbook.SheetNames); // Lista todas las hojas
-    let targetSheetNames = ["rutas", "routes", "roots", "rutasturisticas"];
+    let targetSheetNamesRoutes = ["rutas", "routes", "roots", "rutasturisticas"];
+    let targetSheetNamesPST = ["pst", "prestadores"];
+    let targetSheetNamesMUNI = ["municipio", "muni", "municipios"];
+    let targetSheetNamesATRAC = ["atractivo", "atractivos", "atrac",];
+
     workbook.SheetNames.forEach(sheet => {
-      if(targetSheetNames.includes(sheet.toLowerCase().trim())) {
+
+
+      if(targetSheetNamesRoutes.includes(sheet.toLowerCase().trim())) {
         const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
-        console.log("Datos de la hoja", sheet, ":", data);
+        console.log("Datos de la hoja RUTAS", sheet, ":", data);
+        this.data4.push(data);
+      }
+
+      else if (targetSheetNamesPST.includes(sheet.toLowerCase().trim())){
+        const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+        console.log("Datos de la hoja PRESTADORES", sheet, ":", data);
         this.data.push(data);
       }
+
+      else if (targetSheetNamesMUNI.includes(sheet.toLowerCase().trim())){
+        const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+        console.log("Datos de la hoja MUNICIPIOS", sheet, ":", data);
+        this.data3.push(data);
+      }
+
+      else if (targetSheetNamesATRAC.includes(sheet.toLowerCase().trim())){
+        const data = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+        console.log("Datos de la hoja ATRACTIVOS", sheet, ":", data);
+        this.data2.push(data);
+      }
+
+
+
+
     });
-    console.log("Data final:", this.data); // Muestra el arreglo completo
+    console.log("Data final PRESTADORES:", this.data); // Muestra el arreglo completo
+    console.log("Data final ATRACTIVOS:", this.data2); // Muestra el arreglo completo
+    console.log("Data final MUNICIPIOS:", this.data3); // Muestra el arreglo completo
+    console.log("Data final RUTAS:", this.data4); // Muestra el arreglo completo
   }
 }
 }

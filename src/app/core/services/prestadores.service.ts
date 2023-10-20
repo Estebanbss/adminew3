@@ -105,8 +105,17 @@ export class PrestadoresService {
           await updateDoc(existingDoc.ref, prestador as object);
           console.log('update');
         } else {
+
+          prestador.pathImages = [];
+          prestador.meGusta = 0;
+          prestador.pathImagePortada = {
+            path: '',
+            url: ''
+          };
+
           // El documento no existe, así que lo agregamos
           await addDoc(prestadorRef, prestador);
+
           console.log('add');
         }
       });
@@ -134,6 +143,14 @@ export class PrestadoresService {
           await updateDoc(existingDoc.ref, atractivo as object);
           console.log('update');
         } else {
+
+          atractivo.pathImages = [];
+          atractivo.meGusta = 0;
+          atractivo.pathImagePortada = {
+            path: '',
+            url: ''
+          };
+
           // El documento no existe, así que lo agregamos
           await addDoc(atractivoRef, atractivo);
           console.log('add');
@@ -162,6 +179,15 @@ export class PrestadoresService {
           await updateDoc(existingDoc.ref, muni as object);
           console.log('update');
         }else{
+
+          muni.pathImages = [];
+          muni.meGusta = 0;
+          muni.pathImagePortada = {
+            path: '',
+            url: ''
+          };
+
+
           // El documento no existe, así que lo agregamos
           await addDoc(muniRef, muni);
           console.log('add');
@@ -188,6 +214,12 @@ export class PrestadoresService {
           await updateDoc(existingDoc.ref, ruta as object);
           console.log('update');
            }else{
+            ruta.pathImages = [];
+            ruta.meGusta = 0;
+            ruta.pathImagePortada = {
+              path: '',
+              url: ''
+            };
           // El documento no existe, así que lo agregamos
           await addDoc(rutaRef, ruta);
           console.log('add');
@@ -391,7 +423,6 @@ export class PrestadoresService {
       const collectionRef = collection(this.firestore, option);
       const querySnapshot = await getDocs(collectionRef);
       querySnapshot.docs.map((doc) => deleteDoc(doc.ref));
-      alert('Se borraron todos los documentos');
     }
 
   //? -> Método para eliminar datos de la BD
