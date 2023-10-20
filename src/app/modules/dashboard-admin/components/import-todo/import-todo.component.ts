@@ -278,6 +278,8 @@ for (let index = 0; index < this.data4[0].length; index++) {
   this.prestadoresService.agregarAtractivoImportacion(this.prestarrays2)
   this.prestadoresService.agregarMunicipioImportacion(this.prestarrays3)
   this.prestadoresService.agregarRutasImportacion(this.prestarrays4)
+  this.closemodal()
+  alert("ya 👍")
 }
 
 procesarValor(valor: any): number {

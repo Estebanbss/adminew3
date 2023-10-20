@@ -148,6 +148,8 @@ datocurioso(){
   }
 
   this.prestadoresService.agregarPrestadoresImportacion(this.prestarrays)
+  this.closemodal()
+  alert("ya 👍")
 }
 
 verificar(){

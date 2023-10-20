@@ -120,7 +120,7 @@ export class PrestadoresService {
         }
       });
 
-      alert('Se importaron los prestadores correctamente!');
+
     } catch (error) {
       console.error('Error al agregar prestadores:', error);
       alert('Error al agregar los prestadores:');
@@ -155,8 +155,8 @@ export class PrestadoresService {
           await addDoc(atractivoRef, atractivo);
           console.log('add');
         }
-      }),
-        alert('Se importaron los atractivos correctamente!');
+      })
+
     } catch (error) {
       console.error('Error al agregar los atractivos:', error);
       alert('Error al agregar los atractivos');
@@ -193,7 +193,7 @@ export class PrestadoresService {
           console.log('add');
         }
        });
-      alert('Se importaron los municipios correctamente!');
+
     } catch (error) {
       console.error('Error al agregar los municipios:', error);
       alert('Error al agregar los municipios:');
@@ -225,7 +225,7 @@ export class PrestadoresService {
           console.log('add');
            }
          });
-      alert('Se importaron las rutas correctamente!');
+
     } catch (error) {
       console.error('Error al agregar rutas:', error);
       alert('Error al agregar las rutas');

@@ -22,6 +22,7 @@ export class WarningALLComponent implements OnInit {
 
   closemodal() {
     this.modalService.setWarningAll(false);//cierra el modal
+    alert("Ya 👍")
    }
 
   borrartodo(){
@@ -29,8 +30,7 @@ export class WarningALLComponent implements OnInit {
     this.prestadoresService.borrarTodosLosDocumentos("atractivos")
     this.prestadoresService.borrarTodosLosDocumentos("rutas")
     this.prestadoresService.borrarTodosLosDocumentos("municipios")
-  this.closemodal()
-    alert("Ya 👍")
+    this.closemodal()
 
   }
 }

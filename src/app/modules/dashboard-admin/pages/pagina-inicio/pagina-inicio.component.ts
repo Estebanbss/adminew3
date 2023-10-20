@@ -47,7 +47,7 @@ export class PaginaInicioComponent implements OnInit {
 
   DescargarArchivo(){
         // URL del archivo que deseas descargar
-        const url = 'https://firebasestorage.googleapis.com/v0/b/centurhuila-b9e47.appspot.com/o/ManualDeUsuario%2FFormato.xlsx?alt=media&token=a5cd4d6c-bec4-416c-a4ca-1860633d1fd3&_gl=1*ywew72*_ga*NDA2NDgyOTM3LjE2ODY3NDgyNjA.*_ga_CW55HF8NVT*MTY5Njg4ODYzNy41MC4xLjE2OTY4ODg2NzcuMjAuMC4w';
+        const url = 'https://firebasestorage.googleapis.com/v0/b/centurhuila-b9e47.appspot.com/o/ManualDeUsuario%2FFormato.xlsx?alt=media&token=389d8ec6-d252-4c36-a13d-7a6dc8485977&_gl=1*nrb8qa*_ga*NDA2NDgyOTM3LjE2ODY3NDgyNjA.*_ga_CW55HF8NVT*MTY5NzgzNDM2MS42MS4xLjE2OTc4MzUxNjUuMTkuMC4w';
 
         // Abre la URL en una nueva pestaña para forzar la descarga
         window.open(url, '_blank');

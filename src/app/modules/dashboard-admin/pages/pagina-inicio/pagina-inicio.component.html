@@ -1,105 +1,127 @@
+<div (keydown)="onKeyDown($event)" class=".modal h-full">
+  <div class="relative min-h-screen min-w-full flex flex-row">
+    <!-- Sidebar -->
+    <aside *ngIf="cerrado" class="fixed flex flex-col bg-indigo-600 z-50 h-full p-4">
+      <div class="text-white text-4xl text-center mt-12 font-bold">
+        Pa'l Huila Admin
+      </div>
 
 
+      <div class="flex flex-col gap-1 mt-auto">
+        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex flex-row justify-center"
+          (click)="openWarningtodo()">
+          Borrar Todo
+          <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+            <path
+              d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z" />
+          </svg>
+        </button>
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          (click)="openmodaltodo()">
+          Importar Todo
+        </button>
+        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+          (click)="DescargarArchivo()">
+          Descargar formato
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="openmodaldata()">
+          Información
+        </button>
+      </div>
 
+      <div class="bottom-5 flex flex-col gap-2 mt-auto">
+        <hr class="h-[5px]" />
+        <h2 class="text-white text-xl font-semibold">Made by:</h2>
+        <div class="flex flex-row gap-5">
+          <a href="https://github.com/Sanvargas02" target="_blank" class="w-10 h-10"><svg class="fill-white" role="img"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <title>GitHub</title>
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+            </svg></a>
+          <a href="https://github.com/Estebanbss" target="_blank" class="w-10 h-10"><svg class="fill-white" role="img"
+              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <title>GitHub</title>
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+            </svg></a>
+          <h1 class="text-xl text-white justify-end my-auto font-bold">
+            <a href="">Crudmin 1.0</a>
+          </h1>
+        </div>
+      </div>
+    </aside>
+    <section (mousedown)="onCloseMousedown($event)" class="w-[90%] h-full mx-auto">
+      <!-- Página para navegar entres módulos -->
+      <div (keydown)="onKeyDown($event)" class="absolute top-0 right-0 left-0 bottom-0" *ngIf="modalsuichtodo === true">
+        <app-import-todo></app-import-todo>
+      </div>
 
+      <div (keydown)="onKeyDown($event)" class="absolute top-0 right-0 left-0 bottom-0" *ngIf="warningAll === true">
+        <app-warning-all></app-warning-all>
+      </div>
 
+      <div (keydown)="onKeyDown($event)" class="absolute top-0 right-0 left-0 bottom-0" *ngIf="modaldata === true">
+        <app-data></app-data>
+      </div>
+      <div class="mx-auto relative z-40 flex flex-row justify-center mb-20">
+        <ul class="flex flex-row absolute">
 
+          <button routerLink="list-prestadores-turisticos"
+            class="text-cyan-500 border-cyan-500 w-[250px] mx-auto mb-[2px] rounded-lg text-center text-xl font-semibold h-10 justify-center items-center flex border"
+            [ngClass]="{
+              'bg-cyan-500 text-white border-cyan-400': botonActivo === 'uno'
+            }" (click)="activarBoton('uno')">
+            <span [ngClass]="{
+                ' text-white': botonActivo === 'uno'
+              }" class="text-cyan-500 flex justify-center items-center">Prestadores Turísticos</span>
+          </button>
 
+          <button routerLink="list-atractivo-turistico"
+            class="text-cyan-500 border-cyan-500 w-[250px] mx-auto mb-[2px] rounded-lg text-center text-xl font-semibold h-10 justify-center items-center flex border"
+            [ngClass]="{
+              'bg-cyan-500 text-white border-cyan-400': botonActivo === 'dos'
+            }" (click)="activarBoton('dos')">
+            <span [ngClass]="{
+                ' text-white': botonActivo === 'dos'
+              }" class="text-cyan-500 flex justify-center items-center">Atractivos Turísticos</span>
+          </button>
 
+          <button routerLink="list-municipio"
+            class="text-cyan-500 border-cyan-500 w-[250px] mx-auto mb-[2px] rounded-lg text-center text-xl font-semibold h-10 justify-center items-center flex border"
+            [ngClass]="{
+              'bg-cyan-500 text-white border-cyan-400': botonActivo === 'tres'
+            }" (click)="activarBoton('tres')">
+            <span [ngClass]="{
+                ' text-white': botonActivo === 'tres'
+              }" class="text-cyan-500 flex justify-center items-center">Municipios</span>
+          </button>
 
-  <div   (keydown)="onKeyDown($event)"  class=".modal h-full ">
-    <div class="relative  min-h-screen min-w-full flex flex-row ">
-      <!-- Sidebar -->
-      <aside *ngIf="cerrado"class="fixed flex flex-col bg-indigo-600 z-40    h-full p-4  ">
-        <div class="text-white text-4xl text-center  mt-12 font-bold"> Pa'l Huila Admin</div>
-        <div class="text-white text-3xl text-center  mt-10 font-bold ">Secciones</div>
-        <ul class="mt-6">
-            <button routerLink="list-prestadores-turisticos" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold  h-10 justify-center items-center  flex border" [ngClass]="{
-                    'bg-cyan-500 text-white border-cyan-400':
-                      botonActivo === 'uno'
-                  }"
-                  (click)="
-                    activarBoton('uno');">
-                <span class="text-white  flex justify-center items-center ">Prestadores Turísticos</span>
-            </button>
-            <button routerLink="list-atractivo-turistico" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold   h-10 justify-center items-center  flex border" [ngClass]="{
-                    'bg-cyan-500 text-white border-cyan-400':
-                      botonActivo === 'dos'
-                  }"
-                  (click)="
-                    activarBoton('dos');">
-                <span class="text-white  flex justify-center items-center ">Atractivos Turísticos</span>
-            </button>
-            <button  [ngClass]="{
-              'bg-cyan-500 text-white border-cyan-500':
-                botonActivo === 'tres'
-            }"
-            (click)="
-              activarBoton('tres');"  routerLink="list-municipio" class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold   h-10 justify-center items-center  flex border">
-                <span class="text-white  flex justify-center items-center ">Municipios</span>
-            </button>
-          <button   routerLink="list-rutas-turisticas"  class=" w-[250px] mx-auto  mb-[2px] rounded-lg text-center text-xl font-semibold   h-10 justify-center items-center  flex border" [ngClass]="{
-                    'bg-cyan-500 text-white border-cyan-400':
-                      botonActivo === 'cuatro'
-                  }"
-                  (click)="
-                    activarBoton('cuatro');">
-                <span class="text-white  flex justify-center items-center ">Rutas Turísticas</span>
-            </button>
+          <button routerLink="list-rutas-turisticas"
+            class="text-cyan-500 border-cyan-500 w-[250px] mx-auto mb-[2px] rounded-lg text-center text-xl font-semibold h-10 justify-center items-center flex border"
+            [ngClass]="{
+              'bg-cyan-500 text-white border-cyan-400': botonActivo === 'cuatro'
+            }" (click)="activarBoton('cuatro')">
+            <span [ngClass]="{
+                ' text-white': botonActivo === 'cuatro'
+              }" class="text-cyan-500 flex justify-center items-center">Rutas Turísticas</span>
+          </button>
         </ul>
+      </div>
+      <router-outlet class=""></router-outlet>
+    </section>
 
-        <div class="flex flex-col gap-1 mt-auto">
-          <button class="bg-red-500  hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex flex-row justify-center" (click)="openWarningtodo()" >Borrar Todo <svg class="fill-white" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z"/></svg></button>
-          <button class="bg-green-500  hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="openmodaltodo()" >Importar Todo</button>
-          <button class="bg-yellow-500  hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded" (click)="DescargarArchivo()" >Descargar formato</button>
-          <button class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="openmodaldata()" >Información</button>
-        </div>
-
-
-
-
-        <div class="bottom-5 flex flex-col gap-2 mt-auto">
-          <hr class="h-[5px] ">
-          <h2 class="text-white text-xl font-semibold">Made by:</h2>
-          <div class="flex flex-row gap-5">
-
-            <a href="https://github.com/Sanvargas02"  target="_blank" class=" w-10 h-10 "><svg class="fill-white" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-            <a href="https://github.com/Estebanbss" target="_blank" class=" w-10 h-10  "><svg class="fill-white" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-            <h1 class="text-xl text-white justify-end my-auto font-bold"><a href="">Crudmin 1.0</a></h1>
-          </div>
-        </div>
-
-      </aside>
-      <section (mousedown)="onCloseMousedown($event)"  class="w-[90%] h-full  mx-auto">
-          <!-- Página para navegar entres módulos -->
-  <div  (keydown)="onKeyDown($event)"   class="absolute top-0 right-0 left-0 bottom-0" *ngIf="modalsuichtodo === true" >
-
-    <app-import-todo></app-import-todo>
-
-  </div >
-
-  <div  (keydown)="onKeyDown($event)"  class=" absolute top-0 right-0 left-0 bottom-0" *ngIf="warningAll === true">
-
-    <app-warning-all></app-warning-all>
-
-  </div>
-
-  <div  (keydown)="onKeyDown($event)"  class=" absolute top-0 right-0 left-0 bottom-0 " *ngIf="modaldata === true">
-
-    <app-data></app-data>
-
-  </div>
-        <router-outlet class=""></router-outlet>
-      </section>
-
-      <button (click)="hidden()" class="fixed z-50"><svg *ngIf="cerrado" class="fill-white" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M508-481 310-679l65-65 263 263-263 262-65-65 198-197Z"/></svg>
-        <svg *ngIf="!cerrado" class="fill-indigo-500" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M561-219 298-481l263-263 65 65-198 198 198 197-65 65Z"/></svg></button>
-      <!-- Vistas -->
+    <button (click)="hidden()" class="fixed z-50">
+      <svg *ngIf="cerrado" class="fill-white" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960"
+        width="48">
+        <path d="M508-481 310-679l65-65 263 263-263 262-65-65 198-197Z" />
+      </svg>
+      <svg *ngIf="!cerrado" class="fill-indigo-500" xmlns="http://www.w3.org/2000/svg" height="48"
+        viewBox="0 -960 960 960" width="48">
+        <path d="M561-219 298-481l263-263 65 65-198 198 198 197-65 65Z" />
+      </svg>
+    </button>
+    <!-- Vistas -->
     <!-- Se coloca donde queremos que se muestren las vistas de las rutas -->
-    </div>
   </div>
-
-
-
-
-
+</div>

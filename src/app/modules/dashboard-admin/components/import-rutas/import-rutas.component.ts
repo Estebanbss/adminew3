@@ -68,7 +68,7 @@ datocurioso(){
       descripcion: this.data[0][index].descripcion === undefined  ? '--' : this.data[0][index].descripcion,
       googleMaps: this.data[0][index].googleMaps === undefined  ? '--' : this.data[0][index].googleMaps,
       latitud: this.data[0][index].latitud === undefined  ? 0 : this.data[0][index].latitud,
-      longitud: this.data[0][index].longitud === undefined  ? 0 : (this.data[0][index].longitud)*-1,
+      longitud: this.data[0][index].longitud === undefined  ? 0 : this.data[0][index].longitud,
       informacionAdicional: this.data[0][index].informacionAdicional === undefined  ? '--' : this.data[0][index].informacionAdicional,
       agenciaDeViajes: this.data[0][index].agenciaDeViajes === undefined  ? '--' : this.data[0][index].agenciaDeViajes,
 
@@ -77,6 +77,8 @@ datocurioso(){
   }
 
   this.prestadoresService.agregarRutasImportacion(this.prestarrays)
+  this.closemodal()
+  alert("ya 👍")
 }
 
 //? Método para subir el archivo

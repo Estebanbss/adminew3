@@ -86,8 +86,8 @@ datocurioso(){
       zona: this.data[0][index].zona === undefined  ? '--' : this.data[0][index].zona,
       poblacion: this.data[0][index].poblacion === undefined  ? '--' : this.data[0][index].poblacion,
       googleMaps: this.data[0][index].googleMaps === undefined  ? '--' : this.data[0][index].googleMaps,
-      latitud: this.data[0][index].latitud === undefined  ? 0 : this.data[0][index].latitud,
-      longitud: this.data[0][index].longitud === undefined  ? 0 : (this.data[0][index].longitud)*-1,
+      latitud:this.data[0][index].latitud === undefined  ? 0 : this.data[0][index].latitud,
+      longitud:this.data[0][index].longitud === undefined  ? 0 : (this.data[0][index].longitud)*-1,
       facebook: this.data[0][index].facebook === undefined  ? '--' : this.data[0][index].facebook,
       twitter: this.data[0][index].twitter === undefined  ? '--' : this.data[0][index].twitter,
       youtube: this.data[0][index].youtube === undefined  ? '--' : this.data[0][index].youtube,
@@ -102,6 +102,8 @@ datocurioso(){
   }
 
   this.prestadoresService.agregarMunicipioImportacion(this.prestarrays)
+  this.closemodal()
+  alert("ya 👍")
 }
 
 

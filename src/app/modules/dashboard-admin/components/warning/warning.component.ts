@@ -18,6 +18,7 @@ export class WarningComponent {
 
   closemodal() {
     this.modalService.setWarning(false);//cierra el modal
+    alert("ya 👍")
    }
 
  ngOnInit(): void {

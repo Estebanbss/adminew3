@@ -97,6 +97,8 @@ datocurioso(){
   }
 
   this.prestadoresService.agregarAtractivoImportacion(this.prestarrays)
+  this.closemodal()
+  alert("ya 👍")
 }
 
 
