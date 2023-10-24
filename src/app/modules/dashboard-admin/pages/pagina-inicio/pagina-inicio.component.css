@@ -1,0 +1,22 @@
+/* width */
+.overflow-x-scroll::-webkit-scrollbar {
+  width: 0.5px;
+}
+
+/* Track */
+.overflow-x-scroll:hover::-webkit-scrollbar-track {
+  background: #d8d8d8;
+  border-radius: 5px;
+
+}
+
+/* Handle */
+.overflow-x-scroll:hover::-webkit-scrollbar-thumb {
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
+  border-radius: 5px;
+  transition: background 0.1s;
+}
+
+
+

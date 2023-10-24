@@ -4,19 +4,28 @@
 
 
 
-<div class="flex flex-col justify-center items-center h-full my-auto gap-2 font-bold text-2xl">
+<div class="flex flex-col justify-center items-center h-full my-auto gap-2 font-bold text-lg">
   <hr class="border-1 border-gray-500 w-[70%]">
-  <h4>Numero de atractivos: {{atractivos.length}}</h4>
-  <h4>Numero de prestadores: {{prestadores.length}}</h4>
-  <h4>Numero de municipios: {{municipios.length}}</h4>
-  <h4>Numero de rutas: {{rutas.length}}</h4>
+  <h4 class=" text-indigo-950 underline text-2xl">- Numero de atractivos: {{atractivos.length}} -</h4><h5>Inserciones: <strong class="bg-orange-400 text-white">{{atractivos.length*17}} (total campos(20)) </strong>  / <strong class="bg-lime-500 text-white">{{atractivos.length*3}} (campos nuevos(3))</strong> </h5>
 
-  <h5 class="bg-lime-500 text-white px-2">Total de todo:
-    {{ atractivos.length + prestadores.length + municipios.length + rutas.length }}
-</h5>
+  <hr class="border-1 border-gray-500 w-[70%]">
+
+  <h4 class=" text-indigo-950 underline text-2xl">- Numero de prestadores: {{prestadores.length}} -</h4><h5>Inserciones: <strong class="bg-orange-400 text-white">{{prestadores.length*37}} (total campos(37)) </strong>  / <strong class="bg-lime-500 text-white">{{prestadores.length*21}} (campos nuevos(21))</strong> </h5>
+
+  <hr class="border-1 border-gray-500 w-[70%]">
+
+  <h4 class=" text-indigo-950 underline text-2xl">- Numero de municipios: {{municipios.length}} -</h4><h5>Inserciones: <strong class="bg-orange-400 text-white">{{municipios.length*17}} (total campos(17)) </strong>  / <strong class="bg-lime-500 text-white">{{municipios.length*3}} (campos nuevos(3))</strong> </h5>
+
+  <hr class="border-1 border-gray-500 w-[70%]">
+
+  <h4 class=" text-indigo-950 underline text-2xl">- Numero de rutas: {{rutas.length}} -</h4><h5>Inserciones: <strong class="bg-orange-400 text-white">{{rutas.length*6}} (total campos(6)) </strong>  / <strong class="bg-lime-500 text-white">{{rutas.length*2}} (campos nuevos(2))</strong> </h5>
+
+
 <hr class="border-1 border-gray-500 w-[70%]">
 
-
+<h5 class="bg-lime-500 text-white px-2 text-2xl">Total de todo:
+  {{ atractivos.length + prestadores.length + municipios.length + rutas.length }}
+</h5><h5>Inserciones Suma: <strong class="bg-orange-400 text-white">{{atractivos.length*17 + prestadores.length*37 + municipios.length*17 + rutas.length*6}}</strong>  / <strong class="bg-lime-500 text-white">{{atractivos.length*3 + prestadores.length*21 + municipios.length*3 + rutas.length*2}}</strong> </h5>
 
 </div>
 

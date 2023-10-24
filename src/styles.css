@@ -2,3 +2,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* width */
+body:hover::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+body:hover::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+body:hover::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 5px;
+  transition: background 0.1s;
+}
+
+/* Hover del propio scrollbar */
+body:hover::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* Cambia el color del scrollbar al presionarlo */
+body:hover::-webkit-scrollbar-thumb:active {
+  background: #555;
+}
+

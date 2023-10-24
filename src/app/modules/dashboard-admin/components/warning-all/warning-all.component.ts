@@ -22,7 +22,7 @@ export class WarningALLComponent implements OnInit {
 
   closemodal() {
     this.modalService.setWarningAll(false);//cierra el modal
-    alert("Ya 👍")
+
    }
 
   borrartodo(){
